@@ -9,11 +9,9 @@ class TutPic extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: SizedBox(
           width: double.infinity,
           child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
             child: Column(
               children: [
                 const Padding(
@@ -26,12 +24,14 @@ class TutPic extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: SizedBox(
-                    height: MediaQuery.of(context).size.height, // Use MediaQuery to get the screen height
+                    height: MediaQuery.of(context)
+                        .size
+                        .height, // Use MediaQuery to get the screen height
                     child: ListView.separated(
                       scrollDirection: Axis.vertical,
                       itemCount: 4, // Set a higher itemCount
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: 20); 
+                        return const SizedBox(height: 20);
                       },
                       itemBuilder: (_, index) {
                         return Stack(

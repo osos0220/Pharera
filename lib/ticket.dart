@@ -6,7 +6,9 @@ class Ticket extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor:const Color.fromARGB(255, 226, 226, 226),),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+      ),
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SizedBox(
         width: double.infinity,
@@ -15,18 +17,24 @@ class Ticket extends StatelessWidget {
           padding: const EdgeInsets.only(top: 50),
           child: Column(
             children: <Widget>[
-            Image.asset("assets/images/ttt.jpg"),
+              Image.asset("assets/images/ttt.jpg"),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
-                child: Container(width: 280,height: 80,decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),color: Colors.black,
-                 
-                ),
-                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/pay.jpg",fit: BoxFit.fill,)),
+                child: Container(
+                  width: 280,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.black,
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        "assets/images/pay.jpg",
+                        fit: BoxFit.fill,
+                      )),
                 ),
               ),
-             
-              
             ],
           ),
         ),
