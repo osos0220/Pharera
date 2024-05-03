@@ -5,7 +5,9 @@ class PharaohDetailPage extends StatelessWidget {
   final PharaohData pharaohData;
   final int index;
 
-  const PharaohDetailPage({Key? key, required this.pharaohData, required this.index}) : super(key: key);
+  const PharaohDetailPage(
+      {Key? key, required this.pharaohData, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,38 +47,38 @@ class PharaohDetailPage extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-  width: 450,
-  height: 350,
-  child: Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(30),
-      border: Border.all(
-        color: Colors.black,
-        width: 2, // Adjust the width of the border as needed
-      ),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        pharaohData.getName(index),
-        style: TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-          shadows: [
-            Shadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 10,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        textAlign: TextAlign.start, // Align text to start from left
-      ),
-    ),
-  ),
-)
-
+                width: 450,
+                height: 350,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2, // Adjust the width of the border as needed
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      pharaohData.getName(index),
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.15),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      textAlign:
+                          TextAlign.start, // Align text to start from left
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

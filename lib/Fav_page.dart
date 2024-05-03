@@ -16,7 +16,7 @@ class _favpageState extends State<favpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
         leading: IconButton(

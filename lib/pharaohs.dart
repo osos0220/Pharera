@@ -5,8 +5,9 @@ import 'package:flutter_application_09/pharaohss.dart';
 
 class Pharaohs extends StatelessWidget {
   Pharaohs({super.key});
+
   final PharaohData pharaohData = PharaohData();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,24 +21,36 @@ class Pharaohs extends StatelessWidget {
               padding: const EdgeInsets.only(top: 6),
               child: Row(
                 children: [
-                  Container(width: 170,height: 80,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                  child: Image.asset("assets/images/xxp.jpg"),),
+                  Container(
+                    width: 170,
+                    height: 80,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    child: Image.asset("assets/images/xxp.jpg"),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 40,left: 80),
+                    padding: const EdgeInsets.only(top: 40, left: 80),
                     child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const Groub()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Groub()));
                       },
-                      child: Container(width: 130,height: 60,decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                      child: Image.asset("assets/images/sea.jpg"),),
+                      child: Container(
+                        width: 130,
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30)),
+                        child: Image.asset("assets/images/sea.jpg"),
+                      ),
                     ),
                   )
-
                 ],
               ),
             ),
             Container(
-              decoration:  const BoxDecoration(),
+              decoration: const BoxDecoration(),
               height: 290,
               child: Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -51,18 +64,23 @@ class Pharaohs extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => PharaohDetailPage(pharaohData: pharaohData, index: index)),
+                            MaterialPageRoute(
+                                builder: (context) => PharaohDetailPage(
+                                    pharaohData: pharaohData, index: index)),
                           );
                         },
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10), 
+                          margin: const EdgeInsets.symmetric(horizontal: 10),
                           width: 350,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
-                            child: Image.asset(pharaohData.getImage(index), fit: BoxFit.cover),
+                            child: Image.asset(
+                              pharaohData.getImage(index),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
