@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/pharahosl_ist.dart';
+import 'package:flutter_application_09/pharadetails.dart';
 
 class Groub extends StatefulWidget {
   const Groub({Key? key}) : super(key: key);
@@ -11,7 +12,6 @@ class Groub extends StatefulWidget {
 class _GroubState extends State<Groub> {
   final PharaohData pharaohData = PharaohData();
   String _selectedPhoto = "";
-
   String _selectedName = "";
 
   @override
@@ -22,9 +22,7 @@ class _GroubState extends State<Groub> {
           Row(
             children: [
               Icon(Icons.notification_add),
-              SizedBox(
-                width: 20,
-              )
+              SizedBox(width: 20),
             ],
           ),
         ],
@@ -46,16 +44,12 @@ class _GroubState extends State<Groub> {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (ctx, i) => _buildPhotoWidget(i),
-                  separatorBuilder: (ctx, i) => const SizedBox(
-                    width: 8,
-                  ),
+                  separatorBuilder: (ctx, i) => const SizedBox(width: 8),
                   itemCount: pharaohData.pharaoh.length,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 64,
-            ),
+            const SizedBox(height: 64),
             _selectedPhoto.isNotEmpty
                 ? Container(
                     width: 328,
@@ -63,9 +57,7 @@ class _GroubState extends State<Groub> {
                     height: 600,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(24),
-                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
                       image: DecorationImage(
                         fit: BoxFit.fill,
                         image: AssetImage(
@@ -83,15 +75,20 @@ class _GroubState extends State<Groub> {
                           style: const TextStyle(
                               color: Colors.white, fontSize: 24),
                         ),
-                        const SizedBox(
-                          height: 24,
-                        ),
+                        const SizedBox(height: 24),
                         SizedBox(
                           width: 96,
                           height: 48,
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PharaohDetailPage(
+                                        pharaohData: pharaohData, index: 0)),
+                              );
+                            },
+                            child: const Text(
                               "EXPLORE",
                               style: TextStyle(color: Colors.red),
                             ),
@@ -105,9 +102,7 @@ class _GroubState extends State<Groub> {
                     height: 600,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(24),
-                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(24)),
                       image: DecorationImage(
                         fit: BoxFit.fill,
                         image: AssetImage(

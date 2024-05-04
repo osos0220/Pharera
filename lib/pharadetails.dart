@@ -30,7 +30,7 @@ class PharaohDetailPage extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3),
                     ),
                   ],
                 ),
@@ -43,9 +43,7 @@ class PharaohDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               SizedBox(
                 width: 450,
                 height: 350,
@@ -54,27 +52,26 @@ class PharaohDetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(
                       color: Colors.black,
-                      width: 2, // Adjust the width of the border as needed
+                      width: 2,
                     ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       pharaohData.getName(index),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.15),
+                            color: Colors.black,
                             blurRadius: 10,
-                            offset: const Offset(0, 3),
+                            offset: Offset(0, 3),
                           ),
                         ],
                       ),
-                      textAlign:
-                          TextAlign.start, // Align text to start from left
+                      textAlign: TextAlign.start,
                     ),
                   ),
                 ),

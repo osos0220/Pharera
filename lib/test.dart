@@ -35,9 +35,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: ConvexAppBar(
         items: [
-          TabItem(icon: Image.asset("assets/images/home.jpg"), title: "HOME"),
-          TabItem(icon: Image.asset("assets/images/360.jpg"), title: "HOME"),
-          TabItem(icon: Image.asset("assets/images/home.jpg"), title: "HOME"),
+          TabItem(icon: Icon(Icons.home), title: "HOME"),
+          TabItem(icon: Icon(Icons.panorama_wide_angle), title: "360"),
+          TabItem(icon: Icon(Icons.person_2), title: "Prpfile"),
         ],
         backgroundColor: const Color.fromARGB(199, 146, 112, 57),
         activeColor: const Color.fromARGB(255, 226, 226, 226),

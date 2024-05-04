@@ -4,6 +4,7 @@ import 'package:flutter_application_09/about_us.dart';
 import 'package:flutter_application_09/contact.dart';
 import 'package:flutter_application_09/notifacation.dart';
 import 'package:flutter_application_09/pharaohs.dart';
+import 'package:flutter_application_09/pharaohss.dart';
 import 'package:flutter_application_09/ticket.dart';
 import 'package:flutter_application_09/tut.dart';
 
@@ -14,7 +15,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late TabController tab;
 
   @override
@@ -35,12 +37,17 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: Container(
               width: 120,
               height: 120,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: IconButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Not()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Not()));
                 },
-                icon: ClipRRect(borderRadius: BorderRadius.circular(20), child: Image.asset("assets/images/not.jpg", width: 100, height: 100)),
+                icon: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset("assets/images/not.jpg",
+                        width: 100, height: 100)),
               ),
             ),
           ),
@@ -73,14 +80,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 leading: const Icon(Icons.info),
                 title: const Text('About Us'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const aboutus()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const aboutus()));
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.contact_phone),
                 title: const Text('Contact Us'),
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const TabPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const TabPage()));
                 },
               ),
             ],
@@ -100,7 +109,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     Radius.circular(100.0),
                   ),
                 ),
-                contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
               ),
             ),
           ),
@@ -116,18 +126,30 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   },
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.asset("assets/images/phh.jpg", width: 93, height: 90, fit: BoxFit.fill),
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Groub(),
+                              ),
+                              (route) => false);
+                        },
+                        child: Image.asset("assets/images/phh.jpg",
+                            width: 93, height: 90, fit: BoxFit.fill)),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Tut()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => const Tut()));
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("assets/images/exx.jpg", width: 100, height: 90, fit: BoxFit.fill),
+                      child: Image.asset("assets/images/exx.jpg",
+                          width: 100, height: 90, fit: BoxFit.fill),
                     ),
                   ),
                 ),
@@ -135,23 +157,31 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   padding: const EdgeInsets.only(top: 16),
                   child: GestureDetector(
                     onTap: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Ticket()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Ticket()));
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("assets/images/ti.jpg", width: 100, height: 90, fit: BoxFit.fill),
+                      child: Image.asset("assets/images/ti.jpg",
+                          width: 100, height: 90, fit: BoxFit.fill),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top:13 ),
+                  padding: const EdgeInsets.only(top: 13),
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const favpage()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const favpage()));
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("assets/images/fa.jpg",width: 100, height: 100, fit: BoxFit.fill),
+                      child: Image.asset("assets/images/fa.jpg",
+                          width: 100, height: 100, fit: BoxFit.fill),
                     ),
                   ),
                 ),
