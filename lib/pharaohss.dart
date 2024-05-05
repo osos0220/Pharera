@@ -77,8 +77,8 @@ class _GroubState extends State<Groub> {
                         ),
                         const SizedBox(height: 24),
                         SizedBox(
-                          width: 110,
-                          height: 50,
+                          width: 96,
+                          height: 48,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -90,7 +90,7 @@ class _GroubState extends State<Groub> {
                             },
                             child: const Text(
                               "EXPLORE",
-                              style: TextStyle(color: Colors.indigo),
+                              style: TextStyle(color: Colors.red),
                             ),
                           ),
                         )

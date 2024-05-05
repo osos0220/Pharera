@@ -24,9 +24,7 @@ class TutPic extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: SizedBox(
-                    height: MediaQuery.of(context)
-                        .size
-                        .height, // Use MediaQuery to get the screen height
+                    height: MediaQuery.of(context).size.height, // Use MediaQuery to get the screen height
                     child: ListView.separated(
                       scrollDirection: Axis.vertical,
                       itemCount: 4, // Set a higher itemCount
@@ -43,6 +41,13 @@ class TutPic extends StatelessWidget {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: Colors.black,
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.asset(
+                                  "assets/images/wel1.jpg", // Adjust the image path accordingly
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                             const HeartIconButton(),

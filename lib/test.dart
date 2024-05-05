@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter_application_09/First.dart';
+import 'package:flutter_application_09/first.dart';
 import 'package:flutter_application_09/Panorama.dart';
 import 'package:flutter_application_09/register.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: ConvexAppBar(
-        items: [
+        items: const [
           TabItem(icon: Icon(Icons.home), title: "HOME"),
           TabItem(icon: Icon(Icons.panorama_wide_angle), title: "360"),
           TabItem(icon: Icon(Icons.person_2), title: "Prpfile"),

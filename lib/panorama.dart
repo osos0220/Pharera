@@ -34,7 +34,7 @@ class VITPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 30),
-              child: Container(width: 300,height: 80,decoration: BoxDecoration(
+              child: Container(width: 280,height: 80,decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),color: Colors.black,
                   boxShadow: [
                     BoxShadow(

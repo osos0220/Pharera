@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/test.dart';
 
@@ -9,14 +9,36 @@ class ImagePage extends StatefulWidget {
   _ImagePageState createState() => _ImagePageState();
 }
 
-class _ImagePageState extends State<ImagePage> {
+class _ImagePageState extends State<ImagePage> with SingleTickerProviderStateMixin {
   int currentIndex = 0;
-  double _leftPosition=0.0;
   final List<String> imagePaths = [
-    'assets/images/wel1.jpg',
     'assets/images/wel2.jpg',
     'assets/images/wel3.jpg',
   ];
+
+  late Timer _timer;
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      nextImage();
+    });
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 350),
+      value: 0.0, // Set initial value to 0.0
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    _animationController.dispose();
+    super.dispose();
+  }
 
   void nextImage() {
     setState(() {
@@ -24,18 +46,19 @@ class _ImagePageState extends State<ImagePage> {
     });
   }
 
-  void previousImage() {
-    setState(() {
-      currentIndex = (currentIndex - 1 + imagePaths.length) % imagePaths.length;
-    });
+  void _moveArrow() {
+    if (_animationController.isCompleted) {
+      _animationController.reverse();
+    } else {
+      _animationController.forward();
+    }
   }
 
   void skipToHomePage() {
-Future.delayed(const Duration(seconds: 4)).then((value) =>     Navigator.push(
-  context,
-  MaterialPageRoute(builder: (context) => const MyHomePage()),
-));
-
+    Future.delayed(const Duration(seconds: 4)).then((value) => Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MyHomePage()),
+    ));
   }
 
   @override
@@ -46,61 +69,46 @@ Future.delayed(const Duration(seconds: 4)).then((value) =>     Navigator.push(
           SizedBox(
             width: 500,
             height: double.infinity,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: imagePaths.length,
-              itemBuilder: (context, index) {
-                return Image.asset(
-                  imagePaths[index],
-                  fit: BoxFit.cover,
-                );
-              },
+            child: Image.asset(
+              imagePaths[currentIndex],
+              fit: BoxFit.cover,
             ),
           ),
           Positioned(
             left: 0,
             top: 740,
-
-
             child: GestureDetector(
               onTap: () {
-                if (currentIndex < imagePaths.length - 1) {
-                  nextImage();
-                } else {
-                  skipToHomePage();
-                }
+                _timer.cancel();
+                skipToHomePage();
+              },
+              onTapDown: (_) {
+                _moveArrow();
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Container(
-                  width: 380,
-                  height: 64,
+                  width: 370,
+                  height: 60,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(28),
-
-                    gradient: const LinearGradient(colors: [
-                      Color.fromARGB(176, 255, 255, 255),
-                      Color.fromARGB(136, 158, 158, 158),
-                      Color.fromARGB(187, 126, 125, 125),
-                      Color.fromARGB(209, 110, 109, 109),
-                      Color.fromARGB(164, 67, 67, 67),
-                    ]),
+                    color: Colors.grey[400], // Grey box color
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(color: Colors.black.withOpacity(0.35), width: 0.5),
                   ),
                   child: Align(
                     alignment: Alignment.centerLeft,
-                    child: AnimatedContainer(
-                  curve: Curves.easeInToLinear,
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      transform: Matrix4.translationValues(_leftPosition, 0.0, 0.0),
-                      duration: const Duration(seconds: 2),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _leftPosition = _leftPosition == 0.0 ? 310.0 : 0.0;
-                          });
-                          skipToHomePage();
-                        },
-                       child:  const Icon(Icons.double_arrow, size: 55, color: Colors.black),
+                    child: AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (context, child) {
+                        return Transform.translate(
+                          offset: Offset(300 * _animationController.value, 0),
+                          child: child,
+                        );
+                      },
+                      child: const Icon(
+                        Icons.double_arrow,
+                        size: 55,
+                        color: Colors.black, // Black arrow color
                       ),
                     ),
                   ),
