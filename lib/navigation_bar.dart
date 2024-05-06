@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter_application_09/First.dart';
+import 'package:flutter_application_09/main_up.dart';
 import 'package:flutter_application_09/Panorama.dart';
 import 'package:flutter_application_09/register.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -31,20 +31,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: ConvexAppBar(
         items: [
-          TabItem(icon: Icon(Icons.home), title: "HOME"),
-          TabItem(icon: Icon(Icons.panorama_wide_angle), title: "360"),
-          TabItem(icon: Icon(Icons.person_2), title: "Prpfile"),
+          TabItem(icon: Icon(Icons.home, size: screenHeight * 0.04, color: const Color.fromARGB(255, 226, 226, 226),)),
+          TabItem(icon: Icon(Icons.panorama_wide_angle, size: screenHeight * 0.04 , color: const Color.fromARGB(255, 226, 226, 226),)),
+          TabItem(icon: Icon(Icons.person_2, size: screenHeight * 0.04 , color: const Color.fromARGB(255, 226, 226, 226),)),
         ],
         backgroundColor: const Color.fromARGB(199, 146, 112, 57),
-        activeColor: const Color.fromARGB(255, 226, 226, 226),
+        activeColor: const Color.fromARGB(199, 146, 112, 57),
         initialActiveIndex: _selectedIndex,
         onTap: _onItemTapped,
-        height: 70,
+        height: screenHeight * 0.07,
       ),
+
     );
   }
 }

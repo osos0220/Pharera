@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
     
       theme: ThemeData(
-        
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
@@ -21,4 +20,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//RGB(211,211,211)

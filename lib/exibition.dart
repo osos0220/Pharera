@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/tutbic.dart';
+import 'package:flutter_application_09/exipition_photo.dart';
 
 class Tut extends StatefulWidget {
   const Tut({Key? key}) : super(key: key);

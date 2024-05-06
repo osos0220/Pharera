@@ -5,6 +5,8 @@ class Ticket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -14,15 +16,15 @@ class Ticket extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.only(top: 50),
+          padding:  EdgeInsets.only(top: screenHeight*0.05),
           child: Column(
             children: <Widget>[
-              Image.asset("assets/images/ttt.jpg"),
+              Image.asset("assets/images/ticket_details.jpg"),
               Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding:  EdgeInsets.only(top: screenHeight *0.001),
                 child: Container(
-                  width: 280,
-                  height: 80,
+                  width: screenWidth*0.68,
+                  height: screenHeight*0.1,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.black,

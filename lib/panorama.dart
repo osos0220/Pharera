@@ -5,6 +5,8 @@ class VITPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SizedBox(
@@ -13,12 +15,12 @@ class VITPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
           SafeArea(child: Padding(
-            padding: const EdgeInsets.only(top: 90),
-            child: Image.asset("assets/images/top.jpg"),
+            padding:  EdgeInsets.only(top: screenHeight * 0.09),
+            child: Image.asset("assets/images/app_photo.jpg"),
           )),
             Padding(
-              padding: const EdgeInsets.only(top: 80),
-              child: Container(width: 280,height: 80,decoration: BoxDecoration(
+              padding:  EdgeInsets.only(top: screenHeight * 0.08),
+              child: Container(width: screenWidth * 0.65,height: screenHeight * 0.09,decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),color: Colors.black,
                 boxShadow: [
                     BoxShadow(
@@ -29,23 +31,23 @@ class VITPage extends StatelessWidget {
                     ),
                   ],
               ),
-              child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/ex.jpg",fit: BoxFit.fill,)),
+              child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/explore_only.jpg",fit: BoxFit.fill,)),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Container(width: 300,height: 80,decoration: BoxDecoration(
+              padding:  EdgeInsets.only(top: screenHeight * 0.06),
+              child: Container(width: screenWidth * 0.7,height: screenHeight * 0.09,decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),color: Colors.black,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), 
                     ),
                   ],
                 ),
-                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/eg.jpg",fit: BoxFit.fill,)),
+                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/explore_with.jpg",fit: BoxFit.fill,)),
                 ),
             ),
             

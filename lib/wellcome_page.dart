@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/test.dart';
+import 'package:flutter_application_09/navigation_bar.dart';
 
 class ImagePage extends StatefulWidget {
   const ImagePage({Key? key}) : super(key: key);
@@ -11,61 +10,72 @@ class ImagePage extends StatefulWidget {
 
 class _ImagePageState extends State<ImagePage> {
   int currentIndex = 0;
-  double _leftPosition=0.0;
+  double _leftPosition = 0.0;
+  final PageController _pageController = PageController();
   final List<String> imagePaths = [
-    'assets/images/wel1.jpg',
-    'assets/images/wel2.jpg',
-    'assets/images/wel3.jpg',
+    'assets/images/welcome_photo_1.jpg',
+    'assets/images/welcome_photo_2.jpg',
+    'assets/images/welcome_photo_3.jpg',
   ];
 
-  void nextImage() {
+  void skipToHomePage() {
+    Future.delayed(const Duration(seconds: 4)).then((value) => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MyHomePage()),
+        ));
+  }
+
+  void _scrollToNextImage() {
     setState(() {
       currentIndex = (currentIndex + 1) % imagePaths.length;
     });
-  }
-
-  void previousImage() {
-    setState(() {
-      currentIndex = (currentIndex - 1 + imagePaths.length) % imagePaths.length;
-    });
-  }
-
-  void skipToHomePage() {
-Future.delayed(const Duration(seconds: 4)).then((value) =>     Navigator.push(
-  context,
-  MaterialPageRoute(builder: (context) => const MyHomePage()),
-));
-
+    _pageController.animateToPage(
+      currentIndex,
+      duration: const Duration(seconds: 2),
+      curve: Curves.easeInOut,
+    );
+    if (currentIndex < imagePaths.length - 1) {
+      Future.delayed(const Duration(seconds: 2), _scrollToNextImage);
+    } else {
+      // Reach the last image, go to the home page
+      skipToHomePage();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    // Calculate total duration to display all images
+    final totalDuration = Duration(seconds: imagePaths.length * 2);
+
     return Scaffold(
       body: Stack(
         children: [
-          SizedBox(
-            width: 500,
-            height: double.infinity,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: imagePaths.length,
-              itemBuilder: (context, index) {
-                return Image.asset(
-                  imagePaths[index],
-                  fit: BoxFit.cover,
-                );
-              },
-            ),
+          PageView.builder(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            itemCount: imagePaths.length,
+            itemBuilder: (context, index) {
+              return Image.asset(
+                imagePaths[index],
+                fit: BoxFit.cover,
+              );
+            },
           ),
+          const Positioned(
+            left: 20,
+            top: 700,
+            child: Text("Loading.." , style: TextStyle(fontSize: 23),)),
           Positioned(
             left: 0,
             top: 740,
-
-
             child: GestureDetector(
               onTap: () {
                 if (currentIndex < imagePaths.length - 1) {
-                  nextImage();
+                  _scrollToNextImage();
                 } else {
                   skipToHomePage();
                 }
@@ -77,7 +87,6 @@ Future.delayed(const Duration(seconds: 4)).then((value) =>     Navigator.push(
                   height: 64,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(28),
-
                     gradient: const LinearGradient(colors: [
                       Color.fromARGB(176, 255, 255, 255),
                       Color.fromARGB(136, 158, 158, 158),
@@ -89,18 +98,19 @@ Future.delayed(const Duration(seconds: 4)).then((value) =>     Navigator.push(
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: AnimatedContainer(
-                  curve: Curves.easeInToLinear,
+                      curve: Curves.easeInToLinear,
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       transform: Matrix4.translationValues(_leftPosition, 0.0, 0.0),
-                      duration: const Duration(seconds: 2),
+                      duration: totalDuration,
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
                             _leftPosition = _leftPosition == 0.0 ? 310.0 : 0.0;
                           });
-                          skipToHomePage();
+                          // Start scrolling through the images
+                          _scrollToNextImage();
                         },
-                       child:  const Icon(Icons.double_arrow, size: 55, color: Colors.black),
+                        child: const Icon(Icons.double_arrow, size: 55, color: Colors.black),
                       ),
                     ),
                   ),

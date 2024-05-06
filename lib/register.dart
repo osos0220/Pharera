@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/Sign_up.dart';
-import 'package:flutter_application_09/sign.dart';
+import 'package:flutter_application_09/sign_in.dart';
 class Register extends StatelessWidget {
   const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SizedBox(
@@ -14,16 +16,16 @@ class Register extends StatelessWidget {
         child: Column(
           children: <Widget>[
           SafeArea(child: Padding(
-            padding: const EdgeInsets.only(top: 90),
-            child: Image.asset("assets/images/pl.jpg"),
+            padding:  EdgeInsets.only(top: screenHeight * 0.099),
+            child: Image.asset("assets/images/pharera_login.jpg"),
           )),
             Padding(
-              padding: const EdgeInsets.only(top: 160),
+              padding:  EdgeInsets.only(top: screenHeight * 0.16),
               child: InkWell(
                 onTap: (){
                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignIn()));
                 },
-                child: Container(width: 280,height: 80,decoration: BoxDecoration(
+                child: Container(width: screenWidth * 0.7,height: screenHeight * 0.09,decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),color: Colors.black,
                   boxShadow: [
                       BoxShadow(
@@ -34,17 +36,17 @@ class Register extends StatelessWidget {
                       ),
                     ],
                 ),
-                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/si.jpg",fit: BoxFit.fill,)),
+                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/sign_in.jpg",fit: BoxFit.fill,)),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 60),
+              padding: EdgeInsets.only(top: screenHeight * 0.06),
               child: InkWell(
                 onTap: (){
                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Signuo()));
                 },
-                child: Container(width: 300,height: 80,decoration: BoxDecoration(
+                child: Container(width: screenWidth * 0.7,height: screenHeight * 0.09,decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),color: Colors.black,
                     boxShadow: [
                       BoxShadow(
@@ -55,7 +57,7 @@ class Register extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/su.jpg",fit: BoxFit.fill,)),
+                  child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/sign_up.jpg",fit: BoxFit.fill,)),
                   ),
               ),
             ),

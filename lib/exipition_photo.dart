@@ -6,6 +6,8 @@ class TutPic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
@@ -14,39 +16,42 @@ class TutPic extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 55),
-                  child: Text(
+                 Padding(
+                  padding: EdgeInsets.only(right: screenWidth*0.06 , top:  screenHeight*0.03),
+                  child: const Text(
                     "Exhibitions Pictures",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding:  EdgeInsets.only(right: screenWidth*0.06 ,top:  screenHeight*0.02 ),
                   child: SizedBox(
                     height: MediaQuery.of(context)
                         .size
                         .height, // Use MediaQuery to get the screen height
                     child: ListView.separated(
                       scrollDirection: Axis.vertical,
-                      itemCount: 4, // Set a higher itemCount
+                      itemCount: 3, // Set a higher itemCount
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(height: 20);
+                        return  SizedBox(height:  screenHeight*0.03);
                       },
                       itemBuilder: (_, index) {
-                        return Stack(
-                          children: [
-                            Container(
-                              width: 400,
-                              height: 350,
-                              margin: const EdgeInsets.only(right: 10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.black,
+                        return Padding(
+                          padding:  EdgeInsets.only(left: screenWidth*0.04),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: screenWidth*0.99,
+                                height: screenHeight*0.22,
+                                margin: const EdgeInsets.only(right: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            const HeartIconButton(),
-                          ],
+                              const HeartIconButton(),
+                            ],
+                          ),
                         );
                       },
                     ),

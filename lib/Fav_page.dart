@@ -15,6 +15,8 @@ class _favpageState extends State<favpage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
@@ -40,8 +42,8 @@ class _favpageState extends State<favpage> {
                 height: 16,
               ),
               Container(
-                width: 364,
-                height: 132,
+                width: screenWidth*0.9,
+                height: screenHeight*0.15,
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.all(
@@ -49,15 +51,15 @@ class _favpageState extends State<favpage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 16,
+               SizedBox(
+                height: screenHeight*0.009,
               ),
               const AppTextWidget(
                 title: "Categories",
                 fontSize: 32,
               ),
-              const SizedBox(
-                height: 16,
+               SizedBox(
+                height: screenHeight *0.008,
               ),
               Expanded(
                 child: ListView.separated(
