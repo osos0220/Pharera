@@ -15,46 +15,47 @@ class TutPic extends StatelessWidget {
           width: double.infinity,
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 Padding(
-                  padding: EdgeInsets.only(right: screenWidth*0.06 , top:  screenHeight*0.03),
-                  child: const Text(
-                    "Exhibitions Pictures",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                Padding(
+                  padding: EdgeInsets.only( top: screenHeight * 0.03, bottom: screenHeight * 0.03),
+                  child: const Center(
+                    child: Text(
+                      "Exhibition Pictures",
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
-                Padding(
-                  padding:  EdgeInsets.only(right: screenWidth*0.06 ,top:  screenHeight*0.02 ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context)
-                        .size
-                        .height, // Use MediaQuery to get the screen height
-                    child: ListView.separated(
-                      scrollDirection: Axis.vertical,
-                      itemCount: 3, // Set a higher itemCount
-                      separatorBuilder: (BuildContext context, int index) {
-                        return  SizedBox(height:  screenHeight*0.03);
-                      },
-                      itemBuilder: (_, index) {
-                        return Padding(
-                          padding:  EdgeInsets.only(left: screenWidth*0.04),
-                          child: Stack(
-                            children: [
-                              Container(
-                                width: screenWidth*0.99,
-                                height: screenHeight*0.22,
-                                margin: const EdgeInsets.only(right: 10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.black,
-                                ),
+                SizedBox(
+                  height: screenHeight * 0.7, // Adjust height as needed
+                  child: ListView.separated(
+                    scrollDirection: Axis.vertical,
+                    itemCount: 3, // Set a higher itemCount
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(height: screenHeight * 0.03);
+                    },
+                    itemBuilder: (_, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: screenWidth * 0.04),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: screenWidth * 0.85,
+                              height: screenHeight * 0.32, // Adjust height as needed
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.black,
                               ),
-                              const HeartIconButton(),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                              
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left:screenWidth*0.7 ),
+                              child: const HeartIconButton(),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],

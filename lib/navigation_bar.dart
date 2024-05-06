@@ -16,7 +16,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    const HomePage(),
+     const HomePage(),
     const VITPage(),
     const Register(),
   ];
@@ -36,6 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: ConvexAppBar(
+
         items: [
           TabItem(icon: Icon(Icons.home, size: screenHeight * 0.04, color: const Color.fromARGB(255, 226, 226, 226),)),
           TabItem(icon: Icon(Icons.panorama_wide_angle, size: screenHeight * 0.04 , color: const Color.fromARGB(255, 226, 226, 226),)),

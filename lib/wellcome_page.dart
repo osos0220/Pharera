@@ -65,10 +65,6 @@ class _ImagePageState extends State<ImagePage> {
               );
             },
           ),
-          const Positioned(
-            left: 20,
-            top: 700,
-            child: Text("Loading.." , style: TextStyle(fontSize: 23),)),
           Positioned(
             left: 0,
             top: 740,
