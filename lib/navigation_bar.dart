@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter_application_09/main_up.dart';
-import 'package:flutter_application_09/Panorama.dart';
-import 'package:flutter_application_09/register.dart';
+import 'package:pharera/main_up.dart';
+import 'package:pharera/Panorama.dart';
+import 'package:pharera/register.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class MyHomePage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/navigation_bar.dart';
+import 'package:pharera/navigation_bar.dart';
 
 class ImagePage extends StatefulWidget {
   const ImagePage({Key? key}) : super(key: key);

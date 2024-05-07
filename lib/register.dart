@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Sign_up.dart';
-import 'package:flutter_application_09/sign_in.dart';
+import 'package:pharera/Sign_up.dart';
+import 'package:pharera/sign_in.dart';
 
 class Register extends StatelessWidget {
   const Register({Key? key}) : super(key: key);

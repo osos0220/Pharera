@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/wellcome_page.dart';
+import 'package:pharera/wellcome_page.dart';
 
 void main() {
   runApp(const MyApp());

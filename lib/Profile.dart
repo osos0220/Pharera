@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Fav_page.dart';
-import 'package:flutter_application_09/notifacation.dart';
-import 'package:flutter_application_09/rating.dart';
+import 'package:pharera/Fav_page.dart';
+import 'package:pharera/notifacation.dart';
+import 'package:pharera/rating.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);

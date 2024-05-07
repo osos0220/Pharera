@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/sign_in.dart';
+import 'package:pharera/sign_in.dart';
 
 class Signuo extends StatelessWidget {
   const Signuo({Key? key}) : super(key: key);

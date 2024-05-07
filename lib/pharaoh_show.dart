@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/pharahosl_ist.dart';
+import 'package:pharera/pharahosl_ist.dart';
 
 class PharaohDetailPage extends StatelessWidget {
   final PharaohData pharaohData;

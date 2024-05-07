@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Fav_page.dart';
-import 'package:flutter_application_09/Profile.dart';
-import 'package:flutter_application_09/about_us.dart';
-import 'package:flutter_application_09/contact_us.dart';
-import 'package:flutter_application_09/notifacation.dart';
-import 'package:flutter_application_09/popular_pharaoh.dart';
-import 'package:flutter_application_09/pharaohs.dart';
-import 'package:flutter_application_09/ticket.dart';
-import 'package:flutter_application_09/exibition.dart';
+import 'package:pharera/Fav_page.dart';
+import 'package:pharera/Profile.dart';
+import 'package:pharera/about_us.dart';
+import 'package:pharera/contact_us.dart';
+import 'package:pharera/notifacation.dart';
+import 'package:pharera/popular_pharaoh.dart';
+import 'package:pharera/pharaohs.dart';
+import 'package:pharera/ticket.dart';
+import 'package:pharera/exibition.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage>
                                 (route) => false);
                           },
                           child: Image.asset("assets/images/pharahos.jpg",
-                              width: 93, height: 90, fit: BoxFit.contain)),
+                              width: 93, height: 95, fit: BoxFit.contain)),
                     ),
                   ),
                   Padding(
@@ -192,7 +192,7 @@ class _HomePageState extends State<HomePage>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset("assets/images/ticket.jpg",
-                            width: 100, height: 90, fit: BoxFit.contain),
+                            width: 100, height: 100, fit: BoxFit.contain),
                       ),
                     ),
                   ),
@@ -208,7 +208,7 @@ class _HomePageState extends State<HomePage>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.asset("assets/images/faviorate.jpg",
-                            width: 100, height: 100, fit: BoxFit.contain),
+                            width: 100, height: 105, fit: BoxFit.contain),
                       ),
                     ),
                   ),

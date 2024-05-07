@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Fav_but.dart';
-import 'package:flutter_application_09/pharaoh_show.dart';
-import 'package:flutter_application_09/pharahosl_ist.dart';
-import 'package:flutter_application_09/pharaohs.dart';
+import 'package:pharera/Fav_but.dart';
+import 'package:pharera/pharaoh_show.dart';
+import 'package:pharera/pharahosl_ist.dart';
+import 'package:pharera/pharaohs.dart';
 
 class PharaohsScreen extends StatelessWidget {
    PharaohsScreen({Key? key}) : super(key: key);

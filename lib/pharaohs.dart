@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/main_up.dart';
-import 'package:flutter_application_09/navigation_bar.dart';
-import 'package:flutter_application_09/notifacation.dart';
-import 'package:flutter_application_09/pharahosl_ist.dart';
-import 'package:flutter_application_09/pharaoh_show.dart';
+import 'package:pharera/main_up.dart';
+import 'package:pharera/navigation_bar.dart';
+import 'package:pharera/notifacation.dart';
+import 'package:pharera/pharahosl_ist.dart';
+import 'package:pharera/pharaoh_show.dart';
 
 class Groub extends StatefulWidget {
   const Groub({Key? key}) : super(key: key);
