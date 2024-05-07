@@ -146,12 +146,14 @@ class Signuo extends StatelessWidget {
                     top: screenHeight * 0.02,
                   ),
                   child: SizedBox(
-                    width: screenWidth * 0.45,
-                    child: const Text(
-                      "CONFIRM PASSWORD",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
+                    width: screenWidth * 0.75,
+                    child: const Expanded(
+                      child: Text(
+                        "CONFIRM PASSWORD",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
                   ),

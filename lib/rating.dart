@@ -28,7 +28,10 @@ class _RatingPageState extends State<RatingPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('OK' , style: TextStyle(fontSize: 18, color: Colors.black),),
+              child: const Text(
+                'OK',
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ),
             ),
           ],
         );
@@ -43,77 +46,80 @@ class _RatingPageState extends State<RatingPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
-        backgroundColor:  const Color.fromARGB(255, 226, 226, 226),
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       ),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
+      body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch, // Ensure widgets stretch horizontally
           children: [
-             Padding(
-               padding:  EdgeInsets.only(right: screenWidth*0.18),
-               child: const Text("Your Feedback Is Welcome" , style: TextStyle(fontSize: 25 , fontWeight: FontWeight.w800),),
-             ),
-             Padding(
-               padding:  EdgeInsets.only(right: screenWidth*0.75 , top: screenHeight *0.019),
-               child: const Text("Rate Us" , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400),),
-             ),
             Padding(
-              padding:  EdgeInsets.only(right: screenWidth * 0.4 ,top: screenHeight *0.03),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  5,
-                  (index) => IconButton(
-                    icon: Icon(
-                      index < _selectedStar ? Icons.star : Icons.star_border,
-                      color: index < _selectedStar ? Colors.yellow : Colors.grey,
+              padding: EdgeInsets.only(right: screenWidth * 0.18, top: 10),
+              child: const FittedBox(
+                child: Text("Your Feedback Is Welcome",
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: screenWidth * 0.75, top: screenHeight * 0.04),
+              child: const Text("Rate Us",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: screenWidth * 0.4, top: screenHeight * 0.02),
+              child: FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    5,
+                    (index) => IconButton(
+                      icon: Icon(
+                        index < _selectedStar ? Icons.star : Icons.star_border,
+                        color: index < _selectedStar ? Colors.yellow : Colors.grey,
+                        size: 40,
+                      ),
+                      onPressed: () => _handleStarSelection(index + 1),
                     ),
-                    onPressed: () => _handleStarSelection(index + 1),
                   ),
                 ),
               ),
             ),
-             SizedBox(height: screenHeight *0.02),
+            const SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: TextField(
+                controller: _opinionController,
+                maxLines: 15,
+                decoration: const InputDecoration(
+                  hintText: 'Enter your Feedback...',
+                  border: OutlineInputBorder(borderSide: BorderSide(color: Colors.green)),
+                  focusColor: Colors.amber,
+                  fillColor: Colors.amber,
+                  hoverColor: Colors.amber
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.009),
               child: SizedBox(
-  width: double.infinity,
-  child: Expanded(
-    child: TextField(
-      controller: _opinionController,
-      maxLines:18, // Increase the number of lines
-      decoration: const InputDecoration(
-        hintText: 'Enter your Feedback...',
-        border: OutlineInputBorder(),
-      ),
-    ),
-  ),
-),  ),
-Padding(
-  padding:  EdgeInsets.only(top: screenHeight * 0.009),
-  child: SizedBox(
-    width: screenWidth * 0.93,
-    height: screenHeight * 0.08,
-    child: ElevatedButton(
-      onPressed: _submitOpinion,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: const Color.fromARGB(199, 146, 112, 57),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20), // Set border radius
-        ),
-        elevation: 5, // Add shadow
-      ),
-      child: const Text('Submit',style: TextStyle(fontSize: 20 , color: Colors.white),),
-    ),
-  ),
-),
-
+                height: screenHeight * 0.08,
+                width: screenWidth*0.5,
+                child: ElevatedButton(
+                  onPressed: _submitOpinion,
+                  style: ElevatedButton.styleFrom(
+                    
+                    backgroundColor: const Color.fromARGB(199, 146, 112, 57),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 5,
+                  ),
+                  child: const Text('Submit', style: TextStyle(fontSize: 20, color: Colors.white)),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-

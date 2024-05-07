@@ -55,42 +55,60 @@ class _HomePageState extends State<HomePage>
     color: Color.fromRGBO(146, 112, 57, 0.78),
     image: DecorationImage(
       image: AssetImage('assets/images/app_photo.jpg'),
-      fit: BoxFit.cover, // You can adjust the BoxFit as needed
+      fit: BoxFit.fill, // You can adjust the BoxFit as needed
     ),
   ),
   child: Text(''),
-  // Your other child widgets can go here
-),
-
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text('About Us'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const aboutus()));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.contact_phone),
-              title: const Text('Contact Us'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const TabPage()));
-              },
-            ),
-             ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('profile'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const ProfilePage()));
-              },
-            ),
+  
+    ), 
+          Expanded(
+            child: Container(
+              color: const Color.fromARGB(255, 226, 226, 226),
+              
+                child: Column(children: [
+                ListTile(
+                  leading: const Icon(Icons.home),
+                  title: const Text('Home'),
+                  onTap: () {},
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.info),
+                  title: const Text('About Us'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const aboutus()));
+                  },
+                ),
+                const Divider(),
+                ListTile(
+                  leading: const Icon(Icons.contact_phone),
+                  title: const Text('Contact Us'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const TabPage()));
+                  },
+                ),
+                const Divider(),
+                 ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text('profile'),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const ProfilePage()));
+                  },
+                ),
+                const Divider(),
+                const ListTile(),
+                const ListTile(),
+                const ListTile(),
+                const ListTile(),
+                const ListTile(),
+                const ListTile(),
+                          ]),
+              ),),
+          
+            
           ],
         ),
       ),
@@ -124,75 +142,78 @@ class _HomePageState extends State<HomePage>
           const SizedBox(height: 10),
           Padding(
             padding:  EdgeInsets.only(top: screenHeight *0.004),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    tab.animateTo(0);
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: InkWell(
-                        onTap: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const Groub(),
-                              ),
-                              (route) => false);
-                        },
-                        child: Image.asset("assets/images/pharahos.jpg",
-                            width: 93, height: 90, fit: BoxFit.fill)),
-                  ),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(bottom: screenHeight * 0.009),
-                  child: GestureDetector(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => const Tut()));
+                      tab.animateTo(0);
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("assets/images/exibition.jpg",
-                          width: 100, height: 90, fit: BoxFit.fill),
+                      child: InkWell(
+                          onTap: () {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Groub(),
+                                ),
+                                (route) => false);
+                          },
+                          child: Image.asset("assets/images/pharahos.jpg",
+                              width: 93, height: 90, fit: BoxFit.contain)),
                     ),
                   ),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(top: screenHeight * 0.019),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Ticket()));
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("assets/images/ticket.jpg",
-                          width: 100, height: 90, fit: BoxFit.fill),
+                  Padding(
+                    padding:  EdgeInsets.only(bottom: screenHeight * 0.009),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const Tut()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset("assets/images/exibition.jpg",
+                            width: 100, height: 90, fit: BoxFit.contain),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding:  EdgeInsets.only(top: screenHeight *0.02),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const favpage()));
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.asset("assets/images/faviorate.jpg",
-                          width: 100, height: 100, fit: BoxFit.fill),
+                  Padding(
+                    padding:  EdgeInsets.only(top: screenHeight * 0.019),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Ticket()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset("assets/images/ticket.jpg",
+                            width: 100, height: 90, fit: BoxFit.contain),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding:  EdgeInsets.only(top: screenHeight *0.02),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const favpage()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset("assets/images/faviorate.jpg",
+                            width: 100, height: 100, fit: BoxFit.contain),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(

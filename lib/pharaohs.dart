@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_09/main_up.dart';
+import 'package:flutter_application_09/navigation_bar.dart';
 import 'package:flutter_application_09/notifacation.dart';
 import 'package:flutter_application_09/pharahosl_ist.dart';
 import 'package:flutter_application_09/pharaoh_show.dart';
@@ -30,6 +32,7 @@ class _GroubState extends State<Groub> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
+        
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
         actions: [
           Padding(
@@ -47,7 +50,10 @@ class _GroubState extends State<Groub> {
         ],
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
           },
           icon: const Icon(Icons.arrow_back),
         ),

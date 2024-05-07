@@ -46,6 +46,8 @@ class _ImagePageState extends State<ImagePage> {
   Widget build(BuildContext context) {
     // Calculate total duration to display all images
     final totalDuration = Duration(seconds: imagePaths.length * 2);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: Stack(
@@ -78,35 +80,37 @@ class _ImagePageState extends State<ImagePage> {
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  width: 380,
-                  height: 64,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(28),
-                    gradient: const LinearGradient(colors: [
-                      Color.fromARGB(176, 255, 255, 255),
-                      Color.fromARGB(136, 158, 158, 158),
-                      Color.fromARGB(187, 126, 125, 125),
-                      Color.fromARGB(209, 110, 109, 109),
-                      Color.fromARGB(164, 67, 67, 67),
-                    ]),
-                  ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: AnimatedContainer(
-                      curve: Curves.easeInToLinear,
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      transform: Matrix4.translationValues(_leftPosition, 0.0, 0.0),
-                      duration: totalDuration,
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _leftPosition = _leftPosition == 0.0 ? 310.0 : 0.0;
-                          });
-                          // Start scrolling through the images
-                          _scrollToNextImage();
-                        },
-                        child: const Icon(Icons.double_arrow, size: 55, color: Colors.black),
+                child: Expanded(
+                  child: Container(
+                    width: screenWidth*0.92,
+                    height: screenHeight* 0.09,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(28),
+                      gradient: const LinearGradient(colors: [
+                        Color.fromARGB(176, 255, 255, 255),
+                        Color.fromARGB(136, 158, 158, 158),
+                        Color.fromARGB(187, 126, 125, 125),
+                        Color.fromARGB(209, 110, 109, 109),
+                        Color.fromARGB(164, 67, 67, 67),
+                      ]),
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: AnimatedContainer(
+                        curve: Curves.easeInToLinear,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        transform: Matrix4.translationValues(_leftPosition, 0.0, 0.0),
+                        duration: totalDuration,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _leftPosition = _leftPosition == 0.0 ? 310.0 : 0.0;
+                            });
+                            // Start scrolling through the images
+                            _scrollToNextImage();
+                          },
+                          child: const Icon(Icons.double_arrow, size: 55, color: Colors.black),
+                        ),
                       ),
                     ),
                   ),

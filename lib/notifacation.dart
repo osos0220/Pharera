@@ -32,7 +32,7 @@ class Not extends StatelessWidget {
               child:  Column(children: [
                 Padding(
                   padding: EdgeInsets.only(top: screenHeight *0.03),
-                  child: const Text("Pharaera Community Say Goodmorning",style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w300,color: Colors.white),),
+                  child: const FittedBox(child: Text("Pharaera Community Say Goodmorning",style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w300,color: Colors.white),)),
                 ),
                   Padding(
                   padding: EdgeInsets.only(top: screenHeight *0.005,left: screenWidth *0.75),
@@ -41,7 +41,7 @@ class Not extends StatelessWidget {
                 const Divider(color: Colors.white,),
                  Padding(
                   padding: EdgeInsets.only(top: screenHeight *0.03),
-                  child: const Text("Hello! Come And Visit Our New VRroom",style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w300,color: Colors.white),),
+                  child: const FittedBox(child: Text("Hello! Come And Visit Our New VRroom",style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w300,color: Colors.white),)),
                 ),
                  Padding(
                   padding: EdgeInsets.only(top: screenHeight *0.005,left: screenWidth *0.75),
