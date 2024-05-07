@@ -50,22 +50,33 @@ class _RatingPageState extends State<RatingPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch, // Ensure widgets stretch horizontally
+          crossAxisAlignment: CrossAxisAlignment.center, // Ensure widgets stretch horizontally
           children: [
-            Padding(
-              padding: EdgeInsets.only(right: screenWidth * 0.18, top: 10),
-              child: const FittedBox(
-                child: Text("Your Feedback Is Welcome",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+            const Padding(
+              padding: EdgeInsets.only( top: 10),
+              child: FittedBox(
+                child: Row(
+                  children: [
+                    Text("Your Feedback Is Welcome",
+                        style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800)),
+                  ],
+                ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: screenWidth * 0.75, top: screenHeight * 0.04),
-              child: const Text("Rate Us",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400)),
+              padding: EdgeInsets.only( top: screenHeight * 0.04 ,),
+              child: const FittedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Rate Us",
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                  ],
+                ),
+              ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: screenWidth * 0.4, top: screenHeight * 0.02),
+              padding: EdgeInsets.only( top: screenHeight * 0.02),
               child: FittedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

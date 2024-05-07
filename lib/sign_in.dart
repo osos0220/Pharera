@@ -19,34 +19,27 @@ class SignIn extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
         ),
       ),
-      body: SizedBox(
-        width: screenWidth,
-        height: screenHeight,
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: screenWidth * 0.1,
-                top: screenHeight * 0.15,
-              ),
-              child: const Text(
-                "SIGN IN",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(height: screenHeight * 0.02),
+           
+            SizedBox(height: screenHeight * 0.2),
             Padding(
               padding: EdgeInsets.only(left: screenWidth * 0.1),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+               
                 children: [
-                  const Text(
-                    "Email",
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w800,
-                    ),
+                  const Row(
+                    children: [
+                      Text(
+                        "Email",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: screenHeight * 0.01),
                   SizedBox(
@@ -55,7 +48,7 @@ class SignIn extends StatelessWidget {
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(100.0),
+                            Radius.circular(20.0),
                           ),
                         ),
                         contentPadding: EdgeInsets.symmetric(
@@ -66,15 +59,16 @@ class SignIn extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: screenHeight * 0.02),
-                  SizedBox(
-                    width: screenWidth * 0.8,
-                    child: const Text(
-                      "PASSWORD",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w800,
+                  const Row(
+                    children: [
+                      Text(
+                        "PASSWORD",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   SizedBox(height: screenHeight * 0.01),
                   SizedBox(
@@ -83,7 +77,7 @@ class SignIn extends StatelessWidget {
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(100.0),
+                            Radius.circular(20.0),
                           ),
                         ),
                         contentPadding: EdgeInsets.symmetric(
@@ -96,43 +90,51 @@ class SignIn extends StatelessWidget {
                   SizedBox(height: screenHeight * 0.02),
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      "Forget password!",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
+                    child: const Row(
+                      children: [
+                        Text(
+                          "Forget password!",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   
                   Padding(
                     padding: EdgeInsets.only(top: screenHeight * 0.04 , left: screenHeight * 0.05),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        width: screenWidth * 0.6,
-                      height: 70,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.black,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              spreadRadius: 5,
-                              blurRadius: 7,
-                              offset: const Offset(0, 3),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: screenWidth * 0.6,
+                          height: 70,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.black,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: Image.asset(
-                            "assets/images/sign_in.jpg",
-                            fit: BoxFit.fill,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset(
+                                "assets/images/sign_in.jpg",
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ],
