@@ -185,15 +185,13 @@ class ProfilePage extends StatelessWidget {
             padding:  EdgeInsets.only(top: screenHeight*0.04 , right: screenWidth *0.65 ),
             child: InkWell(
               onTap: (){},
-              child: Container(
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.logout , color: Colors.red,), // Icon
-                    SizedBox(width: 8), // Add spacing between icon and text
-                    Text('Log Out'), // Text
-                  ],
-                ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.logout , color: Colors.red,), // Icon
+                  SizedBox(width: 8), // Add spacing between icon and text
+                  Text('Log Out'), // Text
+                ],
               ),
             ),
           ),
