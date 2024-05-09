@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharera/wellcome_page.dart';
+import 'package:pharera/main_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: const ImagePage(),
+      home: const HomePage(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharera/Virtual_Tour/free_explore.dart';
 
 class VITPage extends StatelessWidget {
   const VITPage({Key? key}) : super(key: key);
@@ -7,6 +8,13 @@ class VITPage extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    //Naviagte to New page
+    void _navigateToSecondPage(BuildContext context) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SecondPage()),
+      );
+    }
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SizedBox(
@@ -21,8 +29,17 @@ class VITPage extends StatelessWidget {
                 child: Image.asset("assets/images/app_photo.jpg"),
               ),
             ),
-            SizedBox(height: screenHeight * 0.05), // Adjust spacing as needed
-            Container(
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.16),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyApp()),
+                  );
+                },
+            //SizedBox(height: screenHeight * 0.05), // Adjust spacing as needed
+            child: Container(
               width: screenWidth * 0.65,
               height: screenHeight * 0.09,
               decoration: BoxDecoration(
@@ -42,11 +59,23 @@ class VITPage extends StatelessWidget {
                 child: Image.asset(
                   "assets/images/explore_only.jpg",
                   fit: BoxFit.fill,
-                ),
+
+                ),  
               ),
             ),
-            SizedBox(height: screenHeight * 0.05), // Adjust spacing as needed
-            Container(
+          ),
+        ),
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.16),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyApp()),
+                  );
+                },
+            //SizedBox(height: screenHeight * 0.05), // Adjust spacing as needed
+            child: Container(
               width: screenWidth * 0.7,
               height: screenHeight * 0.09,
               decoration: BoxDecoration(
@@ -69,9 +98,22 @@ class VITPage extends StatelessWidget {
                 ),
               ),
             ),
-          ],
+        ),
+        ),
+        ],
         ),
       ),
+    );
+  }
+}
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Second Page")),
+      body: const Center(child: Text("This is the second page.")),
     );
   }
 }
