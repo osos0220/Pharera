@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Import the CurvedNavigationBar
 import 'package:flutter_application_09/first.dart';
 import 'package:flutter_application_09/Panorama.dart';
 import 'package:flutter_application_09/register.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -27,23 +26,20 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void CurrentI = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: ConvexAppBar(
-        items: const [
-          TabItem(icon: Icon(Icons.home), title: "HOME"),
-          TabItem(icon: Icon(Icons.panorama_wide_angle), title: "360"),
-          TabItem(icon: Icon(Icons.person_2), title: "Prpfile"),
-        ],
-        backgroundColor: const Color.fromARGB(199, 146, 112, 57),
-        activeColor: const Color.fromARGB(255, 226, 226, 226),
-        initialActiveIndex: _selectedIndex,
+      bottomNavigationBar: CurvedNavigationBar( // Replace AnimatedNotchBottomBar with CurvedNavigationBar
+        backgroundColor: const Color(0xFFCAC4AF),
+        color: const Color(0xFFAE9E82),
+        index: _selectedIndex,
         onTap: _onItemTapped,
-        height: 70,
+        items:  [
+          const Icon(Icons.home_filled, color: Colors.black),
+          Image.asset('assets/images/360 (2).jpg', color: Colors.black),
+          const Icon(Icons.person_2, color: Colors.black),
+        ],
       ),
     );
   }

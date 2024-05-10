@@ -7,49 +7,113 @@ class VITPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: <Widget>[
-          SafeArea(child: Padding(
-            padding: const EdgeInsets.only(top: 90),
-            child: Image.asset("assets/images/top.jpg"),
-          )),
-            Padding(
-              padding: const EdgeInsets.only(top: 80),
-              child: Container(width: 280,height: 80,decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),color: Colors.black,
-                boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-              ),
-              child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/ex.jpg",fit: BoxFit.fill,)),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Container(width: 280,height: 80,decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),color: Colors.black,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: <Widget>[
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 90),
+                  child: Image.asset("assets/images/top.jpg"),
                 ),
-                child: ClipRRect(borderRadius: BorderRadius.circular(20),child: Image.asset("assets/images/eg.jpg",fit: BoxFit.fill,)),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 80),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD5B774),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigate to explore page
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
+                        return const Color(0xFFD5B774);
+                      }),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      elevation: MaterialStateProperty.all(0),
+                    ),
+                    child: const SizedBox(
+                      width: 280,
+                      height: 80,
+                      child: Center(
+                        child: Text(
+                          "Explore The Museum",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-            ),
-            
-          ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD5B774),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Navigate to tour guide page
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
+                        return const Color(0xFFD5B774);
+                      }),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      elevation: MaterialStateProperty.all(0),
+                    ),
+                    child: const SizedBox(
+                      width: 280,
+                      height: 80,
+                      child: Center(
+                        child: Text(
+                          "Explore With Tour guide",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

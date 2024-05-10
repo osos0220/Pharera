@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'webview_page.dart'; // Import the WebViewPage
 
 class Ticket extends StatelessWidget {
-  const Ticket({super.key});
+  const Ticket({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,35 +12,54 @@ class Ticket extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       ),
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 50),
-          child: Column(
-            children: <Widget>[
-              Image.asset("assets/images/ttt.jpg"),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Container(
-                  width: 280,
-                  height: 80,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.black,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset("assets/images/ttt.jpg"),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _launchURL(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFAE9E82),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+                    ),
+                    child: const Text(
+                      'PAY NOW',
+                      style: TextStyle(fontSize: 25, color: Colors.black),
+                    ),
                   ),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        "assets/images/pay.jpg",
-                        fit: BoxFit.fill,
-                      )),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
+  }
+
+  void _launchURL(BuildContext context) async {
+    const url = 'https://visit-gem.com/en/tut';
+    if (await canLaunch(url)) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const WebViewPage(url: url),
+        ),
+      );
+    } else {
+      print('Error launching URL: $url');
+    }
   }
 }

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/Fav_page.dart';
+import 'package:flutter_application_09/Profile.dart';
 import 'package:flutter_application_09/about_us.dart';
 import 'package:flutter_application_09/contact.dart';
 import 'package:flutter_application_09/notifacation.dart';
 import 'package:flutter_application_09/pharaohs.dart';
 import 'package:flutter_application_09/pharaohss.dart';
+import 'package:flutter_application_09/raiting.dart';
+import 'package:flutter_application_09/test.dart';
 import 'package:flutter_application_09/ticket.dart';
 import 'package:flutter_application_09/tut.dart';
 
+
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -85,9 +89,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   ),
                 ),
                 ListTile(
-                  leading: const Icon(Icons.home),
+                  leading: const Icon(Icons.home_filled),
                   title: const Text('Home'),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MyHomePage()),
+                    );
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.info),
@@ -95,7 +104,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const aboutus()),
+                      MaterialPageRoute(builder: (context) => const AboutUs()),
                     );
                   },
                 ),
@@ -109,13 +118,34 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     );
                   },
                 ),
+
+                ListTile(
+                  leading: const Icon(Icons.star),
+                  title: const Text('Rate'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RatingPage()),
+                    );
+                  },
+                ),
               ],
             ),
           ),
         ),
         body: Column(
           children: [
-            Image.asset("assets/images/www.jpg"),
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.01),
+              child: Text(
+                'WELCOME TO THE GEM',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.07, // Adjust text size according to screen width
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.01,width: 50,),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.03),
               child: TextField(
@@ -123,10 +153,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   suffixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(screenWidth * 0.1),
+                      Radius.circular(screenWidth * 0.05), // Adjust border radius according to screen width
                     ),
                   ),
-                  contentPadding: EdgeInsets.symmetric(vertical: screenHeight * 0.02, horizontal: screenWidth * 0.03),
+                  contentPadding: EdgeInsets.symmetric(vertical: screenHeight * 0.01, horizontal: screenWidth * 0.03),
                 ),
               ),
             ),
@@ -235,9 +265,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 index: tab.index,
                 children: [
                   Pharaohs(),
-                  Tut(),
-                  Ticket(),
-                  favpage(),
+                  const Tut(),
+                  const Ticket(),
+                  const favpage(),
                 ],
               ),
             ),

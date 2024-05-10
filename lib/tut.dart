@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/tutbic.dart';
+import 'package:flutter_application_09/exipition_video.dart';
 
 class Tut extends StatefulWidget {
   const Tut({Key? key}) : super(key: key);
@@ -27,16 +28,16 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
         height: double.infinity,
         child: Column(
           children: [
-            
+
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: SizedBox(
                 width: 410,
-                
+
                 child: Expanded(
                   child: TabBar(
                     controller: ta,
-                    
+
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.grey,
                     tabs: const [
@@ -62,9 +63,7 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
                   controller: ta,
                   children: const [
                     TutPic(),
-                    Center(
-                      child: Text('Content for Tab 8'),
-                    ),
+                    TutVid(),
                   ],
                 ),
               ),

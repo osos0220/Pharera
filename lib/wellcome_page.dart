@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/test.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class ImagePage extends StatefulWidget {
   const ImagePage({Key? key}) : super(key: key);
@@ -9,56 +11,39 @@ class ImagePage extends StatefulWidget {
   _ImagePageState createState() => _ImagePageState();
 }
 
-class _ImagePageState extends State<ImagePage> with SingleTickerProviderStateMixin {
-  int currentIndex = 0;
-  final List<String> imagePaths = [
+class _ImagePageState extends State<ImagePage> {
+  int _currentIndex = 0;
+  final List<String> _imagePaths = [
     'assets/images/wel2.jpg',
     'assets/images/wel3.jpg',
   ];
 
-  late Timer _timer;
-  late AnimationController _animationController;
+  late final PageController _pageController;
+  bool _isFinished = false;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      nextImage();
-    });
-
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 350),
-      value: 0.0, // Set initial value to 0.0
-    );
+    _pageController = PageController();
   }
 
   @override
   void dispose() {
-    _timer.cancel();
-    _animationController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
-  void nextImage() {
+  void _nextImage() {
     setState(() {
-      currentIndex = (currentIndex + 1) % imagePaths.length;
+      _currentIndex = (_currentIndex + 1) % _imagePaths.length;
     });
   }
 
-  void _moveArrow() {
-    if (_animationController.isCompleted) {
-      _animationController.reverse();
-    } else {
-      _animationController.forward();
-    }
-  }
-
-  void skipToHomePage() {
-    Future.delayed(const Duration(seconds: 4)).then((value) => Navigator.push(
+  void onFinish() {
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const MyHomePage()),
-    ));
+    ).then((value) => setState(() {}));
   }
 
   @override
@@ -69,50 +54,46 @@ class _ImagePageState extends State<ImagePage> with SingleTickerProviderStateMix
           SizedBox(
             width: 500,
             height: double.infinity,
-            child: Image.asset(
-              imagePaths[currentIndex],
-              fit: BoxFit.cover,
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+              children: _imagePaths.map((path) => Image.asset(path, fit: BoxFit.cover)).toList(),
             ),
           ),
-          Positioned(
-            left: 0,
-            top: 740,
-            child: GestureDetector(
-              onTap: () {
-                _timer.cancel();
-                skipToHomePage();
-              },
-              onTapDown: (_) {
-                _moveArrow();
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
-                  width: 370,
-                  height: 60,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[400], // Grey box color
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.black.withOpacity(0.35), width: 0.5),
-                  ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: AnimatedBuilder(
-                      animation: _animationController,
-                      builder: (context, child) {
-                        return Transform.translate(
-                          offset: Offset(300 * _animationController.value, 0),
-                          child: child,
-                        );
-                      },
-                      child: const Icon(
-                        Icons.double_arrow,
-                        size: 55,
-                        color: Colors.black, // Black arrow color
-                      ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: SwipeableButtonView(
+                buttonText: 'Lets get started',
+                buttonWidget: Icon(Icons.arrow_forward_ios_rounded, color: _isFinished ? Colors.grey : Colors.black),
+                activeColor: const Color(0xFFB0ACAC),
+                isFinished: _isFinished,
+                onWaitingProcess: () {
+                  Future.delayed(const Duration(seconds: 2), () {
+                    setState(() {
+                      _isFinished = true;
+                    });
+                  });
+                },
+                onFinish: () async {
+                  await Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: const MyHomePage(),
                     ),
-                  ),
-                ),
+                  );
+
+                  // Reset the state
+                  setState(() {
+                    _isFinished = false;
+                  });
+                },
               ),
             ),
           ),
