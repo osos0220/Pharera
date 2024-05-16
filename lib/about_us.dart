@@ -1,42 +1,56 @@
 import 'package:flutter/material.dart';
 
-class aboutus extends StatelessWidget {
-  const aboutus({super.key});
+class AboutUs extends StatelessWidget {
+  const AboutUs({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(backgroundColor: const Color.fromARGB(255, 226, 226, 226),),
-     backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+      ),
+      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Column(
-          children:[ Stack(
-            children: <Widget>[
-            SafeArea(child: Padding(
-              padding:  EdgeInsets.only(top: screenHeight * 0.01),
-              child: Image.asset("assets/images/app_photo.jpg"),
-            )),
-            
-               Padding(
-                padding: EdgeInsets.only(top: screenHeight * 0.43,left: screenWidth * 0.06),
-                child: const Expanded(
-                  child: Column(
-                    
-                    children: [
-                      Text(" Our mobile application offers A virtual tour Of one Of the most",style: TextStyle(fontSize: 20),),
-                      Text(" historical agespharaonic civilizations.But That's not all- we go beyond by bringing history to life ",style: TextStyle(fontSize: 20),),
-                      Text(" through Ai-powered lip synchronization, historical characters within the musuem tell their stories.",style: TextStyle(fontSize: 20),),
-                      Text(" offering tourists a unique and inspiring experience. our 360- degree virtual tour",style: TextStyle(fontSize: 20),),
-                      Text(" creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.",style: TextStyle(fontSize: 20),),
-                    ],
-                  ),
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Image.asset(
+                  "assets/images/top.jpg",
+                  fit: BoxFit.cover,
+                  width: double.infinity,
                 ),
-              )
-            ],
-          ),]
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    " Our mobile application offers A virtual tour Of one Of the most",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    " historical agespharaonic civilizations.But That's not all- we go beyond by bringing history to life ",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    " through Ai-powered lip synchronization, historical characters within the musuem tell their stories.",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    " offering tourists a unique and inspiring experience. our 360- degree virtual tour",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    " creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

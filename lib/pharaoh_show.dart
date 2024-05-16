@@ -5,24 +5,31 @@ class PharaohDetailPage extends StatelessWidget {
   final PharaohData pharaohData;
   final int index;
 
-  const PharaohDetailPage(
-      {Key? key, required this.pharaohData, required this.index})
+  const PharaohDetailPage({Key? key, required this.pharaohData, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Container(
-                width: 450,
-                height: 480,
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+              child: Container(
+                width: 400,
+                height: 430,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
@@ -43,10 +50,13 @@ class PharaohDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
-              SizedBox(
-                width: 450,
-                height: 350,
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: SizedBox(
+                width: 400,
+                height: 430,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
@@ -55,29 +65,45 @@ class PharaohDetailPage extends StatelessWidget {
                       width: 2,
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      pharaohData.getName(index),
-                      style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black,
-                            blurRadius: 10,
-                            offset: Offset(0, 3),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            pharaohData.getName(index),
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            pharaohData.getExplore(index),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.justify,
                           ),
                         ],
                       ),
-                      textAlign: TextAlign.start,
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+          ],
         ),
       ),
     );

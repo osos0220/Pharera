@@ -1,5 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pharera/navigation_bar.dart';
+import 'package:flutter_application_09/test.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:swipeable_button_view/swipeable_button_view.dart';
 
 class ImagePage extends StatefulWidget {
   const ImagePage({Key? key}) : super(key: key);
@@ -9,83 +12,98 @@ class ImagePage extends StatefulWidget {
 }
 
 class _ImagePageState extends State<ImagePage> {
-  int currentIndex = 0;
-  double _leftPosition = 0.0;
-  final PageController _pageController = PageController();
-  final List<String> imagePaths = [
-    'assets/images/welcome_photo_1.jpg',
-    'assets/images/welcome_photo_2.jpg',
-    'assets/images/welcome_photo_3.jpg',
+  int _currentIndex = 0;
+  final List<String> _imagePaths = [
+    'assets/images/wel2.jpg',
+    'assets/images/wel3.jpg',
+    'assets/images/artifacts/pyramid_view.png',
+    'assets/images/Entrance1.png',
   ];
 
-  void skipToHomePage() {
-    Future.delayed(const Duration(seconds: 4)).then((value) => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const MyHomePage()),
-        ));
+  late final PageController _pageController;
+  bool _isFinished = false;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+    _startTimer();
   }
 
-  void _scrollToNextImage() {
-    setState(() {
-      currentIndex = (currentIndex + 1) % imagePaths.length;
+  @override
+  void dispose() {
+    _pageController.dispose();
+    _timer.cancel(); // Cancel the timer to avoid memory leaks
+    super.dispose();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      setState(() {
+        _currentIndex = (_currentIndex + 1) % _imagePaths.length;
+        _pageController.animateToPage(
+          _currentIndex,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      });
     });
-    _pageController.animateToPage(
-      currentIndex,
-      duration: const Duration(seconds: 2),
-      curve: Curves.easeInOut,
-    );
-    if (currentIndex < imagePaths.length - 1) {
-      Future.delayed(const Duration(seconds: 2), _scrollToNextImage);
-    } else {
-      // Reach the last image, go to the home page
-      skipToHomePage();
-    }
+  }
+
+  void _stopTimer() {
+    _timer.cancel();
+  }
+
+  void _nextImage() {
+    _stopTimer(); // Stop the timer when user interacts with the page manually
+    setState(() {
+      _currentIndex = (_currentIndex + 1) % _imagePaths.length;
+      _pageController.animateToPage(
+        _currentIndex,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    });
+    _startTimer(); // Start the timer again after manual interaction
+  }
+
+  void onFinish() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MyHomePage()),
+    ).then((value) => setState(() {}));
   }
 
   @override
   Widget build(BuildContext context) {
-    // Calculate total duration to display all images
-    final totalDuration = Duration(seconds: imagePaths.length * 2);
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Stack(
         children: [
-          PageView.builder(
-            controller: _pageController,
-            onPageChanged: (index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-            itemCount: imagePaths.length,
-            itemBuilder: (context, index) {
-              return Image.asset(
-                imagePaths[index],
-                fit: BoxFit.cover,
-              );
-            },
-          ),
-          Positioned(
-            left: 0,
-            top: 740,
-            child: GestureDetector(
-              onTap: () {
-                if (currentIndex < imagePaths.length - 1) {
-                  _scrollToNextImage();
-                } else {
-                  skipToHomePage();
-                }
+          SizedBox(
+            width: 500,
+            height: double.infinity,
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Expanded(
-                  child: Container(
-                    width: screenWidth*0.92,
-                    height: screenHeight* 0.09,
+              children: _imagePaths.map((path) => Image.asset(path, fit: BoxFit.cover)).toList(),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 60.0,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(28),
+                      borderRadius: BorderRadius.circular(30.0),
                       gradient: const LinearGradient(colors: [
                         Color.fromARGB(176, 255, 255, 255),
                         Color.fromARGB(136, 158, 158, 158),
@@ -94,27 +112,37 @@ class _ImagePageState extends State<ImagePage> {
                         Color.fromARGB(164, 67, 67, 67),
                       ]),
                     ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: AnimatedContainer(
-                        curve: Curves.easeInToLinear,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        transform: Matrix4.translationValues(_leftPosition, 0.0, 0.0),
-                        duration: totalDuration,
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _leftPosition = _leftPosition == 0.0 ? 310.0 : 0.0;
-                            });
-                            // Start scrolling through the images
-                            _scrollToNextImage();
-                          },
-                          child: const Icon(Icons.double_arrow, size: 55, color: Colors.black),
-                        ),
-                      ),
-                    ),
                   ),
-                ),
+                  SwipeableButtonView(
+                    buttonText: 'Lets get started',
+                    buttonWidget: Icon(Icons.double_arrow_sharp, color: _isFinished ? Colors.grey : Colors.black),
+                    activeColor: Colors.transparent, // Set to transparent
+                    isFinished: _isFinished,
+                    onWaitingProcess: () {
+                      Future.delayed(const Duration(seconds: 2), () {
+                        setState(() {
+                          _isFinished = true;
+                        });
+                      });
+                    },
+                    onFinish: () async {
+                      _stopTimer(); // Stop the timer when user clicks on the button
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: const MyHomePage(),
+                        ),
+                      );
+
+                      // Reset the state
+                      setState(() {
+                        _isFinished = false;
+                        _startTimer(); // Start the timer again after finishing navigation
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
           ),

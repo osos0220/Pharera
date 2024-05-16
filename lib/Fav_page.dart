@@ -64,8 +64,27 @@ class _favpageState extends State<favpage> {
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (ctx, i) {
-                    return FavoriteButtonCategoryWidget(
-                      title: titles[i],
+                    return SizedBox(
+                      height: 72, // Adjust button height here
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Handle button press
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 16), // Adjust padding here
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Text(
+                          titles[i],
+                          style: const TextStyle(
+                            fontSize: 24,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     );
                   },
                   separatorBuilder: (ctx, i) {
