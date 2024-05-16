@@ -19,6 +19,9 @@ class TutPic extends StatelessWidget {
       {"type": "image", "path": "assets/images/wel1.jpg"},
       {"type": "image", "path": "assets/images/wel2.jpg"},
       {"type": "image", "path": "assets/images/wel3.jpg"},
+      {"type": "image", "path": "assets/images/Entrance1.png"},
+      {"type": "image", "path": "assets/images/360_images/pyramid_view.png"},
+      {"type": "image", "path": "assets/images/IMG_1812.jpg"},
     ];
 
     return Scaffold(

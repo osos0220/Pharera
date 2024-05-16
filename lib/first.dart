@@ -10,7 +10,7 @@ import 'package:flutter_application_09/raiting.dart';
 import 'package:flutter_application_09/test.dart';
 import 'package:flutter_application_09/ticket.dart';
 import 'package:flutter_application_09/tut.dart';
-
+import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -94,7 +94,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const MyHomePage()),
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: const MyHomePage(),
+                      ),
                     );
                   },
                 ),
@@ -104,7 +107,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const AboutUs()),
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: const AboutUs(),
+                      ),
                     );
                   },
                 ),
@@ -114,7 +120,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const TabPage()),
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: const TabPage(),
+                      ),
                     );
                   },
                 ),
@@ -125,7 +134,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RatingPage()),
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: RatingPage(),
+                      ),
                     );
                   },
                 ),
@@ -168,26 +180,21 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 children: [
                   GestureDetector(
                     onTap: () {
-                      tab.animateTo(0);
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.topToBottom,
+                          child: const Groub(),
+                        ),
+                      );
                     },
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Groub(),
-                            ),
-                                (route) => false,
-                          );
-                        },
-                        child: Image.asset(
-                          "assets/images/phh.jpg",
-                          width: screenWidth * 0.232,
-                          height: screenWidth * 0.225,
-                          fit: BoxFit.fill,
-                        ),
+                      child: Image.asset(
+                        "assets/images/phh.jpg",
+                        width: screenWidth * 0.232,
+                        height: screenWidth * 0.225,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
@@ -197,8 +204,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const Tut(),
+                          PageTransition(
+                            type: PageTransitionType.topToBottom,
+                            child: const Tut(),
                           ),
                         );
                       },
@@ -219,8 +227,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const Ticket(),
+                          PageTransition(
+                            type: PageTransitionType.topToBottom,
+                            child: const Ticket(),
                           ),
                         );
                       },
@@ -241,8 +250,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const favpage(),
+                          PageTransition(
+                            type: PageTransitionType.topToBottom,
+                            child: const favpage(),
                           ),
                         );
                       },

@@ -103,15 +103,6 @@ class TutVid extends StatelessWidget {
         openFileFromNotification: true,
       );
 
-      FlutterDownloader.registerCallback((id, status, progress) {
-        if (status == DownloadTaskStatus.failed) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text("Download failed for video: ${videoAssetPath.split('/').last}"),
-          ));
-          // Optionally, you can retry the download here or take other actions
-        }
-      });
-
       // Use taskId here if necessary
       print('Download task ID: $taskId');
     } catch (e) {
@@ -142,7 +133,7 @@ class _VideoItemState extends State<VideoItem> {
     _controller = VideoPlayerController.asset(widget.videoAssetPath);
     _chewieController = ChewieController(
       videoPlayerController: _controller,
-      autoPlay: true,
+      autoPlay: false, // Do not start playing automatically
       looping: true,
       aspectRatio: 16 / 9,
       materialProgressColors: ChewieProgressColors(
@@ -151,7 +142,6 @@ class _VideoItemState extends State<VideoItem> {
         backgroundColor: Colors.grey,
         bufferedColor: Colors.lightBlue,
       ),
-      autoInitialize: true,
       allowPlaybackSpeedChanging: true,
       allowedScreenSleep: false,
       deviceOrientationsAfterFullScreen: [DeviceOrientation.portraitUp],
@@ -179,5 +169,28 @@ class _VideoItemState extends State<VideoItem> {
   void deactivate() {
     super.deactivate();
     _controller.pause();
+  }
+}
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(
+      debug: true // Optional: Set false to disable printing logs to console
+  );
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const TutVid(),
+    );
   }
 }

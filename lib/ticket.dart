@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'webview_page.dart'; // Import the WebViewPage
 
 class Ticket extends StatelessWidget {
-  const Ticket({Key? key});
+  const Ticket({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +55,11 @@ class Ticket extends StatelessWidget {
     if (await canLaunch(url)) {
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => const WebViewPage(url: url),
+        PageTransition(
+          type: PageTransitionType.rotate,
+          alignment: Alignment.bottomCenter, // Set the alignment for the rotation
+          duration: const Duration(seconds: 1), // Optional: adjust the duration if needed
+          child: const WebViewPage(url: url),
         ),
       );
     } else {
