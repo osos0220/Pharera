@@ -1,6 +1,6 @@
 # Pharera - Virtual Tour App
 
-Welcome to **Pharera**, an innovative virtual tour app that brings museums to life using cutting-edge **libsync technology**. With Pharera, you can experience a new dimension of exploration where statues talk about their history, providing an immersive and educational experience like never before.
+Welcome to **Pharera**, an innovative virtual tour app that brings museums to life using cutting-edge **lipsync technology**. With Pharera, you can experience a new dimension of exploration where statues talk about their history, providing an immersive and educational experience like never before.
 
 ## Features
 
@@ -23,7 +23,7 @@ Welcome to **Pharera**, an innovative virtual tour app that brings museums to li
 ### Installation
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/pharera.git
+   git clone https://github.com/osos0220/pharera.git
    ```
 2. **Navigate to the Project Directory**:
    ```bash
@@ -58,7 +58,7 @@ We welcome contributions to Pharera! To contribute, please follow these steps:
 1. **Fork the Repository**: Click the "Fork" button at the top right of this page.
 2. **Clone Your Fork**:
    ```bash
-   git clone https://github.com/yourusername/pharera.git
+   git clone https://github.com/osos0220/pharera.git
    ```
 3. **Create a Branch**:
    ```bash
@@ -77,10 +77,8 @@ We welcome contributions to Pharera! To contribute, please follow these steps:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
-For questions, suggestions, or issues, please open an issue on GitHub or contact us at support@pharera.com.
+For questions, suggestions, or issues, please open an issue on GitHub or contact us at support.pharera@gmail.com.
 
 Enjoy exploring the museum with Pharera! 🚀
 
 ---
-
-*Note: Replace placeholder text (e.g., `yourusername`, `path/to/screenshot.png`, `support@pharera.com`) with actual information.*
