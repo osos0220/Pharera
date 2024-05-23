@@ -1,116 +1,206 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/pharadetails.dart';
-import 'package:flutter_application_09/pharahosl_ist.dart';
-import 'package:flutter_application_09/pharaohss.dart';
+import 'package:Pharera/notifacation.dart';
+import 'package:Pharera/pharahosl_ist.dart';
+import 'package:Pharera/pharaoh_show.dart';
+import 'package:Pharera/navigation_bar.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:wtf_sliding_sheet/wtf_sliding_sheet.dart';
 
-class Pharaohs extends StatelessWidget {
-  Pharaohs({super.key});
+class Groub extends StatefulWidget {
+  const Groub({Key? key}) : super(key: key);
 
+  @override
+  _GroubState createState() => _GroubState();
+}
+
+class _GroubState extends State<Groub> {
   final PharaohData pharaohData = PharaohData();
+  String _selectedPhoto = "";
+  String _selectedName = "";
+  String _selectedDetails = "";
+  int _selectedIndex = 0;
+  final SheetController _sheetController = SheetController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Set the initial selected index to 0
+    _selectedPhoto = pharaohData.pharaoh[0]['name']!;
+    _selectedName = pharaohData.pharaoh[0]['name']!;
+    _selectedDetails = pharaohData.pharaoh[0]['details']!;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
+      appBar: AppBar(
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Not()),
+              );
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              child: Image.asset('assets/images/notification.jpg'),
+            ),
+          ),
+          const SizedBox(width: 10),
+        ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.bottomToTop,
+                child: const MyHomePage(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+      ),
+      body: Stack(
+        children: [
+          Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: TextButton(
-                          onPressed: () {
-                            // Handle SEE ALL button tap
-                          },
-                          child: const Text(
-                            "EXPLORE",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
+              SizedBox(
+                height: 56,
+                child: Expanded(
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (ctx, i) => _buildPhotoWidget(i),
+                    separatorBuilder: (ctx, i) => const SizedBox(width: 8),
+                    itemCount: pharaohData.pharaoh.length,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 64),
+              _selectedPhoto.isNotEmpty
+                  ? Container(
+                width: 340,
+                alignment: AlignmentDirectional.bottomCenter,
+                height: 400,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: const BorderRadius.all(Radius.circular(24)),
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(
+                      pharaohData.pharaoh[_selectedIndex]['image'] ?? "",
                     ),
-                    Expanded(child: Container()), // Spacer to push SEE ALL button to the right
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40, left: 80),
-                      child: InkWell(
-                        onTap: () {
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      _selectedName,
+                      style: const TextStyle(color: Colors.transparent, fontSize: 24),
+                    ),
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: 110,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Groub()));
-                        },
-                        child: Container(
-                          width: 130,
-                          height: 60,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30)),
-                          child: const Center(
-                            child: Text(
-                              "SEE ALL",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PharaohDetailPage(
+                                pharaohData: pharaohData,
+                                index: _selectedIndex,
                               ),
                             ),
-                          ),
+                          );
+                        },
+                        child: const Text(
+                          "EXPLORE",
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                     )
                   ],
                 ),
-              ),
-              Container(
-                decoration: const BoxDecoration(),
-                height: 290,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    itemBuilder: (_, index) {
-                      return SizedBox(
-                        height: 270,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PharaohDetailPage(
-                                      pharaohData: pharaohData, index: index)),
-                            );
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            width: 350,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50),
-                              child: Image.asset(
-                                pharaohData.getImage(index),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+              )
+                  : Container(
+                width: 340,
+                height: 540,
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: const BorderRadius.all(Radius.circular(24)),
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(pharaohData.pharaoh.firstWhere((e) => e['name'] == "King Akhenaten")['image'] ?? ""),
                   ),
                 ),
               ),
             ],
+          ),
+          SlidingSheet(
+            controller: _sheetController,
+            elevation: 8,
+            cornerRadius: 16,
+            snapSpec: const SnapSpec(
+              snap: true,
+              snappings: [0.3, 0.6, 1.0],
+              positioning: SnapPositioning.relativeToAvailableSpace,
+            ),
+            builder: (context, state) {
+              return Container(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        _selectedName,
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        _selectedDetails,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPhotoWidget(int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedPhoto = pharaohData.pharaoh[index]['name']!;
+          _selectedName = pharaohData.pharaoh[index]['name']!;
+          _selectedDetails = pharaohData.pharaoh[index]['details']!;
+          _selectedIndex = index;
+        });
+        _sheetController.snapToExtent(0.7);
+      },
+      child: Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(
+            color: _selectedPhoto == pharaohData.pharaoh[index]['name'] ? Colors.yellow : Colors.transparent,
+            width: 2,
+          ),
+          image: DecorationImage(
+            image: AssetImage(pharaohData.pharaoh[index]['image']!),
+            fit: BoxFit.cover,
           ),
         ),
       ),

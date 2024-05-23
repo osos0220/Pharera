@@ -14,7 +14,7 @@ class TabPage extends StatelessWidget {
           appBar: AppBar(
             bottom: const TabBar(
               tabs: [
-                Tab(text: 'WhatsApp'),
+                Tab(text: 'Email'),
                 Tab(text: 'FaceBook'),
                 Tab(text: 'Instagram'),
               ],
@@ -22,7 +22,7 @@ class TabPage extends StatelessWidget {
           ),
           body: const TabBarView(
             children: [
-              TabContent(imagePath: 'assets/images/whats_up.jpeg', text: '0288392992'),
+              TabContent(imagePath: 'assets/images/Email-Image.png', text: 'support@pharera.com'),
               TabContent(imagePath: 'assets/images/face.jpeg', text: 'Pharera'),
               TabContent(imagePath: 'assets/images/instagram.jpeg', text: 'pharera'),
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/tutbic.dart';
-import 'package:flutter_application_09/exipition_video.dart';
+import 'package:Pharera/tutpic.dart';
+import 'package:Pharera/exipition_video.dart';
 
 class Tut extends StatefulWidget {
   const Tut({Key? key}) : super(key: key);

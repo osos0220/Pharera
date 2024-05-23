@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharera/Fav_but.dart';
+import 'package:Pharera/Fav_but.dart';
 
 class TutPic extends StatelessWidget {
   const TutPic({Key? key}) : super(key: key);
