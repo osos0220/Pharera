@@ -1,6 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_09/Check.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/fav_but.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -31,44 +35,50 @@ class TutVid extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: screenHeight * 0.03),
-              SizedBox(
-                height: screenHeight * 0.78,
-                child: ListView.separated(
-                  itemCount: videoAssets.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: screenHeight * 0.03);
-                  },
-                  itemBuilder: (_, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(left: screenWidth * 0.02),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: screenWidth * 0.85,
-                            height: screenHeight * 0.32,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.black,
+           
+              Padding(
+                padding: EdgeInsets.only(right: IsArab()? 20 : 30, left: IsArab()? 0 : 0, ),
+                child: SizedBox(
+                  height: screenHeight * 0.78,
+                  child: ListView.separated(
+                     padding: EdgeInsets.only(top: screenHeight * 0.03),
+                    scrollDirection: Axis.vertical,
+                    itemCount: videoAssets.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(height: screenHeight * 0.03);
+                    },
+                    itemBuilder: (_, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: screenWidth * 0.04, right: screenWidth * 0.04),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: screenWidth * 0.85,
+                              height: screenHeight * 0.32, // Adjust height as needed
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Colors.black,
+                              ),
+                              child: VideoItem(videoAssetPath: videoAssets[index]),
                             ),
-                            child: VideoItem(videoAssetPath: videoAssets[index]),
-                          ),
-                          Positioned(
-                            top: 10,
-                            right: 10,
-                            child: IconButton(
-                              icon: const Icon(Icons.download),
-                              onPressed: () {
-                                _downloadVideo(context, videoAssets[index]);
-                              },
+                            Positioned(
+                              top: 10,
+                              right: 10,
+                              child: IconButton(
+                                icon: const Icon(Icons.download),
+                                onPressed: () {
+                                  _downloadVideo(context, videoAssets[index]);
+                                },
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                            
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
@@ -83,8 +93,8 @@ class TutVid extends StatelessWidget {
       if (Platform.isAndroid) {
         var permissionStatus = await Permission.storage.request();
         if (permissionStatus.isDenied) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Permission denied. Please enable storage permission."),
+          ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+            content: TextW(text: S.of(context).Permission,),
           ));
           return;
         }
@@ -92,7 +102,7 @@ class TutVid extends StatelessWidget {
 
       final directory = Platform.isAndroid ? await getExternalStorageDirectory() : await getTemporaryDirectory();
       if (directory == null) {
-        throw Exception("Directory not found.");
+        throw Exception(TextW(text: S.of(context).Directory));
       }
 
       final taskId = await FlutterDownloader.enqueue(
@@ -104,11 +114,11 @@ class TutVid extends StatelessWidget {
       );
 
       // Use taskId here if necessary
-      print('Download task ID: $taskId');
+      print(TextW(text: S.of(context).DownloadT) );
     } catch (e) {
-      print("Download error: $e");
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Download failed. Please try again."),
+      print( TextW(text:S.of(context).DownloadE));
+      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+        content: TextW(text: S.of(context).DownloadF,),
       ));
     }
   }

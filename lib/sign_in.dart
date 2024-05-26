@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_09/Check.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/Texti.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -27,23 +31,23 @@ class _SignInState extends State<SignIn> {
         child: SizedBox(
           width: double.infinity,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 25, top: 40),
-                child: Text(
-                  "SIGN IN",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.only(right: 25, top: 40, left: IsArab() ? 25 : 0),
+                  child: TextW(
+                    text: S.of(context).login,
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
               Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 290, top: 40),
-                    child: Text(
-                      "Email",
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
-                    ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: IsArab() ? 10 : 300, top: 40, left: IsArab() ? 220 : 0),
+                    child: FittedBox(child: TextW(text: S.of(context).email)),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 5),
@@ -54,33 +58,31 @@ class _SignInState extends State<SignIn> {
                             Radius.circular(100.0),
                           ),
                         ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0), // Adjusted content padding
+                        contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 270, top: 20),
-                    child: Text(
-                      "Password",
-                      style: TextStyle(fontSize: 23, fontWeight: FontWeight.w800),
-                    ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: IsArab() ? 10 : 260, top: 40, left: IsArab() ? 270 : 10),
+                    child: FittedBox(child: TextW(text: S.of(context).password)), // Ensure FittedBox is used here as well
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: TextField(
                       obscureText: _obscurePassword,
-                      maxLength: 32, // Maximum character limit
+                      maxLength: 32,
                       decoration: InputDecoration(
-                        hintText: "  Enter Password",
+                        hintText: S.of(context).enterp,
                         hintStyle: const TextStyle(
-                          color: Colors.grey, // Add color to highlight the hint text
+                          color: Colors.grey,
                         ),
                         border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(100.0),
                           ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0), // Adjusted content padding
+                        contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -97,12 +99,10 @@ class _SignInState extends State<SignIn> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 150),
-                      child: Text(
-                        "Forget password!",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),
-                      ),
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          right: IsArab() ? 10 : 200, left: IsArab() ? 220 : 0),
+                      child: FittedBox(child: Texti(text: S.of(context).Forget, size: 20,)),
                     ),
                   ),
                   Padding(
@@ -112,30 +112,25 @@ class _SignInState extends State<SignIn> {
                         // Add your login functionality here
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
+                        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                          (Set<WidgetState> states) {
                             return const Color(0xFFAE9E82);
                           },
                         ),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        elevation: MaterialStateProperty.all<double>(7),
-                        shadowColor: MaterialStateProperty.all<Color>(Colors.black.withOpacity(0.5)),
+                        elevation: WidgetStateProperty.all<double>(7),
+                        shadowColor: WidgetStateProperty.all<Color>(Colors.black.withOpacity(0.5)),
                       ),
                       child: Container(
                         width: 180,
                         height: 80,
                         alignment: Alignment.center,
-                        child: const Text(
-                          'LOGIN',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
+                        child: TextW(
+                          text: S.of(context).login,
                         ),
                       ),
                     ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_09/Text.dart';
 import 'package:flutter_application_09/Virtual_tour/free_explore.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
 
 class VITPage extends StatelessWidget {
   const VITPage({Key? key}) : super(key: key);
@@ -42,28 +44,21 @@ class VITPage extends StatelessWidget {
                       );
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
+                      backgroundColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
                         return const Color(0xFFD5B774);
                       }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      elevation: MaterialStateProperty.all(0),
+                      elevation: WidgetStateProperty.all(0),
                     ),
-                    child: const SizedBox(
+                    child:  SizedBox(
                       width: 280,
                       height: 80,
                       child: Center(
-                        child: Text(
-                          "Explore The Museum",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child:TextW(text: S.of(context).Ex,)
                       ),
                     ),
                   ),
@@ -89,28 +84,21 @@ class VITPage extends StatelessWidget {
                       // Navigate to tour guide page
                     },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
+                      backgroundColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
                         return const Color(0xFFD5B774);
                       }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      elevation: MaterialStateProperty.all(0),
+                      elevation: WidgetStateProperty.all(0),
                     ),
-                    child: const SizedBox(
+                    child:  SizedBox(
                       width: 280,
                       height: 80,
                       child: Center(
-                        child: Text(
-                          "Explore With Tour guide",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child: FittedBox(child: TextW(text: S.of(context).GUID,))
                       ),
                     ),
                   ),

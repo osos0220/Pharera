@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
@@ -22,33 +24,9 @@ class AboutUs extends StatelessWidget {
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    " Our mobile application offers A virtual tour Of one Of the most",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    " historical agespharaonic civilizations.But That's not all- we go beyond by bringing history to life ",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    " through Ai-powered lip synchronization, historical characters within the musuem tell their stories.",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    " offering tourists a unique and inspiring experience. our 360- degree virtual tour",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    " creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.",
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
+             Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextW(text:  S.of(context).Our )
             ),
           ],
         ),

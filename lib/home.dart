@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:Pharera/Fav_page.dart';
-import 'package:Pharera/Profile.dart';
-import 'package:Pharera/about_us.dart';
-import 'package:Pharera/contact.dart';
-import 'package:Pharera/notifacation.dart';
-import 'package:Pharera/pharaohs.dart';
-import 'package:Pharera/pharaohss.dart';
-import 'package:Pharera/raiting.dart';
-import 'package:Pharera/navigation_bar.dart';
-import 'package:Pharera/ticket.dart';
-import 'package:Pharera/exhibition.dart';
+import 'package:flutter_application_09/Fav_page.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/about_us.dart';
+import 'package:flutter_application_09/contact.dart';
+import 'package:flutter_application_09/exhibition.dart';
+import 'package:flutter_application_09/fav_page.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
+import 'package:flutter_application_09/pharaoh_1.dart';
+import 'package:flutter_application_09/navigation_bar.dart';
+import 'package:flutter_application_09/notifacation.dart';
+import 'package:flutter_application_09/pharaohs.dart';
+import 'package:flutter_application_09/rating.dart';
+import 'package:flutter_application_09/ticket.dart';
+
 import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,17 +83,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   decoration: const BoxDecoration(
                     color: Color(0xFFAE9E82),
                   ),
-                  child: Text(
-                    'WELCOME!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: drawerHeaderFontSize,
-                    ),
-                  ),
+                  child: TextW(text: S.of(context).wellcome,)
                 ),
                 ListTile(
                   leading: const Icon(Icons.home_filled),
-                  title: const Text('Home'),
+                  title: TextW(text: S.of(context).home,),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -103,7 +100,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.info),
-                  title: const Text('About Us'),
+                  title: TextW(text: S.of(context).ABOUT,),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -116,7 +113,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.contact_phone),
-                  title: const Text('Contact Us'),
+                  title: TextW(text: S.of(context).contact,),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -129,13 +126,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.star),
-                  title: const Text('Rate'),
+                  title: TextW(text: S.of(context).rate,),
                   onTap: () {
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.leftToRight,
-                        child: RatingPage(),
+                        child: const RatingPage(),
                       ),
                     );
                   },
@@ -148,18 +145,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           children: [
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.01),
-              child: Text(
-                'WELCOME TO THE GEM',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.07, // Adjust text size according to screen width
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: TextW(text: S.of(context).Welcome,)
             ),
             SizedBox(height: screenHeight * 0.01, width: 50,),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.03),
-              child: Container(
+              child: SizedBox(
                 width: screenWidth * 0.8,  // Adjust the width as needed
                 height: screenHeight * 0.05,  // Adjust the height as needed
                 child: TextField(
@@ -209,10 +200,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                        Text(
-                          'Pharaohs',
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
-                        ),
+                       TextW(text: S.of(context).pharaohs,)
                       ],
                     ),
                   ),
@@ -240,10 +228,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                        Text(
-                          'Exhibitions',
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
-                        ),
+                       TextW(text: S.of(context).Exhibition1,)
                       ],
                     ),
                   ),
@@ -253,7 +238,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         context,
                         PageTransition(
                           type: PageTransitionType.topToBottom,
-                          child: const Ticket(),
+                          child: const DiscountPage(),
                         ),
                       );
                     },
@@ -271,10 +256,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                        Text(
-                          'Tickets',
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
-                        ),
+                        TextW(text: S.of(context).ticket,)
                       ],
                     ),
                   ),
@@ -302,10 +284,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           ),
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                        Text(
-                          'Favorites',
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
-                        ),
+                       TextW(text: S.of(context).fav,)
                       ],
                     ),
                   ),
@@ -318,7 +297,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 children: [
                   Pharaohs(),
                   const Tut(),
-                  const Ticket(),
+                  const DiscountPage(),
                   const favpage(),
                 ],
               ),

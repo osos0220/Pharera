@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/Texti.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
 
 class RatingPage extends StatefulWidget {
+  const RatingPage({super.key});
+
   @override
   _RatingPageState createState() => _RatingPageState();
 }
 
 class _RatingPageState extends State<RatingPage> {
   int _rating = 0;
-  String _feedback = '';
+  final String _feedback = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rate Us'),
-      ),
+      
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'How would you rate our app?',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+              FittedBox(child: Texti(size: 28,text: S.of(context).how)),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -44,15 +45,15 @@ class _RatingPageState extends State<RatingPage> {
               ),
               const SizedBox(height: 20),
               TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Provide feedback...',
-                  border: OutlineInputBorder(),
+              
+                maxLines: 15,
+                decoration:  InputDecoration(
+                  hintText: S.of(context).provide,
+                  border: const OutlineInputBorder(borderSide: BorderSide(color: Colors.green)),
+                  focusColor: Colors.amber,
+                  fillColor: Colors.amber,
+                  hoverColor: Colors.amber
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    _feedback = value;
-                  });
-                },
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -62,14 +63,14 @@ class _RatingPageState extends State<RatingPage> {
                     showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: const Text('Thank You!'),
-                        content: const Text('Your feedback has been submitted.'),
+                        title: Texti(size: 10,text: S.of(context).thanks),
+                        content: Texti(size: 10,text: S.of(context).feed),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Text('OK'),
+                            child: TextW(text: S.of(context).ok),
                           ),
                         ],
                       ),
@@ -78,21 +79,21 @@ class _RatingPageState extends State<RatingPage> {
                     showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: const Text('Incomplete'),
-                        content: const Text('Please rate and provide feedback.'),
+                        title: TextW(text: S.of(context).incomplete),
+                        content: TextW(text: S.of(context).please),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Text('OK'),
+                            child: TextW(text: S.of(context).ok),
                           ),
                         ],
                       ),
                     );
                   }
                 },
-                child: const Text('Submit'),
+                child: TextW(text: S.of(context).submit),
               ),
             ],
           ),

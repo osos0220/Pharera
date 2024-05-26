@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/sign.dart';
+import 'package:flutter_application_09/Check.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/Texti.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
+import 'package:flutter_application_09/sign_in.dart';
+
 
 class Signuo extends StatefulWidget {
   const Signuo({super.key});
@@ -40,19 +45,35 @@ class _SignuoState extends State<Signuo> {
           width: double.infinity,
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 30, top: 20),
-                child: Text(
-                  "CREATE ACCOUNT",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                ),
+              Padding(
+                padding: EdgeInsets.only(right: IsArab() ? 0 : 0, top: 10 , ),
+                child: TextW(text: S.of(context).create,),
               ),
               const SizedBox(height: 10,),
               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                   Padding(
+                    padding: EdgeInsets.only(right: IsArab() ? 0 : 230,  left: IsArab() ? 250 : 0),
+
+                    child: FittedBox(child: TextW(text: S.of(context).name,)),
+                  ),
                   const Padding(
-                    padding: EdgeInsets.only(right: 220,top: 20),
-                    child: Text("FULL NAME",style:TextStyle(fontSize: 22,fontWeight: FontWeight.w800),),
+                      padding: EdgeInsets.only(top: 10),
+                      child:  TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(100.0),
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                        ),
+                      )
+                  ),
+                   Padding(
+                    padding:  EdgeInsets.only(right: IsArab() ? 0 : 300,top: 20 ,left: IsArab() ? 220 : 0),
+                    child: TextW(text: S.of(context).email,),
                   ),
                   const Padding(
                       padding: EdgeInsets.only(top: 5),
@@ -67,26 +88,9 @@ class _SignuoState extends State<Signuo> {
                         ),
                       )
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 290,top: 10),
-                    child: Text("Email",style:TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
-                  ),
-                  const Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child:  TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(100.0),
-                            ),
-                          ),
-                          contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
-                        ),
-                      )
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 160,top: 20),
-                    child: SizedBox(width: 200,child: Text("PASSWORD",style:TextStyle(fontSize: 22,fontWeight: FontWeight.w800),)),
+                   Padding(
+                    padding:  EdgeInsets.only(right: IsArab() ? 0 : 200,top: 20 , left: IsArab() ? 180 : 10),
+                    child: SizedBox(width: 200,child: TextW(text: S.of(context).password,),)
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
@@ -97,7 +101,7 @@ class _SignuoState extends State<Signuo> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(100.0),
                         ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility_off : Icons.visibility,
@@ -110,18 +114,18 @@ class _SignuoState extends State<Signuo> {
                           },
                         ),
                         counterText: "${_passwordController.text.length}/$_maxPasswordLength", // Show character count
-                        hintText: "Enter Password",
+                        hintText:  S.of(context).enterp,
                       ),
                       maxLength: _maxPasswordLength,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
+                   Padding(
+                    padding:  EdgeInsets.only(right: IsArab() ? 0 : 100,left: IsArab() ? 40 : 10),
                     child: SizedBox(
                       width: 350,
                       child: Row(
                         children: [
-                          Text("CONFIRM PASSWORD",style:TextStyle(fontSize: 18,fontWeight: FontWeight.w800),),
+                          TextW(text: S.of(context).Conform,),
                         ],
                       ),
                     ),
@@ -148,13 +152,30 @@ class _SignuoState extends State<Signuo> {
                           },
                         ),
                         counterText: "${_confirmPasswordController.text.length}/$_maxPasswordLength", // Show character count
-                        hintText: "Confirm Password",
+                        hintText: S.of(context).Conform,
                       ),
                       maxLength: _maxPasswordLength,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30),
+                    padding:  EdgeInsets.only( right : IsArab() ? 10 : 0 , left: IsArab()?0:10),
+                    child: Row(
+                      children: [
+                         FittedBox(child: Texti(text: S.of(context).haveaccount, size: 20,)),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const SignIn()));
+                          },
+                          child:  Padding(
+                            padding: const EdgeInsets.only(),
+                            child: Texti(text: S.of(context).login, size: 20,),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
                     child: TextButton(
                       onPressed: (){
                         // Add your sign-up functionality here
@@ -174,42 +195,13 @@ class _SignuoState extends State<Signuo> {
                             ),
                           ],
                         ),
-                        child: const Center(
-                          child: Text(
-                            "SIGN UP",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                        child:  Center(
+                          child: TextW(text: S.of(context).signup,),
                         ),
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 70,top: 10),
-                        child: Text(
-                          "Have an account?",
-                          style:TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const SignIn()));
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.only(),
-                          child: Text(
-                            "LOGIN",
-                            style:TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  
                 ],
               )
             ],

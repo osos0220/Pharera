@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatelessWidget {
@@ -10,7 +12,7 @@ class WebViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WebView Page'),
+        title:  TextW(text: S.of(context).web,),
       ),
       body: WebView(
         initialUrl: url,

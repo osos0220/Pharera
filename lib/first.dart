@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/Fav_page.dart';
 import 'package:flutter_application_09/Profile.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/Texti.dart';
 import 'package:flutter_application_09/about_us.dart';
 import 'package:flutter_application_09/contact.dart';
+import 'package:flutter_application_09/exhibition.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
+import 'package:flutter_application_09/pharaoh_1.dart';
+import 'package:flutter_application_09/navigation_bar.dart';
 import 'package:flutter_application_09/notifacation.dart';
 import 'package:flutter_application_09/pharaohs.dart';
-import 'package:flutter_application_09/pharaohss.dart';
-import 'package:flutter_application_09/raiting.dart';
-import 'package:flutter_application_09/test.dart';
+import 'package:flutter_application_09/rating.dart';
 import 'package:flutter_application_09/ticket.dart';
-import 'package:flutter_application_09/tut.dart';
 import 'package:page_transition/page_transition.dart';
 
 class HomePage extends StatefulWidget {
@@ -43,7 +46,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           backgroundColor: const Color.fromARGB(255, 226, 226, 226),
           actions: [
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.01, left: screenWidth * 0.01),
+              padding: EdgeInsets.only(top: screenHeight * 0.001, left: screenWidth * 0.01),
               child: Container(
                 width: screenWidth * 0.2,
                 height: screenHeight * 0.1,
@@ -76,21 +79,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                DrawerHeader(
-                  decoration: const BoxDecoration(
+                const DrawerHeader(
+                  decoration: BoxDecoration(
                     color: Color.fromARGB(199, 146, 112, 57),
-                  ),
-                  child: Text(
-                    'WELCOME!',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: drawerHeaderFontSize,
-                    ),
-                  ),
+                  ), child: Text(""),
+                  
                 ),
                 ListTile(
                   leading: const Icon(Icons.home_filled),
-                  title: const Text('Home'),
+                  title: Texti(text: S.of(context).home, size: 20,),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -103,7 +100,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.info),
-                  title: const Text('About Us'),
+                  title:  Texti( text: S.of(context).ABOUT,size: 20,),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -116,7 +113,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.contact_phone),
-                  title: const Text('Contact Us'),
+                  title:Texti(text: S.of(context).contact , size: 20,),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -129,14 +126,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
 
                 ListTile(
-                  leading: const Icon(Icons.star),
-                  title: const Text('Rate'),
+                  leading: const Icon(Icons.settings),
+                  title:  Texti(size: 20,text: S.of(context).setting),
                   onTap: () {
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.leftToRight,
-                        child: RatingPage(),
+                        child: const ProfilePage(),
                       ),
                     );
                   },
@@ -148,14 +145,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.01),
-              child: Text(
-                'WELCOME TO THE GEM',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.07, // Adjust text size according to screen width
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              padding: EdgeInsets.only(top: screenHeight * 0.001),
+              child: TextW(text: S.of(context).Welcome,)
             ),
             SizedBox(height: screenHeight * 0.01,width: 50,),
             Padding(
@@ -229,7 +220,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           context,
                           PageTransition(
                             type: PageTransitionType.topToBottom,
-                            child: const Ticket(),
+                            child: const DiscountPage(),
                           ),
                         );
                       },
@@ -276,7 +267,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 children: [
                   Pharaohs(),
                   const Tut(),
-                  const Ticket(),
+                  const DiscountPage(),
                   const favpage(),
                 ],
               ),

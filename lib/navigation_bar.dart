@@ -35,10 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
         color: const Color(0xFFAE9E82),
         index: _selectedIndex,
         onTap: _onItemTapped,
+        height: 60,
         items:  [
           const Icon(Icons.home_filled, color: Colors.black),
           Image.asset('assets/images/360 (2).jpg', color: Colors.black),
           const Icon(Icons.person_2, color: Colors.black),
+          
         ],
       ),
     );

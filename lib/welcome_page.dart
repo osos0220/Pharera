@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:Pharera/navigation_bar.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
+import 'package:flutter_application_09/navigation_bar.dart';
+
 import 'package:page_transition/page_transition.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
@@ -114,7 +116,7 @@ class _ImagePageState extends State<ImagePage> {
                     ),
                   ),
                   SwipeableButtonView(
-                    buttonText: 'Lets get started',
+                    buttonText: S.of(context).lets,
                     buttonWidget: Icon(Icons.double_arrow_sharp, color: _isFinished ? Colors.grey : Colors.black),
                     activeColor: Colors.transparent, // Set to transparent
                     isFinished: _isFinished,

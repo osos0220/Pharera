@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/Sign_up.dart';
-import 'package:flutter_application_09/sign.dart';
+import 'package:flutter_application_09/Text.dart';
+import 'package:flutter_application_09/generated/l10n.dart';
+import 'package:flutter_application_09/sign_in.dart';
+
 
 class Register extends StatelessWidget {
-  const Register({Key? key});
+  const Register({super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -44,15 +47,8 @@ class Register extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const Center(
-                      child: Text(
-                        "SIGN IN",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    child:  Center(
+                      child: TextW(text: S.of(context).login,),
                     ),
                   ),
                 ),
@@ -81,15 +77,8 @@ class Register extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const Center(
-                      child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                    child:  Center(
+                      child: TextW(text: S.of(context).signup,),
                     ),
                   ),
                 ),

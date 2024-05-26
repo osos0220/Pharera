@@ -22,7 +22,7 @@ class TabPage extends StatelessWidget {
           ),
           body: const TabBarView(
             children: [
-              TabContent(imagePath: 'assets/images/Email-Image.png', text: 'support@pharera.com'),
+              TabContent(imagePath: 'assets/images/whats_up.jpeg', text: 'support@pharera.com'),
               TabContent(imagePath: 'assets/images/face.jpeg', text: 'Pharera'),
               TabContent(imagePath: 'assets/images/instagram.jpeg', text: 'pharera'),
             ],
