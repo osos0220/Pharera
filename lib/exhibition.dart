@@ -63,9 +63,9 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
                 margin: const EdgeInsets.only(left: 20),
                 child: TabBarView(
                   controller: ta,
-                  children: const [
+                  children:  [
                     TutPic(),
-                    TutVid(),
+                    const TutVid(),
                   ],
                 ),
               ),

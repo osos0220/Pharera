@@ -262,13 +262,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.topToBottom,
-                          child: const favpage(),
-                        ),
-                      );
+                     
                     },
                     child: Column(
                       children: [
@@ -298,7 +292,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   Pharaohs(),
                   const Tut(),
                   const DiscountPage(),
-                  const favpage(),
+                  
                 ],
               ),
             ),

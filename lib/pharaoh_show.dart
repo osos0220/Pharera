@@ -20,7 +20,8 @@ class PharaohDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
-    String imagePath = isArabic ? pharaohDataAr.getImage(index) : pharaohData.getImage(index);
+   String imagePath = isArabic ? pharaohDataAr.getImage(index) : pharaohData.getImage(index);
+
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -60,7 +61,7 @@ class PharaohDetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: Image.asset(
                           imagePath,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                           height: 750,
                         ),
                       ),
@@ -108,7 +109,7 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            isArabic ? pharaohDataAr.getExplore(index) : pharaohData.getExplore(index),
+                            isArabic ? pharaohDataAr.getDetails(index) : pharaohData.getDetails(index),
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

@@ -142,7 +142,7 @@ class ProfilePage extends StatelessWidget {
           padding:  EdgeInsets.only(top: screenHeight* 0.04),
           child: InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> const favpage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> const FavPage()));
             },
             child: Container(
               width: screenWidth * 0.9,

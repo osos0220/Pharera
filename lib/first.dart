@@ -7,11 +7,13 @@ import 'package:flutter_application_09/about_us.dart';
 import 'package:flutter_application_09/contact.dart';
 import 'package:flutter_application_09/exhibition.dart';
 import 'package:flutter_application_09/generated/l10n.dart';
+import 'package:flutter_application_09/pharahos_list.dart';
 import 'package:flutter_application_09/pharaoh_1.dart';
 import 'package:flutter_application_09/navigation_bar.dart';
 import 'package:flutter_application_09/notifacation.dart';
 import 'package:flutter_application_09/pharaohs.dart';
 import 'package:flutter_application_09/rating.dart';
+import 'package:flutter_application_09/search.dart';
 import 'package:flutter_application_09/ticket.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -23,12 +25,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+   final PharaohData pharaohData = PharaohData();
   late TabController tab;
+  List<Map<String, String>> displayedPharaohs = [];
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    tab = TabController(length: 4, vsync: this);
+    tab = TabController(length: 4, vsync: this); 
+    displayedPharaohs = PharaohData().pharaoh;
+  }
+  
+  void _filterPharaohs(String query) {
+    final pharaohs = PharaohData().pharaoh;
+    if (query.isNotEmpty) {
+      final filteredPharaohs = pharaohs.where((pharaoh) {
+        final nameLower = pharaoh['name']!.toLowerCase();
+        final detailsLower = pharaoh['namee']!.toLowerCase();
+        final searchLower = query.toLowerCase();
+        return nameLower.contains(searchLower) || detailsLower.contains(searchLower);
+      }).toList();
+      setState(() {
+        displayedPharaohs = filteredPharaohs;
+      });
+    } else {
+      setState(() {
+        displayedPharaohs = pharaohs;
+      });
+    }
   }
 
   @override
@@ -83,8 +108,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   decoration: BoxDecoration(
                     color: Color.fromARGB(199, 146, 112, 57),
                   ), child: Text(""),
-                  
                 ),
+               
                 ListTile(
                   leading: const Icon(Icons.home_filled),
                   title: Texti(text: S.of(context).home, size: 20,),
@@ -124,7 +149,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     );
                   },
                 ),
-
                 ListTile(
                   leading: const Icon(Icons.settings),
                   title:  Texti(size: 20,text: S.of(context).setting),
@@ -145,24 +169,43 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.001),
+              padding: EdgeInsets.only(top: screenHeight * 0.06),
               child: TextW(text: S.of(context).Welcome,)
             ),
-            SizedBox(height: screenHeight * 0.01,width: 50,),
-            Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.03),
-              child: TextField(
-                decoration: InputDecoration(
-                  suffixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(screenWidth * 0.05), // Adjust border radius according to screen width
-                    ),
-                  ),
-                  contentPadding: EdgeInsets.symmetric(vertical: screenHeight * 0.01, horizontal: screenWidth * 0.03),
-                ),
-              ),
-            ),
+            SizedBox(height: screenHeight * 0.03,width: 50,),
+            GestureDetector(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SearchResults()),
+    );
+  },
+  child: Container(
+  width: screenWidth * 0.97, // تحديد العرض
+  height: screenHeight * 0.07, // تحديد الارتفاع
+  decoration: BoxDecoration(
+    color: const Color.fromARGB(255, 226, 226, 226), // لون الخلفية
+    borderRadius: BorderRadius.circular(40), // تشكيل الحواف
+    boxShadow: [
+      BoxShadow(
+        color: Colors.grey.withOpacity(0.5), // لون الظل
+        spreadRadius: 1,
+        blurRadius: 3,
+        offset: const Offset(0, 2), // التحويل في محور السي y
+      ),
+    ],
+  ),
+  child: const Row(
+    children: [
+      SizedBox(width: 10), // تباعد بادئة
+      Icon(Icons.search), // أيقونة البحث
+      SizedBox(width: 10), // تباعد بين الأيقونة والنص
+    ],
+  ),
+),
+
+),
+
             SizedBox(height: screenHeight * 0.01),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.01),
@@ -243,7 +286,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           context,
                           PageTransition(
                             type: PageTransitionType.topToBottom,
-                            child: const favpage(),
+                            child: const FavPage(),
                           ),
                         );
                       },
@@ -268,7 +311,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   Pharaohs(),
                   const Tut(),
                   const DiscountPage(),
-                  const favpage(),
+                  const FavPage(),
                 ],
               ),
             ),

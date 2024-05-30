@@ -97,6 +97,7 @@ flutter:
     - assets/images/360_images/
     - assets/videos/Libsync/
     - assets/images/artifacts/
+    - assets/images/exi/
   #    - assets/RiveAssets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

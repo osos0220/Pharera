@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/Text.dart';
-import 'package:flutter_application_09/Virtual_tour/free_explore.dart';
+
 import 'package:flutter_application_09/generated/l10n.dart';
 
 class VITPage extends StatelessWidget {
@@ -38,10 +38,7 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const FreeExplore()),
-                      );
+                      
                     },
                     style: ButtonStyle(
                       backgroundColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
