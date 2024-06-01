@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Virtual_tour/free_explore.dart';
+import 'package:Pharera/Virtual_tour/free_explore.dart';
+import 'package:Pharera/Virtual_Tour/tour_guide.dart';
 
 class VITPage extends StatelessWidget {
   const VITPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
@@ -16,14 +22,32 @@ class VITPage extends StatelessWidget {
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 90),
-                  child: Image.asset("assets/images/top.jpg"),
+                  child: Image.asset(
+                    "assets/images/top.jpg",
+                    width: screenWidth *
+                        0.8, // Adjust image width based on screen width
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 80),
                 child: Container(
+                  width: 290, // Adjust container width as needed
+                  height: 80,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD5B774),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color(0xFFCCAE6B),
+                        Color(0xFFD5B975),
+                        Color(0xFFD4B97C),
+                        Color(0xFFE0C586),
+                        Color(0xFFEED392),
+                        Color(0xFFE8CD8C),
+                        Color(0xFFDABF80),
+                        Color(0xFFCBB073),
+                        Color(0xFFBBA267),
+                      ],
+                    ),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
@@ -38,31 +62,24 @@ class VITPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const FreeExplore()),
+                        MaterialPageRoute(
+                            builder: (context) => const FreeExplore()),
                       );
                     },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
-                        return const Color(0xFFD5B774);
-                      }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      elevation: MaterialStateProperty.all(0),
                     ),
-                    child: const SizedBox(
-                      width: 280,
-                      height: 80,
-                      child: Center(
-                        child: Text(
-                          "Explore The Museum",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    child: const Center(
+                      child: Text(
+                        "Explore The Museum",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -72,8 +89,22 @@ class VITPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Container(
+                    width: 290, // Adjust container width as needed
+                    height: 80,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFD5B774),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color(0xFFCCAE6B),
+                        Color(0xFFD5B975),
+                        Color(0xFFD4B97C),
+                        Color(0xFFE0C586),
+                        Color(0xFFEED392),
+                        Color(0xFFE8CD8C),
+                        Color(0xFFDABF80),
+                        Color(0xFFCBB073),
+                        Color(0xFFBBA267),
+                      ],
+                    ),
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
@@ -86,36 +117,33 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const TourGuide()),
+                      );
                       // Navigate to tour guide page
                     },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
-                        return const Color(0xFFD5B774);
-                      }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      elevation: MaterialStateProperty.all(0),
                     ),
-                    child: const SizedBox(
-                      width: 280,
-                      height: 80,
-                      child: Center(
-                        child: Text(
-                          "Explore With Tour guide",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    child: const Center(
+                      child: Text(
+                        "Explore With Tour guide",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
+                    ),
                     ),
                   ),
                 ),
-              ),
+
             ],
           ),
         ),

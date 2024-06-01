@@ -5,11 +5,11 @@ class HeartIconButton extends StatefulWidget {
   final double size;
   
    const HeartIconButton({
-    Key? key,
+    super.key,
     this.color,
     this.size = 24.0,
     
-  }) : super(key: key);
+  });
 
   @override
   _HeartIconButtonState createState() => _HeartIconButtonState();

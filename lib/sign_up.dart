@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/sign.dart';
+import 'package:Pharera/sign_in.dart';
 
 class Signuo extends StatefulWidget {
   const Signuo({super.key});
@@ -97,7 +97,7 @@ class _SignuoState extends State<Signuo> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(100.0),
                         ),
-                        contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+                        contentPadding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility_off : Icons.visibility,

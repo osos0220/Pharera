@@ -7,10 +7,10 @@ class FavoriteButtonCategoryWidget extends StatelessWidget {
   final void Function()? onTap;
 
   const FavoriteButtonCategoryWidget({
-    Key? key,
+    super.key,
     required this.title,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

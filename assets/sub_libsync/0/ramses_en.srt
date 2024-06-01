@@ -1,0 +1,8 @@
+1
+00:00:00,070 --> 00:00:13,150
+Welcome to the Grand Egyptian Museum, we welcome you
+With pride and pleasure to explore the wonders and artifacts of Egyptian civilization
+
+2
+00:00:13,150 --> 00:00:14,150
+Old

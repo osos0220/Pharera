@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pharera/Fav_page.dart';
-import 'package:pharera/notifacation.dart';
-import 'package:pharera/rating.dart';
+import 'package:Pharera/fav_page.dart';
+import 'package:Pharera/notifacation.dart';
+import 'package:Pharera/rating.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:Pharera/Fav_page.dart';
-import 'package:Pharera/Profile.dart';
+import 'package:Pharera/fav_page.dart';
 import 'package:Pharera/about_us.dart';
 import 'package:Pharera/contact.dart';
 import 'package:Pharera/notifacation.dart';
+import 'package:Pharera/home_2.dart';
 import 'package:Pharera/pharaohs.dart';
-import 'package:Pharera/pharaohss.dart';
-import 'package:Pharera/raiting.dart';
+import 'package:Pharera/rating.dart';
 import 'package:Pharera/navigation_bar.dart';
 import 'package:Pharera/ticket.dart';
 import 'package:Pharera/exhibition.dart';
@@ -135,7 +134,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       context,
                       PageTransition(
                         type: PageTransitionType.leftToRight,
-                        child: RatingPage(),
+                        child: const RatingPage(),
                       ),
                     );
                   },
@@ -159,7 +158,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             SizedBox(height: screenHeight * 0.01, width: 50,),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.03),
-              child: Container(
+              child: SizedBox(
                 width: screenWidth * 0.8,  // Adjust the width as needed
                 height: screenHeight * 0.05,  // Adjust the height as needed
                 child: TextField(

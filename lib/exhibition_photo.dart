@@ -1,56 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:Pharera/Fav_but.dart';
+// import 'package:Pharera/Check.dart';
+// import 'package:Pharera/Text.dart';
+// import 'package:Pharera/exi_list.dart';
+// import 'package:Pharera/fav_but.dart';
+// import 'package:Pharera/generated/l10n.dart';
+import 'package:Pharera/pharahos_list.dart';
+import 'package:Pharera/pharaoh_show.dart';
 
 class TutPic extends StatelessWidget {
-  const TutPic({Key? key}) : super(key: key);
+  TutPic({Key? key}) : super(key: key);
+  final PharaohData pharaohData = PharaohData();
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only( top: screenHeight * 0.03, bottom: screenHeight * 0.03),
-                  child: const Center(
-                    child: Text(
-                      "Exhibition Pictures",
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.7, // Adjust height as needed
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 30, left: 0),
+                child: SizedBox(
+                  height: screenHeight * 0.9,
                   child: ListView.separated(
+                    padding: EdgeInsets.only(top: screenHeight * 0.03),
                     scrollDirection: Axis.vertical,
-                    itemCount: 3, // Set a higher itemCount
+                    itemCount: pharaohData.pharaoh.length,
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(height: screenHeight * 0.03);
                     },
                     itemBuilder: (_, index) {
+                      final ex = pharaohData.pharaoh[index];
                       return Padding(
-                        padding: EdgeInsets.only(left: screenWidth * 0.04),
+                        padding: EdgeInsets.only(left: screenWidth * 0.04, right: screenWidth * 0.04),
                         child: Stack(
                           children: [
                             Container(
-                              width: screenWidth * 0.85,
-                              height: screenHeight * 0.32, // Adjust height as needed
+                              width: screenWidth * 0.95,
+                              height: screenHeight * 0.32,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
+                                borderRadius: BorderRadius.circular(10),
                                 color: Colors.black,
                               ),
-                              
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left:screenWidth*0.7 ),
-                              child: const HeartIconButton(),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PharaohDetailPage(
+                                        pharaohData: pharaohData,
+                                        index: index,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset(
+                                    ex['image'] ?? '',
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -58,8 +75,8 @@ class TutPic extends StatelessWidget {
                     },
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharaoh_show.dart';
-import 'package:Pharera/pharahosl_ist.dart';
-import 'package:Pharera/pharaohss.dart';
+import 'package:Pharera/pharahos_list.dart';
+import 'package:Pharera/pharaohs.dart';
 
 class Pharaohs extends StatelessWidget {
   Pharaohs({super.key});

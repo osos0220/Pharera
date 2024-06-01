@@ -1,0 +1,8 @@
+1
+00:00:00,070 --> 00:00:13,150
+Willkommen im Großen Ägyptischen Museum, wir heißen Sie herzlich willkommen
+Mit Stolz und Freude erkunden wir die Wunder und Artefakte der ägyptischen Zivilisation
+
+2
+00:00:13,150 --> 00:00:14,150
+Alt

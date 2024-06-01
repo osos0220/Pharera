@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
 class TutVid extends StatelessWidget {
-  const TutVid({Key? key}) : super(key: key);
+  const TutVid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +80,7 @@ class TutVid extends StatelessWidget {
 
   Future<void> _downloadVideo(BuildContext context, String videoAssetPath) async {
     try {
+      // Request storage permissions for Android
       if (Platform.isAndroid) {
         var permissionStatus = await Permission.storage.request();
         if (permissionStatus.isDenied) {
@@ -90,21 +91,26 @@ class TutVid extends StatelessWidget {
         }
       }
 
-      final directory = Platform.isAndroid ? await getExternalStorageDirectory() : await getTemporaryDirectory();
+      // Determine the directory to save the file
+      final directory = Platform.isAndroid
+          ? await getExternalStorageDirectory()
+          : await getApplicationDocumentsDirectory();
       if (directory == null) {
         throw Exception("Directory not found.");
       }
 
-      final taskId = await FlutterDownloader.enqueue(
-        url: videoAssetPath,
-        savedDir: directory.path,
-        fileName: videoAssetPath.split('/').last,
-        showNotification: true,
-        openFileFromNotification: true,
-      );
+      // Copy asset to a temporary location
+      final byteData = await rootBundle.load(videoAssetPath);
+      final tempFilePath = '${directory.path}/${videoAssetPath.split('/').last}';
+      final file = File(tempFilePath);
+      await file.writeAsBytes(byteData.buffer.asUint8List());
 
-      // Use taskId here if necessary
-      print('Download task ID: $taskId');
+      // Notify user of successful download
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Downloaded to $tempFilePath"),
+      ));
+
+      print('File downloaded to: $tempFilePath');
     } catch (e) {
       print("Download error: $e");
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -117,7 +123,7 @@ class TutVid extends StatelessWidget {
 class VideoItem extends StatefulWidget {
   final String videoAssetPath;
 
-  const VideoItem({Key? key, required this.videoAssetPath}) : super(key: key);
+  const VideoItem({super.key, required this.videoAssetPath});
 
   @override
   _VideoItemState createState() => _VideoItemState();
@@ -172,25 +178,25 @@ class _VideoItemState extends State<VideoItem> {
   }
 }
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(
-      debug: true // Optional: Set false to disable printing logs to console
-  );
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const TutVid(),
-    );
-  }
-}
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await FlutterDownloader.initialize(
+//       debug: true // Optional: Set false to disable printing logs to console
+//   );
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: const TutVid(),
+//     );
+//   }
+// }

@@ -4,20 +4,20 @@ import 'package:Pharera/navigation_bar.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
-class ImagePage extends StatefulWidget {
-  const ImagePage({Key? key}) : super(key: key);
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
 
   @override
-  _ImagePageState createState() => _ImagePageState();
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _ImagePageState extends State<ImagePage> {
+class _WelcomePageState extends State<WelcomePage> {
   int _currentIndex = 0;
   final List<String> _imagePaths = [
-    'assets/images/wel2.jpg',
     'assets/images/wel3.jpg',
-    'assets/images/artifacts/pyramid_view.png',
-    'assets/images/Entrance1.png',
+    'assets/images/wel2.jpg',
+    // 'assets/images/artifacts/pyramid_view.png',
+    // 'assets/images/Entrance1.png',
   ];
 
   late final PageController _pageController;

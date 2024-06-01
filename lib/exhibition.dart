@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Pharera/tutpic.dart';
-import 'package:Pharera/exipition_video.dart';
+import 'package:Pharera/exhibition_photo.dart';
+import 'package:Pharera/exhibition_video.dart';
+// import 'package:Pharera/generated/l10n.dart';
 
 class Tut extends StatefulWidget {
   const Tut({Key? key}) : super(key: key);
@@ -29,31 +30,31 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
         child: Column(
           children: [
 
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
               child: SizedBox(
                 width: 410,
 
-                child: Expanded(
-                  child: TabBar(
-                    controller: ta,
-
-                    labelColor: Colors.black,
-                    unselectedLabelColor: Colors.grey,
-                    tabs: const [
-                      Expanded(
-                        child: Tab(
-                          text: "Images",
-                        ),
-                      ),
-                      Expanded(
-                        child: Tab(
-                          text: "Videos",
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // child: Expanded(
+                //   child: TabBar(
+                //     controller: ta,
+                //
+                //     labelColor: Colors.black,
+                //     unselectedLabelColor: Colors.grey,
+                //     tabs:  [
+                //       Expanded(
+                //         child: Tab(
+                //            text: S.of(context).image,
+                //         ),
+                //       ),
+                //       Expanded(
+                //         child: Tab(
+                //            text: S.of(context).video,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ),
             ),
             Expanded(
@@ -61,9 +62,9 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
                 margin: const EdgeInsets.only(left: 20),
                 child: TabBarView(
                   controller: ta,
-                  children: const [
+                  children:  [
                     TutPic(),
-                    TutVid(),
+                    const TutVid(),
                   ],
                 ),
               ),

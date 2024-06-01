@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'app_text_widget.dart';
-import 'favorite_button_category_widget.dart';
 
 class favpage extends StatefulWidget {
   const favpage({super.key});
@@ -71,7 +70,7 @@ class _favpageState extends State<favpage> {
                           // Handle button press
                         },
                         style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(vertical: 16), // Adjust padding here
+                          padding: const EdgeInsets.symmetric(vertical: 16), // Adjust padding here
                           backgroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),

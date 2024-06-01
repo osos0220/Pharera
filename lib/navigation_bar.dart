@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Import the CurvedNavigationBar
-import 'package:flutter_application_09/first.dart';
-import 'package:flutter_application_09/Panorama.dart';
-import 'package:flutter_application_09/register.dart';
+import 'package:Pharera/home.dart';
+import 'package:Pharera/Panorama.dart';
+import 'package:Pharera/register.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();

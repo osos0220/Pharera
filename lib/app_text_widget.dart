@@ -6,11 +6,11 @@ class AppTextWidget extends StatelessWidget {
   final double? fontSize;
 
   const AppTextWidget({
-    Key? key,
+    super.key,
     required this.title,
     this.align,
     this.fontSize,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

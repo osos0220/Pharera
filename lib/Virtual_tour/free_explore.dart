@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_application_09/Virtual_Tour/libsync.dart';
+// import 'package:Pharera/Virtual_Tour/libsync.dart';
 import 'constants.dart';
 
 class FreeExplore extends StatefulWidget {
-  const FreeExplore({Key? key}) : super(key: key);
+  const FreeExplore({super.key});
 
   @override
   State<FreeExplore> createState() => _FreeExploreState();
@@ -26,47 +26,47 @@ class _FreeExploreState extends State<FreeExplore> {
   // double _lat = 0;
   // double _tilt = 0;
   List<Image> panoImages = [
-    Image.asset('assets/images/360_images/Entrance1.jpg'),
-    Image.asset('assets/images/360_images/Entrance2.jpg'),
-    Image.asset('assets/images/360_images/1.jpg'),
-    Image.asset('assets/images/360_images/2.1.jpg'),
-    Image.asset('assets/images/360_images/2.2.jpg'),
-    Image.asset('assets/images/360_images/2.3.jpg'),
-    Image.asset('assets/images/360_images/2.4.jpg'),
-    Image.asset('assets/images/360_images/3.1.jpg'),
-    Image.asset('assets/images/360_images/3.3.jpg'),
-    Image.asset('assets/images/360_images/3.4.jpg'),
-    Image.asset('assets/images/360_images/4.jpg'),
-    Image.asset('assets/images/360_images/5.jpg'),
-    Image.asset('assets/images/360_images/6.jpg'),
-    Image.asset('assets/images/360_images/7.jpg'),
-    Image.asset('assets/images/360_images/8.jpg'),
-    Image.asset('assets/images/360_images/9.jpg'),
-    Image.asset('assets/images/360_images/4.1.1.1.jpg'),
-    Image.asset('assets/images/360_images/4.1.1.2.jpg'),
-    Image.asset('assets/images/360_images/4.1.2.jpg'),
-    Image.asset('assets/images/360_images/4.1.3.1.jpg'),
-    Image.asset('assets/images/360_images/4.1.3.2.jpg'),
-    Image.asset('assets/images/360_images/4.2.1.jpg'),
-    Image.asset('assets/images/360_images/4.2.2.1.jpg'),
-    Image.asset('assets/images/360_images/4.2.2.2.jpg'),
-    Image.asset('assets/images/360_images/4.2.3.1.jpg'),
-    Image.asset('assets/images/360_images/4.2.3.2.jpg'),
-    Image.asset('assets/images/360_images/4.2.4.1.jpg'),
-    Image.asset('assets/images/360_images/4.2.4.2.jpg'),
-    Image.asset('assets/images/360_images/4.3.1.1.jpg'),
-    Image.asset('assets/images/360_images/4.3.1.2.jpg'),
-    Image.asset('assets/images/360_images/4.3.2.1.jpg'),
-    Image.asset('assets/images/360_images/4.3.2.2.jpg'),
-    Image.asset('assets/images/360_images/4.3.3.1.jpg'),
-    Image.asset('assets/images/360_images/4.3.3.2.jpg'),
-    Image.asset('assets/images/360_images/4.3.4.1.jpg'),
-    Image.asset('assets/images/360_images/4.3.4.2.jpg'),
-    Image.asset('assets/images/360_images/4.4.1.1.jpg'),
-    Image.asset('assets/images/360_images/4.4.1.2.jpg'),
-    Image.asset('assets/images/360_images/4.4.2.jpg'),
-    Image.asset('assets/images/360_images/4.4.3.jpg'),
-    Image.asset('assets/images/360_images/4.5jpg'),
+    Image.asset('assets/images/360_images/Entrance1.webp'),
+    Image.asset('assets/images/360_images/Entrance2.webp'),
+    Image.asset('assets/images/360_images/1.webp'),
+    Image.asset('assets/images/360_images/2.1.webp'),
+    Image.asset('assets/images/360_images/2.2.webp'),
+    Image.asset('assets/images/360_images/2.3.webp'),
+    Image.asset('assets/images/360_images/2.4.webp'),
+    Image.asset('assets/images/360_images/3.1.webp'),
+    Image.asset('assets/images/360_images/3.3.webp'),
+    Image.asset('assets/images/360_images/3.4.webp'),
+    Image.asset('assets/images/360_images/4.webp'),
+    Image.asset('assets/images/360_images/5.webp'),
+    Image.asset('assets/images/360_images/6.webp'),
+    Image.asset('assets/images/360_images/7.webp'),
+    Image.asset('assets/images/360_images/8.webp'),
+    Image.asset('assets/images/360_images/9.webp'),
+    Image.asset('assets/images/360_images/4.1.1.1.webp'),
+    Image.asset('assets/images/360_images/4.1.1.2.webp'),
+    Image.asset('assets/images/360_images/4.1.2.webp'),
+    Image.asset('assets/images/360_images/4.1.3.1.webp'),
+    Image.asset('assets/images/360_images/4.1.3.2.webp'),
+    Image.asset('assets/images/360_images/4.2.1.webp'),
+    Image.asset('assets/images/360_images/4.2.2.1.webp'),
+    Image.asset('assets/images/360_images/4.2.2.2.webp'),
+    Image.asset('assets/images/360_images/4.2.3.1.webp'),
+    Image.asset('assets/images/360_images/4.2.3.2.webp'),
+    Image.asset('assets/images/360_images/4.2.4.1.webp'),
+    Image.asset('assets/images/360_images/4.2.4.2.webp'),
+    Image.asset('assets/images/360_images/4.3.1.1.webp'),
+    Image.asset('assets/images/360_images/4.3.1.2.webp'),
+    Image.asset('assets/images/360_images/4.3.2.1.webp'),
+    Image.asset('assets/images/360_images/4.3.2.2.webp'),
+    Image.asset('assets/images/360_images/4.3.3.1.webp'),
+    Image.asset('assets/images/360_images/4.3.3.2.webp'),
+    Image.asset('assets/images/360_images/4.3.4.1.webp'),
+    Image.asset('assets/images/360_images/4.3.4.2.webp'),
+    Image.asset('assets/images/360_images/4.4.1.1.webp'),
+    Image.asset('assets/images/360_images/4.4.1.2.webp'),
+    Image.asset('assets/images/360_images/4.4.2.webp'),
+    Image.asset('assets/images/360_images/4.4.3.webp'),
+    Image.asset('assets/images/360_images/4.5.webp'),
   ];
   ImagePicker picker = ImagePicker();
 
@@ -134,8 +134,9 @@ class _FreeExploreState extends State<FreeExplore> {
       // animSpeed: 0.5,
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
-
-      child: Image.asset('assets/images/360_images/Entrance1.jpg'),
+      longitude:-10.0 ,
+      latitude: 10.0,
+      child: Image.asset('assets/images/360_images/Entrance1.webp'),
       hotspots: [
         Hotspot(
           longitude: 159.14751478907584,
@@ -167,8 +168,11 @@ class _FreeExploreState extends State<FreeExplore> {
       // animSpeed: 2.0,
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
-
-      child: Image.asset('assets/images/360_images/Entrance2.jpg'),
+      longitude: -112.0,
+      latitude: 20.8 ,
+      onTap: (longitude, latitude, tilt) =>
+          print('onTap: $longitude, $latitude, $tilt'),
+      child: Image.asset('assets/images/360_images/Entrance2.webp'),
       hotspots: [
         Hotspot(
           longitude: -107.65,
@@ -199,7 +203,7 @@ class _FreeExploreState extends State<FreeExplore> {
       // animSpeed: 0.0,
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
-      child: Image.asset('assets/images/360_images/1.jpg'),
+      child: Image.asset('assets/images/360_images/1.webp'),
       hotspots: [
         Hotspot(
             longitude: 160.4,
@@ -271,10 +275,10 @@ class _FreeExploreState extends State<FreeExplore> {
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
 
-      child: Image.asset('assets/images/360_images/2.1.jpg'),
+      child: Image.asset('assets/images/360_images/2.1.webp'),
       hotspots: [
         Hotspot(
-            // to Entrance2.jpg
+            // to Entrance2.webp
             longitude: -109.0,
             latitude: -19.6,
             width: 100,
@@ -288,7 +292,7 @@ class _FreeExploreState extends State<FreeExplore> {
               },
             )),
         Hotspot(
-            // to 2.3.jpg
+            // to 2.3.webp
             longitude: 15.9,
             latitude: -20.1,
             width: 60,
@@ -301,7 +305,7 @@ class _FreeExploreState extends State<FreeExplore> {
               },
             )),
         Hotspot(
-            // To 5.jpg
+            // To 5.webp
             longitude: -172.16,
             latitude: -33.4,
             width: 60,
@@ -314,7 +318,7 @@ class _FreeExploreState extends State<FreeExplore> {
               },
             )),
         Hotspot(
-            // To 5.jpg
+            // To 5.webp
             longitude: -110.5,
             latitude: -41.1,
             width: 60,
@@ -327,7 +331,7 @@ class _FreeExploreState extends State<FreeExplore> {
               },
             )),
         Hotspot(
-            // to 3.1.jpg
+            // to 3.1.webp
             longitude: 104.1,
             latitude: -36.2,
             width: 60,
@@ -340,7 +344,7 @@ class _FreeExploreState extends State<FreeExplore> {
               },
             )),
         Hotspot(
-            // to 4.jpg
+            // to 4.webp
             longitude: 109.6,
             latitude: -23.4,
             width: 48,
@@ -363,7 +367,7 @@ class _FreeExploreState extends State<FreeExplore> {
       onViewChanged: onViewChanged,
       onTap: (longitude, latitude, tilt) =>
           print('onTap: $longitude, $latitude, $tilt'),
-      child: Image.asset('assets/images/360_images/2.2.jpg'),
+      child: Image.asset('assets/images/360_images/2.2.webp'),
       hotspots: [
         Hotspot( // Libsync
           longitude: -138.2,
@@ -373,14 +377,16 @@ class _FreeExploreState extends State<FreeExplore> {
           widget: hotspotButton(
               icon: Icons.search_outlined,
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LibSyncPage(
-                        text: "Senusret I was a powerful pharaoh of ancient Egypt during the Middle Kingdom (around 1971-1926 BCE). He led military campaigns into Nubia, undertook extensive building projects (including the White Chapel at Karnak), and implemented administrative reforms that strengthened Egypt's central authority. His reign marked a period of stability and prosperity in Egyptian history, contributing significantly to the kingdom's cultural and economic development.",
-                        video: 'assets/videos/Libsync/Senusrt_I.mp4',
-                        title: 'Senusrt The First',
-                      )));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => LibSyncPage(
+              //           text: "Senusret I was a powerful pharaoh of ancient Egypt during the Middle Kingdom (around 1971-1926 BCE). He led military campaigns into Nubia, undertook extensive building projects (including the White Chapel at Karnak), and implemented administrative reforms that strengthened Egypt's central authority. His reign marked a period of stability and prosperity in Egyptian history, contributing significantly to the kingdom's cultural and economic development.",
+              //           video: 'assets/videos/Libsync/Senusrt_I.mp4',
+              //           title: 'Senusrt The First',
+              //           languageCode: 'en',
+              //           panoId: 0,
+              //         )));
             },
           ),
         ),
@@ -409,7 +415,7 @@ class _FreeExploreState extends State<FreeExplore> {
   PanoramaViewer _grandhall2_3() {
     return PanoramaViewer(
 
-      child: Image.asset('assets/images/360_images/2.3.jpg'),
+      child: Image.asset('assets/images/360_images/2.3.webp'),
       hotspots: [
         Hotspot(
           longitude: 37.7,
@@ -445,7 +451,7 @@ class _FreeExploreState extends State<FreeExplore> {
   PanoramaViewer _grandhall2_4() {
     return PanoramaViewer(
 
-        child: Image.asset('assets/images/360_images/2.4.jpg'),
+        child: Image.asset('assets/images/360_images/2.4.webp'),
         hotspots: [
           Hotspot(
             longitude: -5.4,
@@ -483,7 +489,7 @@ class _FreeExploreState extends State<FreeExplore> {
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
 
-      child: Image.asset('assets/images/360_images/3.1.jpg'),
+      child: Image.asset('assets/images/360_images/3.1.webp'),
       hotspots: [
         Hotspot(
           longitude: -92.3,
@@ -522,7 +528,7 @@ class _FreeExploreState extends State<FreeExplore> {
   PanoramaViewer _grandhall3_3() {
     return PanoramaViewer(
 
-      child: Image.asset('assets/images/360_images/3.3.jpg'),
+      child: Image.asset('assets/images/360_images/3.3.webp'),
       hotspots: [
         Hotspot(
           longitude: 129.5,
@@ -558,7 +564,7 @@ class _FreeExploreState extends State<FreeExplore> {
   PanoramaViewer _grandhall3_4() {
     return PanoramaViewer(
 
-        child: Image.asset('assets/images/360_images/3.4.jpg'),
+        child: Image.asset('assets/images/360_images/3.4.webp'),
         hotspots: [
           Hotspot(
             longitude: -99.0,
@@ -628,7 +634,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.jpg'),
+        child: Image.asset('assets/images/360_images/4.webp'),
         hotspots: [
           Hotspot(
               longitude: -6.2,
@@ -699,7 +705,7 @@ class _FreeExploreState extends State<FreeExplore> {
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
 
-      child: Image.asset('assets/images/360_images/5.jpg'),
+      child: Image.asset('assets/images/360_images/5.webp'),
       hotspots: [
         Hotspot(
             longitude: -120.4,
@@ -782,14 +788,16 @@ class _FreeExploreState extends State<FreeExplore> {
           widget: hotspotButton(
             icon: Icons.search,
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LibSyncPage(
-                            text: 'Greetings, esteemed visitors! I am Ramesses II, the great pharaoh of Egypt. I am honored to welcome you to this magnificent museum, where you can learn about the rich history and culture of my people.',
-                            video: 'assets/videos/Libsync/Ramses_II.mp4',
-                        title: 'Ramesses-II welcoming you!',
-                          )));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => LibSyncPage(
+              //               text: 'Greetings, esteemed visitors! I am Ramesses II, the great pharaoh of Egypt. I am honored to welcome you to this magnificent museum, where you can learn about the rich history and culture of my people.',
+              //               video: 'assets/videos/Libsync/Ramses_II.mp4',
+              //               title: 'Ramesses-II welcoming you!',
+              //           languageCode: 'en', // Replace with the actual language code
+              //           panoId: 1,
+              //             )));
             },
           ),
         ),
@@ -803,7 +811,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/6.jpg'),
+        child: Image.asset('assets/images/360_images/6.webp'),
         hotspots: [
           Hotspot(
               longitude: 55.8,
@@ -862,7 +870,7 @@ class _FreeExploreState extends State<FreeExplore> {
       animSpeed: 1.0,
       // sensorControl: SensorControl.orientation,
       onViewChanged: onViewChanged,
-      child: Image.asset('assets/images/360_images/7.jpg'),
+      child: Image.asset('assets/images/360_images/7.webp'),
       hotspots: [
         Hotspot(
           longitude: -92.3,
@@ -909,7 +917,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/8.jpg'),
+        child: Image.asset('assets/images/360_images/8.webp'),
         hotspots: [
           Hotspot(
               longitude: -61.9,
@@ -981,7 +989,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/9.jpg'),
+        child: Image.asset('assets/images/360_images/9.webp'),
         hotspots: [
           Hotspot(
               longitude: 169.8,
@@ -1040,7 +1048,7 @@ class _FreeExploreState extends State<FreeExplore> {
         //   sensorControl: SensorControl.orientation,
         //   onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.1.1.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.1.1.1.webp'),
         hotspots: [
           Hotspot(
               // Go back to 3.1
@@ -1103,16 +1111,18 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.search,
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LibSyncPage(
-                            text: "Senusret III was a Pharaoh of Egypt who reigned from 1878 to 1839 BC. He was the son of Senusret II and succeeded him as Pharaoh. During his reign, he focused on strengthening Egypt's economy and military, and he also launched several successful military campaigns. He was known for his wisdom and justice, and his reign is often referred to as the 'Golden Age' of the 12th dynasty.",
-                            video: 'assets/videos/Libsync/Senusrt_III.mp4',
-                            title: 'Senusrt III',
-                          )
-                      )
-                  );
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => LibSyncPage(
+                  //           text: "Senusret III was a Pharaoh of Egypt who reigned from 1878 to 1839 BC. He was the son of Senusret II and succeeded him as Pharaoh. During his reign, he focused on strengthening Egypt's economy and military, and he also launched several successful military campaigns. He was known for his wisdom and justice, and his reign is often referred to as the 'Golden Age' of the 12th dynasty.",
+                  //           video: 'assets/videos/Libsync/Senusrt_III.mp4',
+                  //           title: 'Senusrt III',
+                  //           languageCode: 'en', // Replace with the actual language code
+                  //           panoId: 2,
+                  //         )
+                  //     )
+                  // );
                 },
               ),
           ),
@@ -1155,7 +1165,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.1.1.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.1.1.2.webp'),
         hotspots: [
           Hotspot(
               longitude: 162.1,
@@ -1225,7 +1235,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // animSpeed: 0.0,
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
-        child: Image.asset('assets/images/360_images/4.1.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.1.2.webp'),
         hotspots: [
           Hotspot(
               // Exit to 4
@@ -1286,14 +1296,16 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.search,
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LibSyncPage(
-                            text: "Amenhotep III was a prominent pharaoh of ancient Egypt during the New Kingdom (around 1386-1353 BCE). He focused on diplomacy rather than military conquests, maintaining peace and prosperity through strategic alliances. Amenhotep III oversaw extensive building projects, including the Temple of Luxor and the Colossi of Memnon. His reign marked a golden age of artistic achievement, with remarkable sculptures and architecture reflecting Egypt's wealth and power. He left a legacy of cultural richness and diplomatic success, contributing to Egypt's prominence in the ancient world.",
-                            video: 'assets/videos/Libsync/Amenhotep_III.mp4',
-                            title: 'Amenhotep The Third',
-                          )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => LibSyncPage(
+                  //           text: "Amenhotep III was a prominent pharaoh of ancient Egypt during the New Kingdom (around 1386-1353 BCE). He focused on diplomacy rather than military conquests, maintaining peace and prosperity through strategic alliances. Amenhotep III oversaw extensive building projects, including the Temple of Luxor and the Colossi of Memnon. His reign marked a golden age of artistic achievement, with remarkable sculptures and architecture reflecting Egypt's wealth and power. He left a legacy of cultural richness and diplomatic success, contributing to Egypt's prominence in the ancient world.",
+                  //           video: 'assets/videos/Libsync/Amenhotep_III.mp4',
+                  //           title: 'Amenhotep The Third',
+                  //           languageCode: 'en', // Replace with the actual language code
+                  //           panoId: 3,
+                  //         )));
                 },
               ),
           ),
@@ -1306,14 +1318,16 @@ class _FreeExploreState extends State<FreeExplore> {
             widget: hotspotButton(
               icon: Icons.search,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LibSyncPage(
-                          text: "Thutmose III was a powerful pharaoh of ancient Egypt during the New Kingdom (around 1479-1425 BCE). He was renowned for his military campaigns, which expanded Egypt's empire into Canaan and Syria, greatly increasing its wealth and influence. Thutmose III also supported artistic and architectural projects, leaving a legacy of territorial expansion and cultural advancement that strengthened Egypt's prominence in the ancient world.",
-                          video: 'assets/videos/Libsync/Thutmose_III.mp4',
-                          title: 'Thutmose The Third',
-                        )));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => LibSyncPage(
+                //           text: "Thutmose III was a powerful pharaoh of ancient Egypt during the New Kingdom (around 1479-1425 BCE). He was renowned for his military campaigns, which expanded Egypt's empire into Canaan and Syria, greatly increasing its wealth and influence. Thutmose III also supported artistic and architectural projects, leaving a legacy of territorial expansion and cultural advancement that strengthened Egypt's prominence in the ancient world.",
+                //           video: 'assets/videos/Libsync/Thutmose_III.mp4',
+                //           title: 'Thutmose The Third',
+                //           languageCode: 'en', // Replace with the actual language code
+                //           panoId: 4,
+                //         )));
               },
             ),
           ),
@@ -1346,7 +1360,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.1.3.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.1.3.1.webp'),
         hotspots: [
           Hotspot(
               // move behind Statue (3_2)
@@ -1406,14 +1420,16 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.search,
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LibSyncPage(
-                            text: "Thutmose III was a powerful pharaoh of ancient Egypt during the New Kingdom (around 1479-1425 BCE). He was renowned for his military campaigns, which expanded Egypt's empire into Canaan and Syria, greatly increasing its wealth and influence. Thutmose III also supported artistic and architectural projects, leaving a legacy of territorial expansion and cultural advancement that strengthened Egypt's prominence in the ancient world.",
-                            video: 'assets/videos/Libsync/Thutmose_III.mp4',
-                            title: 'Thutmose The Third',
-                          )));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => LibSyncPage(
+                  //           text: "Thutmose III was a powerful pharaoh of ancient Egypt during the New Kingdom (around 1479-1425 BCE). He was renowned for his military campaigns, which expanded Egypt's empire into Canaan and Syria, greatly increasing its wealth and influence. Thutmose III also supported artistic and architectural projects, leaving a legacy of territorial expansion and cultural advancement that strengthened Egypt's prominence in the ancient world.",
+                  //           video: 'assets/videos/Libsync/Thutmose_III.mp4',
+                  //           title: 'Thutmose The Third',
+                  //           languageCode: 'en', // Replace with the actual language code
+                  //           panoId: 5,
+                  //         )));
                 },
               ),
           ),
@@ -1436,7 +1452,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
         
-        child: Image.asset('assets/images/360_images/4.1.3.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.1.3.2.webp'),
         hotspots: [
           Hotspot(
               longitude: 82.6,
@@ -1485,7 +1501,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.2.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.1.webp'),
         hotspots: [
           Hotspot(
               // to GrandHall 3_4
@@ -1587,7 +1603,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.2.2.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.2.1.webp'),
         hotspots: [
           Hotspot(
               longitude: -43.7,
@@ -1655,7 +1671,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.2.2.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.2.2.webp'),
         hotspots: [
           Hotspot(
               longitude: -56.6,
@@ -1714,7 +1730,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.2.3.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.3.1.webp'),
         hotspots: [
           Hotspot(
               longitude: 129.9,
@@ -1772,7 +1788,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // animSpeed: 0.0,
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
-        child: Image.asset('assets/images/360_images/4.2.3.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.3.2.webp'),
         hotspots: [
           Hotspot(
               longitude: 161.8,
@@ -1843,7 +1859,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.2.4.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.4.1.webp'),
         hotspots: [
           Hotspot(
               // To Level 3
@@ -1907,7 +1923,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.2.4.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.2.4.2.webp'),
         hotspots: [
           Hotspot(
               // Down to Right
@@ -1985,7 +2001,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.1.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.1.1.webp'),
         hotspots: [
           Hotspot(
               // Behind statue
@@ -2035,7 +2051,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.1.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.1.2.webp'),
         hotspots: [
           Hotspot(
               longitude: 128.9,
@@ -2138,7 +2154,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.2.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.2.1.webp'),
         hotspots: [
           Hotspot(
               // Behind Statue
@@ -2209,7 +2225,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.2.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.2.2.webp'),
         hotspots: [
           Hotspot(
               // Go up
@@ -2266,7 +2282,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.3.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.3.1.webp'),
         hotspots: [
           Hotspot(
               longitude: 64.8,
@@ -2325,7 +2341,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.3.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.3.2.webp'),
         hotspots: [
           Hotspot(
               longitude: -8.6,
@@ -2384,7 +2400,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.4.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.4.1.webp'),
         hotspots: [
           Hotspot(
               longitude: -39.3,
@@ -2444,7 +2460,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.3.4.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.3.4.2.webp'),
         hotspots: [
           Hotspot(
               longitude: -30.3,
@@ -2492,7 +2508,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.4.1.1.jpg'),
+        child: Image.asset('assets/images/360_images/4.4.1.1.webp'),
         hotspots: [
           Hotspot(
               longitude: -111.0,
@@ -2551,7 +2567,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.4.1.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.4.1.2.webp'),
         hotspots: [
           Hotspot(
               longitude: -83.4,
@@ -2620,7 +2636,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.4.2.jpg'),
+        child: Image.asset('assets/images/360_images/4.4.2.webp'),
         hotspots: [
           Hotspot(
               longitude: 33.0,
@@ -2664,7 +2680,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.4.3.jpg'),
+        child: Image.asset('assets/images/360_images/4.4.3.webp'),
         hotspots: [
           Hotspot(
               longitude: -117.9,
@@ -2724,7 +2740,7 @@ class _FreeExploreState extends State<FreeExplore> {
         // sensorControl: SensorControl.orientation,
         onViewChanged: onViewChanged,
 
-        child: Image.asset('assets/images/360_images/4.5.jpg'),
+        child: Image.asset('assets/images/360_images/4.5.webp'),
         hotspots: [
           Hotspot(
               // Go down to 4_4_3
@@ -2946,8 +2962,18 @@ void maslaoutside(BuildContext context) {
     builder: (BuildContext context) {
       return AlertDialog(
         // title: Text('Entrance View'),
+
+
+        // Need to edit so it supports multilingual from the settings at home page:
+
+
         contentPadding: EdgeInsets.all(7.0), // Reduce padding
-        content: Image.asset('assets/images/artifacts/masla-outside.png'),
+        title: Text('المسلة المعلقة للملك رمسيس الثاني'),
+        scrollable: true,
+        content: Title(title: 'Masala_Outside', color: Colors.white,child: Text('تم اكتشافها في مكان اسمه صهر الحجر ف الشرقيه حاليا مقسمة إلى عدة أجزاء وهى منحوتة من حجر الجرانيت الوردي وتتميز بجمال نقوشها التى تصور الملك رمسيس الثانى، واقفا أمام أحد المعبودات، بالإضافة إلى الألقاب المختلفة له.'
+      ),),
+        // Text('Senusret'),
+        // content: Image.asset('assets/images/artifacts/masla-outside.png'),
       );
     },
   );
