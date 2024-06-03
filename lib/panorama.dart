@@ -1,7 +1,7 @@
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/Virtual_tour/free_explore.dart';
-import 'package:Pharera/Virtual_Tour/tour_guide.dart';
+
 
 class VITPage extends StatelessWidget {
   const VITPage({super.key});
@@ -118,10 +118,7 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TourGuide()),
-                      );
+                      
                       // Navigate to tour guide page
                     },
                     style: ElevatedButton.styleFrom(
