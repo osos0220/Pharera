@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -84,8 +85,8 @@ class TutVid extends StatelessWidget {
       if (Platform.isAndroid) {
         var permissionStatus = await Permission.storage.request();
         if (permissionStatus.isDenied) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Permission denied. Please enable storage permission."),
+          ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+            content: Text(S.of(context).Permision),
           ));
           return;
         }
@@ -96,7 +97,7 @@ class TutVid extends StatelessWidget {
           ? await getExternalStorageDirectory()
           : await getApplicationDocumentsDirectory();
       if (directory == null) {
-        throw Exception("Directory not found.");
+        throw Exception(S.of(context).Directory);
       }
 
       // Copy asset to a temporary location
@@ -107,12 +108,12 @@ class TutVid extends StatelessWidget {
 
       // Notify user of successful download
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Downloaded to $tempFilePath"),
+        content: _buildPriceRow(S.of(context).Directory , "" , tempFilePath),
       ));
 
-      print('File downloaded to: $tempFilePath');
+      print(_buildPriceRow(S.of(context).file , "" , tempFilePath),);
     } catch (e) {
-      print("Download error: $e");
+      print(_buildPriceRow(S.of(context).DownloadE , "" , "$e"),);
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Download failed. Please try again."),
       ));
@@ -200,3 +201,34 @@ class _VideoItemState extends State<VideoItem> {
 //     );
 //   }
 // }
+Widget _buildPriceRow(String title, String price , String le) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            price,
+            style: const TextStyle(
+              fontSize: 20,
+              decoration: TextDecoration.underline,
+            ),
+          ),
+          Text(
+            le,
+            style: const TextStyle(
+              fontSize: 20,
+              decoration: TextDecoration.underline,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+

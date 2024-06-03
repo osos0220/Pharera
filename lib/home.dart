@@ -1,4 +1,7 @@
+import 'package:Pharera/generated/l10n.dart';
+import 'package:Pharera/search.dart';
 import 'package:flutter/material.dart';
+import 'package:Pharera/language.dart';
 import 'package:Pharera/fav_page.dart';
 import 'package:Pharera/about_us.dart';
 import 'package:Pharera/contact.dart';
@@ -20,6 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late TabController tab;
+  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -80,7 +84,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     color: Color(0xFFAE9E82),
                   ),
                   child: Text(
-                    'WELCOME!',
+                    S.of(context).wellcome,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: drawerHeaderFontSize,
@@ -89,7 +93,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.home_filled),
-                  title: const Text('Home'),
+                  title:  Text(S.of(context).home),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -102,7 +106,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.info),
-                  title: const Text('About Us'),
+                  title:  Text(S.of(context).ABOUT),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -115,7 +119,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.contact_phone),
-                  title: const Text('Contact Us'),
+                  title:  Text(S.of(context).contact),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -128,13 +132,26 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.star),
-                  title: const Text('Rate'),
+                  title:  Text(S.of(context).rate),
                   onTap: () {
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.leftToRight,
                         child: const RatingPage(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.star),
+                  title:  Text(S.of(context).rate),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: const LanguageSelectionPage(),
                       ),
                     );
                   },
@@ -148,7 +165,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.01),
               child: Text(
-                'WELCOME TO THE GEM',
+                S.of(context).Welcome,
                 style: TextStyle(
                   fontSize: screenWidth * 0.07, // Adjust text size according to screen width
                   fontWeight: FontWeight.bold,
@@ -162,6 +179,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 width: screenWidth * 0.8,  // Adjust the width as needed
                 height: screenHeight * 0.05,  // Adjust the height as needed
                 child: TextField(
+                  controller: searchController,
+                  onTap: () {
+                    // Navigate to the search page when tapping on the search field
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SearchResults()),
+                    );
+                  },
                   decoration: InputDecoration(
                     suffixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
@@ -169,9 +194,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         Radius.circular(screenWidth * 0.05), // Adjust border radius according to screen width
                       ),
                     ),
-                    contentPadding: EdgeInsets.symmetric(
-                        vertical: screenHeight * 0.01,
-                        horizontal: screenWidth * 0.03
+                    contentPadding: EdgeInsets.symmetric
+(
+                      vertical: screenHeight * 0.01,
+                      horizontal: screenWidth * 0.03
                     ),
                   ),
                 ),
@@ -209,7 +235,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
                         Text(
-                          'Pharaohs',
+                          S.of(context).pharaohs,
                           style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
@@ -240,7 +266,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
                         Text(
-                          'Exhibitions',
+                          S.of(context).exihibtion,
                           style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
@@ -271,7 +297,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
                         Text(
-                          'Tickets',
+                          S.of(context).ticket,
                           style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
@@ -302,7 +328,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         ),
                         SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
                         Text(
-                          'Favorites',
+                          S.of(context).fav,
                           style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],

@@ -1,4 +1,6 @@
 import 'dart:async';
+
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/navigation_bar.dart';
 import 'package:page_transition/page_transition.dart';
@@ -114,7 +116,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                   ),
                   SwipeableButtonView(
-                    buttonText: 'Lets get started',
+                   
                     buttonWidget: Icon(Icons.double_arrow_sharp, color: _isFinished ? Colors.grey : Colors.black),
                     activeColor: Colors.transparent, // Set to transparent
                     isFinished: _isFinished,
@@ -140,7 +142,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         _isFinished = false;
                         _startTimer(); // Start the timer again after finishing navigation
                       });
-                    },
+                    }, buttonText: S.of(context).lets,
                   ),
                 ],
               ),

@@ -1,3 +1,4 @@
+import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 // import 'package:Pharera/Check.dart';
 // import 'package:Pharera/Text.dart';
@@ -8,9 +9,9 @@ import 'package:Pharera/pharahos_list.dart';
 import 'package:Pharera/pharaoh_show.dart';
 
 class TutPic extends StatelessWidget {
-  TutPic({Key? key}) : super(key: key);
+  TutPic({super.key});
   final PharaohData pharaohData = PharaohData();
-
+  final PharaohDataAr pharaohDataAr = PharaohDataAr();
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -55,7 +56,7 @@ class TutPic extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) => PharaohDetailPage(
                                         pharaohData: pharaohData,
-                                        index: index,
+                                        index: index, pharaohDataAr: pharaohDataAr,
                                       ),
                                     ),
                                   );

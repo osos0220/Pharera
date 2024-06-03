@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/sign_in.dart';
 
@@ -40,19 +41,19 @@ class _SignuoState extends State<Signuo> {
           width: double.infinity,
           child: Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 30, top: 20),
+               Padding(
+                padding: const EdgeInsets.only(right: 30, top: 20),
                 child: Text(
-                  "CREATE ACCOUNT",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  S.of(context).create,
+                  style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 10,),
               Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 220,top: 20),
-                    child: Text("FULL NAME",style:TextStyle(fontSize: 22,fontWeight: FontWeight.w800),),
+                   Padding(
+                    padding: const EdgeInsets.only(right: 220,top: 20),
+                    child: Text(S.of(context).name,style:const TextStyle(fontSize: 22,fontWeight: FontWeight.w800),),
                   ),
                   const Padding(
                       padding: EdgeInsets.only(top: 5),
@@ -67,9 +68,9 @@ class _SignuoState extends State<Signuo> {
                         ),
                       )
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 290,top: 10),
-                    child: Text("Email",style:TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
+                 Padding(
+                    padding: const EdgeInsets.only(right: 290,top: 10),
+                    child: Text(S.of(context).email,style:const TextStyle(fontSize: 25,fontWeight: FontWeight.w800),),
                   ),
                   const Padding(
                       padding: EdgeInsets.only(top: 5),
@@ -84,9 +85,9 @@ class _SignuoState extends State<Signuo> {
                         ),
                       )
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 160,top: 20),
-                    child: SizedBox(width: 200,child: Text("PASSWORD",style:TextStyle(fontSize: 22,fontWeight: FontWeight.w800),)),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 160,top: 20),
+                    child: SizedBox(width: 200,child: Text(S.of(context).password,style:const TextStyle(fontSize: 22,fontWeight: FontWeight.w800),)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
@@ -110,18 +111,18 @@ class _SignuoState extends State<Signuo> {
                           },
                         ),
                         counterText: "${_passwordController.text.length}/$_maxPasswordLength", // Show character count
-                        hintText: "Enter Password",
+                        hintText: S.of(context).enterp,
                       ),
                       maxLength: _maxPasswordLength,
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
+                   Padding(
+                    padding: const EdgeInsets.only(top: 20),
                     child: SizedBox(
                       width: 350,
                       child: Row(
                         children: [
-                          Text("CONFIRM PASSWORD",style:TextStyle(fontSize: 18,fontWeight: FontWeight.w800),),
+                          Text(S.of(context).Conform,style:const TextStyle(fontSize: 18,fontWeight: FontWeight.w800),),
                         ],
                       ),
                     ),
@@ -148,7 +149,7 @@ class _SignuoState extends State<Signuo> {
                           },
                         ),
                         counterText: "${_confirmPasswordController.text.length}/$_maxPasswordLength", // Show character count
-                        hintText: "Confirm Password",
+                        hintText: S.of(context).Conform,
                       ),
                       maxLength: _maxPasswordLength,
                     ),
@@ -174,10 +175,10 @@ class _SignuoState extends State<Signuo> {
                             ),
                           ],
                         ),
-                        child: const Center(
+                        child:  Center(
                           child: Text(
-                            "SIGN UP",
-                            style: TextStyle(
+                            S.of(context).signup,
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -189,22 +190,22 @@ class _SignuoState extends State<Signuo> {
                   ),
                   Row(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 70,top: 10),
+                       Padding(
+                        padding: const EdgeInsets.only(left: 70,top: 10),
                         child: Text(
-                          "Have an account?",
-                          style:TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
+                          S.of(context).haveaccount,
+                          style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
                         ),
                       ),
                       TextButton(
                         onPressed: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const SignIn()));
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.only(),
+                        child:  Padding(
+                          padding: const EdgeInsets.only(),
                           child: Text(
-                            "LOGIN",
-                            style:TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
+                            S.of(context).login,
+                            style:const TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: Colors.black),
                           ),
                         ),
                       ),

@@ -1,10 +1,11 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/exhibition_photo.dart';
 import 'package:Pharera/exhibition_video.dart';
 // import 'package:Pharera/generated/l10n.dart';
 
 class Tut extends StatefulWidget {
-  const Tut({Key? key}) : super(key: key);
+  const Tut({super.key});
 
   @override
   State<Tut> createState() => _TutState();
@@ -29,32 +30,28 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
         height: double.infinity,
         child: Column(
           children: [
-
-            const Padding(
-              padding: EdgeInsets.only(top: 10),
+             Padding(
+              padding: const EdgeInsets.only(top: 10),
               child: SizedBox(
                 width: 410,
-
-                // child: Expanded(
-                //   child: TabBar(
-                //     controller: ta,
-                //
-                //     labelColor: Colors.black,
-                //     unselectedLabelColor: Colors.grey,
-                //     tabs:  [
-                //       Expanded(
-                //         child: Tab(
-                //            text: S.of(context).image,
-                //         ),
-                //       ),
-                //       Expanded(
-                //         child: Tab(
-                //            text: S.of(context).video,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
+                child: TabBar(
+                  // Remove the 'const' keyword here
+                  controller: ta,
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.grey,
+                  tabs:  [
+                    Expanded(
+                      child: Tab(
+                        text: S.of(context).image,
+                      ),
+                    ),
+                    Expanded(
+                      child: Tab(
+                        text: S.of(context).video,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(

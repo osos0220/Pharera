@@ -1,3 +1,7 @@
+
+
+import 'package:Pharera/generated/l10n.dart';
+import 'package:Pharera/language.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/fav_page.dart';
 import 'package:Pharera/notifacation.dart';
@@ -78,18 +82,18 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.circle_notifications_outlined , size: 30,),
                   ),
                   Text(
-                    'Notifications',
-                    style: TextStyle(fontSize: 16),
+                    S.of(context).not,
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.arrow_forward),
                   ),
@@ -119,18 +123,18 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.star, size: 30,),
                   ),
                   Text(
-                    'Rating Us',
-                    style: TextStyle(fontSize: 16),
+                    S.of(context).rate,
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.arrow_forward),
                   ),
@@ -140,6 +144,47 @@ class ProfilePage extends StatelessWidget {
           ),
         ),
         Padding(
+          padding:  EdgeInsets.only(top: screenHeight* 0.04),
+          child: InkWell(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>  LanguageSelectionPage()));
+            },
+            child: Container(
+              width: screenWidth * 0.9,
+              height: screenWidth * 0.13,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child:  Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.language, size: 30,),
+                  ),
+                  Text(
+                    S.of(context).language,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Icon(Icons.arrow_forward),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+         Padding(
           padding:  EdgeInsets.only(top: screenHeight* 0.04),
           child: InkWell(
             onTap: (){
@@ -160,18 +205,18 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ],
               ),
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.favorite, size: 30,),
                   ),
                   Text(
-                    'Favorite',
-                    style: TextStyle(fontSize: 16),
+                    S.of(context).fav,
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Icon(Icons.arrow_forward),
                   ),
@@ -185,12 +230,12 @@ class ProfilePage extends StatelessWidget {
             padding:  EdgeInsets.only(top: screenHeight*0.04 , right: screenWidth *0.65 ),
             child: InkWell(
               onTap: (){},
-              child: const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.logout , color: Colors.red,), // Icon
-                  SizedBox(width: 8), // Add spacing between icon and text
-                  Text('Log Out'), // Text
+                  const Icon(Icons.logout , color: Colors.red,), // Icon
+                  const SizedBox(width: 8), // Add spacing between icon and text
+                  Text(S.of(context).Logout), // Text
                 ],
               ),
             ),

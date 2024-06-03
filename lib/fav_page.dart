@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'app_text_widget.dart';
@@ -10,10 +11,11 @@ class favpage extends StatefulWidget {
 }
 
 class _favpageState extends State<favpage> {
-  final List<String> titles = ["Photos", "Show", "Video"];
+ 
 
   @override
   Widget build(BuildContext context) {
+     final List<String> titles = [S.of(context).image, S.of(context).Show, S.of(context).video];
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -33,8 +35,8 @@ class _favpageState extends State<favpage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const AppTextWidget(
-                title: "Top Favorites",
+              AppTextWidget(
+                title: S.of(context).top,
                 fontSize: 32,
               ),
               const SizedBox(
@@ -53,8 +55,8 @@ class _favpageState extends State<favpage> {
                SizedBox(
                 height: screenHeight*0.009,
               ),
-              const AppTextWidget(
-                title: "Categories",
+              AppTextWidget(
+                title: S.of(context).category,
                 fontSize: 32,
               ),
                SizedBox(

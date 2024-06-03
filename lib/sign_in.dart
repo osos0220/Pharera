@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -27,22 +28,25 @@ class _SignInState extends State<SignIn> {
         child: SizedBox(
           width: double.infinity,
           child: Column(
+           
             children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 25, top: 40),
-                child: Text(
-                  "SIGN IN",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+               Padding(
+                padding: const EdgeInsets.only(right: 55, top: 40),
+                child: Center(
+                  child: Text(
+                    S.of(context).signin,
+                    style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
               Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(right: 290, top: 40),
+                   Padding(
+                    padding: const EdgeInsets.only(right: 290, top: 40),
                     child: Text(
-                      "Email",
-                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
+                      S.of(context).email,
+                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
                     ),
                   ),
                   const Padding(
@@ -58,11 +62,11 @@ class _SignInState extends State<SignIn> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 270, top: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 270, top: 20),
                     child: Text(
-                      "Password",
-                      style: TextStyle(fontSize: 23, fontWeight: FontWeight.w800),
+                      S.of(context).password,
+                      style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w800),
                     ),
                   ),
                   Padding(
@@ -71,7 +75,7 @@ class _SignInState extends State<SignIn> {
                       obscureText: _obscurePassword,
                       maxLength: 32, // Maximum character limit
                       decoration: InputDecoration(
-                        hintText: "  Enter Password",
+                        hintText:S.of(context).enterp,
                         hintStyle: const TextStyle(
                           color: Colors.grey, // Add color to highlight the hint text
                         ),
@@ -97,11 +101,11 @@ class _SignInState extends State<SignIn> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 150),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 150),
                       child: Text(
-                        "Forget password!",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),
+                        S.of(context).Forget,
+                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: Colors.black),
                       ),
                     ),
                   ),
@@ -112,26 +116,26 @@ class _SignInState extends State<SignIn> {
                         // Add your login functionality here
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                              (Set<MaterialState> states) {
+                        backgroundColor: WidgetStateProperty.resolveWith<Color?>(
+                              (Set<WidgetState> states) {
                             return const Color(0xFFAE9E82);
                           },
                         ),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
-                        elevation: MaterialStateProperty.all<double>(7),
-                        shadowColor: MaterialStateProperty.all<Color>(Colors.black.withOpacity(0.5)),
+                        elevation: WidgetStateProperty.all<double>(7),
+                        shadowColor: WidgetStateProperty.all<Color>(Colors.black.withOpacity(0.5)),
                       ),
                       child: Container(
                         width: 180,
                         height: 80,
                         alignment: Alignment.center,
-                        child: const Text(
-                          'LOGIN',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).login,
+                          style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,

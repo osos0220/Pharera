@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class RatingPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _RatingPageState extends State<RatingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rate Us'),
+        title:  Text(S.of(context).rate),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -23,9 +24,9 @@ class _RatingPageState extends State<RatingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'How would you rate our app?',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+               Text(
+                S.of(context).How,
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
               Row(
@@ -46,9 +47,9 @@ class _RatingPageState extends State<RatingPage> {
               ),
               const SizedBox(height: 20),
               TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Provide feedback...',
-                  border: OutlineInputBorder(),
+                decoration:  InputDecoration(
+                  hintText: S.of(context).provide,
+                  border: const OutlineInputBorder(),
                 ),
                 onChanged: (value) {
                   setState(() {
@@ -64,14 +65,14 @@ class _RatingPageState extends State<RatingPage> {
                     showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: const Text('Thank You!'),
-                        content: const Text('Your feedback has been submitted.'),
+                        title:  Text(S.of(context).thanks),
+                        content:  Text(S.of(context).feed),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Text('OK'),
+                            child:  Text(S.of(context).ok),
                           ),
                         ],
                       ),
@@ -80,21 +81,21 @@ class _RatingPageState extends State<RatingPage> {
                     showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
-                        title: const Text('Incomplete'),
-                        content: const Text('Please rate and provide feedback.'),
+                        title:  Text(S.of(context).incomplete),
+                        content:  Text(S.of(context).please),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: const Text('OK'),
+                            child:  Text(S.of(context).ok),
                           ),
                         ],
                       ),
                     );
                   }
                 },
-                child: const Text('Submit'),
+                child:  Text(S.of(context).submit),
               ),
             ],
           ),

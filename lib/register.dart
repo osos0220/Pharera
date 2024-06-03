@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 // import 'package:Pharera/sign_up.dart';
 // import 'package:Pharera/sign_in.dart';
@@ -57,10 +58,10 @@ class Register extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const Center(
+                    child:  Center(
                       child: Text(
-                        "SIGN IN",
-                        style: TextStyle(
+                        S.of(context).signin,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -106,10 +107,10 @@ class Register extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: const Center(
+                    child:  Center(
                       child: Text(
-                        "SIGN UP",
-                        style: TextStyle(
+                       S.of(context).signup,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,

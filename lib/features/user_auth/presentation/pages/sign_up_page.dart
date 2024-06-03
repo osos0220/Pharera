@@ -3,6 +3,7 @@
 //
 import 'package:Pharera/features/user_auth/presentation/pages/login_page.dart';
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/global/common/toast.dart';
@@ -36,11 +37,19 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 241, 241, 241),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 237, 236, 236),
         automaticallyImplyLeading: false,
-        title: const Text(
-          "SignUp",
-          style: TextStyle(fontFamily: 'Vollkorn'),
+        title:  Text(
+          S.of(context).signup,
+          style: const TextStyle(fontFamily: 'Vollkorn'),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
         ),
       ),
       body: Center(
@@ -51,10 +60,10 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "User name",
+                Text(
+                  S.of(context).name,
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Vollkorn'),
@@ -71,10 +80,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Email Address",
+                Text(
+                  S.of(context).email,
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Vollkorn'),
@@ -90,10 +99,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Password",
+                 Text(
+                  S.of(context).password,
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Vollkorn'),
@@ -125,9 +134,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             ? const CircularProgressIndicator(
                                 color: Colors.white,
                               )
-                            : const Text(
-                                "Sign Up",
-                                style: TextStyle(
+                            :  Text(
+                                S.of(context).signup,
+                                style: const TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -141,9 +150,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Already have an account?",
-                      style: TextStyle(fontFamily: 'Vollkorn'),
+                     Text(
+                     S.of(context).haveaccount ,
+                      style: const TextStyle(fontFamily: 'Vollkorn'),
                     ),
                     const SizedBox(
                       width: 5,
@@ -153,12 +162,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
+                                  builder: (context) => const LoginPage()),
                               (route) => false);
                         },
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
+                        child:  Text(
+                          S.of(context).login,
+                          style: const TextStyle(
                               color: Color.fromARGB(255, 174, 158, 130),
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Vollkorn'),
@@ -189,7 +198,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
     if (user != null) {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: "User is successfully created");
+      showToast(message: S.of(context).done);
       // Navigator.pushNamed(context as BuildContext, "/home");
       Navigator.push(
         context,
@@ -197,7 +206,7 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     } else {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: "Some error happend");
+      showToast(message: S.of(context).donenot);
     }
   }
 }

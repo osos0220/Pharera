@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class TabPage extends StatelessWidget {
@@ -12,11 +13,11 @@ class TabPage extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
-            bottom: const TabBar(
+            bottom:  TabBar(
               tabs: [
-                Tab(text: 'Email'),
-                Tab(text: 'FaceBook'),
-                Tab(text: 'Instagram'),
+                Tab(text: S.of(context).email),
+                Tab(text:  S.of(context).Face),
+                Tab(text:  S.of(context).insta),
               ],
             ),
           ),

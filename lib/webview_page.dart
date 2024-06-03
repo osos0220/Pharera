@@ -1,3 +1,6 @@
+import 'package:Pharera/Text.dart';
+import 'package:Pharera/generated/l10n.dart';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -10,7 +13,7 @@ class WebViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('WebView Page'),
+        title:  Textt(text: S.of(context).weelcome),
       ),
       body: WebView(
         initialUrl: url,

@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,11 +23,11 @@ class Ticket extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
+                     Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
-                        'For getting ticket click pay now',
-                        style: TextStyle(
+                        S.of(context).pay,
+                        style: const TextStyle(
                           fontSize: 21,
                           fontWeight: FontWeight.bold,
                         ),
@@ -41,13 +42,13 @@ class Ticket extends StatelessWidget {
                       child: Column(
                         children: [
                           const SizedBox(height: 20), // Adjust the height here
-                          _buildPriceRow('Adult', '350 L.E'),
+                          _buildPriceRow(S.of(context).adult, S.of(context).L_e_aud),
                           const SizedBox(height: 10), // Add padding between containers
-                          _buildPriceRow('Youth', '200 L.E'),
+                          _buildPriceRow(S.of(context).youth , S.of(context).L_e_y),
                           const SizedBox(height: 10), // Add padding between containers
-                          _buildPriceRow('Student', '200 L.E'),
+                          _buildPriceRow(S.of(context).student, S.of(context).L_e_s),
                           const SizedBox(height: 10), // Add padding between containers
-                          _buildPriceRow('Senior', '200 L.E'),
+                          _buildPriceRow(S.of(context).senior, S.of(context).L_e_se),
                           const SizedBox(height: 10),
                         ],
                       ),
@@ -67,9 +68,9 @@ class Ticket extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 32),
               ),
-              child: const Text(
-                'PAY NOW',
-                style: TextStyle(fontSize: 25, color: Colors.black),
+              child:  Text(
+                S.of(context).pay,
+                style: const TextStyle(fontSize: 25, color: Colors.black),
               ),
             ),
           ],
@@ -78,7 +79,7 @@ class Ticket extends StatelessWidget {
     );
   }
 
-  Widget _buildPriceRow(String title, String price) {
+  Widget _buildPriceRow(String title , String le) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
       child: Row(
@@ -91,7 +92,7 @@ class Ticket extends StatelessWidget {
             ),
           ),
           Text(
-            price,
+            le,
             style: const TextStyle(
               fontSize: 20,
               decoration: TextDecoration.underline,

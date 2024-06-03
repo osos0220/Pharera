@@ -1,3 +1,4 @@
+import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'fav_but.dart';
 import 'pharahos_list.dart';
@@ -7,16 +8,19 @@ List<String> favoriteImages = [];
 class PharaohDetailPage extends StatelessWidget {
   final PharaohData pharaohData;
   final int index;
+  final PharaohDataAr pharaohDataAr;
 
   const PharaohDetailPage({
-    Key? key,
+    super.key,
     required this.pharaohData,
-    required this.index,
-  }) : super(key: key);
+    required this.index, 
+    required this.pharaohDataAr,
+  });
 
   @override
   Widget build(BuildContext context) {
     String imagePath = pharaohData.getImage(index);
+    bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -87,7 +91,7 @@ class PharaohDetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            pharaohData.getName(index),
+                            isArabic ? pharaohDataAr.getName(index) : pharaohData.getName(index),
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -104,7 +108,7 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            pharaohData.getDetails(index),
+                            isArabic ? pharaohDataAr.getDetails(index) : pharaohData.getDetails(index),
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

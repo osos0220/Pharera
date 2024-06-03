@@ -1,12 +1,15 @@
+import 'package:Pharera/generated/l10n.dart';
+import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharaoh_show.dart';
 import 'package:Pharera/pharahos_list.dart';
 import 'package:Pharera/pharaohs.dart';
 
 class Pharaohs extends StatelessWidget {
-  Pharaohs({super.key});
+  Pharaohs({super.key, });
 
   final PharaohData pharaohData = PharaohData();
+  final PharaohDataAr pharaohDataAr = PharaohDataAr(); // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +32,9 @@ class Pharaohs extends StatelessWidget {
                           onPressed: () {
                             // Handle SEE ALL button tap
                           },
-                          child: const Text(
-                            "EXPLORE",
-                            style: TextStyle(
+                          child:  Text(
+                            S.of(context).Explore,
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
@@ -48,17 +51,21 @@ class Pharaohs extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Groub()));
+                                  builder: (context) => const Groub(
+                                     // Pass pharaohDataAr here
+                                  ),
+                              ),
+                          );
                         },
                         child: Container(
                           width: 130,
                           height: 60,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30)),
-                          child: const Center(
+                          child:  Center(
                             child: Text(
-                              "SEE ALL",
-                              style: TextStyle(
+                              S.of(context).seeall,
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 22,
                               ),
@@ -87,7 +94,11 @@ class Pharaohs extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => PharaohDetailPage(
-                                      pharaohData: pharaohData, index: index)),
+                                      pharaohData: pharaohData,
+                                      index: index,
+                                      pharaohDataAr: pharaohDataAr, // Pass pharaohDataAr here
+                                  ),
+                              ),
                             );
                           },
                           child: Container(

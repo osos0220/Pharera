@@ -1,9 +1,10 @@
+import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharahos_list.dart';
 import 'package:Pharera/pharaoh_show.dart';
 
 class SearchResults extends StatefulWidget {
-  const SearchResults({Key? key}) : super(key: key);
+  const SearchResults({super.key});
 
   @override
   State<SearchResults> createState() => _SearchResultsState();
@@ -11,6 +12,7 @@ class SearchResults extends StatefulWidget {
 
 class _SearchResultsState extends State<SearchResults> {
   final PharaohData pharaohData = PharaohData();
+  final PharaohDataAr pharaohDataAr = PharaohDataAr();
   List<Map<String, String>> displayedPharaohs = [];
   TextEditingController searchController = TextEditingController();
   late FocusNode searchFocusNode;
@@ -99,7 +101,7 @@ class _SearchResultsState extends State<SearchResults> {
                         MaterialPageRoute(
                           builder: (context) => PharaohDetailPage(
                             pharaohData: pharaohData,
-                            index: index,
+                            index: index, pharaohDataAr: pharaohDataAr,
                           ),
                         ),
                       );

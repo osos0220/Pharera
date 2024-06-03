@@ -1,9 +1,10 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/Virtual_tour/free_explore.dart';
 import 'package:Pharera/Virtual_Tour/tour_guide.dart';
 
 class VITPage extends StatelessWidget {
-  const VITPage({Key? key}) : super(key: key);
+  const VITPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +74,10 @@ class VITPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
-                        "Explore The Museum",
-                        style: TextStyle(
+                        S.of(context).Ex,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -130,10 +131,10 @@ class VITPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: const Center(
+                    child:  Center(
                       child: Text(
-                        "Explore With Tour guide",
-                        style: TextStyle(
+                        S.of(context).GUID,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,

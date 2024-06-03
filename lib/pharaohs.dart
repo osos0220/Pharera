@@ -1,3 +1,5 @@
+import 'package:Pharera/generated/l10n.dart';
+import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/notifacation.dart';
 import 'package:Pharera/pharahos_list.dart';
@@ -14,7 +16,8 @@ class Groub extends StatefulWidget {
 }
 
 class _GroubState extends State<Groub> {
-  final PharaohData pharaohData = PharaohData();
+  late PharaohData _pharaohData;
+  late PharaohDataAr _pharaohDataAr;
   String _selectedPhoto = "";
   String _selectedName = "";
   String _selectedDetails = "";
@@ -25,10 +28,12 @@ class _GroubState extends State<Groub> {
   @override
   void initState() {
     super.initState();
+    _pharaohData = PharaohData();
+    _pharaohDataAr = PharaohDataAr();
     // Set the initial selected index to 0
-    _selectedPhoto = pharaohData.pharaoh[0]['name']!;
-    _selectedName = pharaohData.pharaoh[0]['name']!;
-    _selectedDetails = pharaohData.pharaoh[0]['details']!;
+    _selectedPhoto = _pharaohData.pharaoh[0]['name']!;
+    _selectedName = _pharaohData.pharaoh[0]['name']!;
+    _selectedDetails = _pharaohData.pharaoh[0]['details']!;
   }
 
   @override
@@ -76,7 +81,7 @@ class _GroubState extends State<Groub> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (ctx, i) => _buildPhotoWidget(i),
                     separatorBuilder: (ctx, i) => const SizedBox(width: 8),
-                    itemCount: pharaohData.pharaoh.length,
+                    itemCount: _pharaohData.pharaoh.length,
                   ),
                 ),
               ),
@@ -93,7 +98,8 @@ class _GroubState extends State<Groub> {
                         image: DecorationImage(
                           fit: BoxFit.fill,
                           image: AssetImage(
-                            pharaohData.pharaoh[_selectedIndex]['image'] ?? "",
+                            _pharaohData.pharaoh[_selectedIndex]['image'] ??
+                                "",
                           ),
                         ),
                       ),
@@ -115,15 +121,16 @@ class _GroubState extends State<Groub> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => PharaohDetailPage(
-                                      pharaohData: pharaohData,
+                                      pharaohData: _pharaohData,
+                                      pharaohDataAr: _pharaohDataAr,
                                       index: _selectedIndex,
                                     ),
                                   ),
                                 );
                               },
-                              child: const Text(
-                                "EXPLORE",
-                                style: TextStyle(color: Colors.black),
+                              child: Text(
+                                S.of(context).Explore,
+                                style: const TextStyle(color: Colors.black),
                               ),
                             ),
                           )
@@ -139,7 +146,7 @@ class _GroubState extends State<Groub> {
                             const BorderRadius.all(Radius.circular(24)),
                         image: DecorationImage(
                           fit: BoxFit.fill,
-                          image: AssetImage(pharaohData.pharaoh.firstWhere(
+                          image: AssetImage(_pharaohData.pharaoh.firstWhere(
                                   (e) =>
                                       e['name'] == "King Akhenaten")['image'] ??
                               ""),
@@ -165,7 +172,7 @@ class _GroubState extends State<Groub> {
                 positioning: SnapPositioning.relativeToAvailableSpace,
               ),
               builder: (context, state) {
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -193,14 +200,13 @@ class _GroubState extends State<Groub> {
       ),
     );
   }
-
-  Widget _buildPhotoWidget(int index) {
+    Widget _buildPhotoWidget(int index) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          _selectedPhoto = pharaohData.pharaoh[index]['name']!;
-          _selectedName = pharaohData.pharaoh[index]['name']!;
-          _selectedDetails = pharaohData.pharaoh[index]['details']!;
+          _selectedPhoto = _pharaohData.pharaoh[index]['name']!;
+          _selectedName = _pharaohData.pharaoh[index]['name']!;
+          _selectedDetails = _pharaohDataAr.pharaooh[index]['details']!;
           _selectedIndex = index;
         });
         _isSheetAttached = false; // Reset the attachment flag
@@ -211,13 +217,13 @@ class _GroubState extends State<Groub> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: _selectedPhoto == pharaohData.pharaoh[index]['name']
+            color: _selectedPhoto == _pharaohData.pharaoh[index]['name']
                 ? Colors.yellow
                 : Colors.transparent,
             width: 2,
           ),
           image: DecorationImage(
-            image: AssetImage(pharaohData.pharaoh[index]['image']!),
+            image: AssetImage(_pharaohData.pharaoh[index]['image']!),
             fit: BoxFit.cover,
           ),
         ),
