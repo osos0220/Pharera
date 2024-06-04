@@ -1,3 +1,5 @@
+import 'package:Pharera/Virtual_Tour/free_explore.dart';
+import 'package:Pharera/Virtual_Tour/tour_guide.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +63,10 @@ class VITPagee extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                     
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const FreeExplore ()),
+                    );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
@@ -115,7 +120,10 @@ class VITPagee extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       
-                      // Navigate to tour guide page
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const TourGuide()),
+                    );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,
@@ -125,12 +133,14 @@ class VITPagee extends StatelessWidget {
                       ),
                     ),
                     child:  Center(
-                      child: Text(
-                        S.of(context).GUID,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
+                      child: FittedBox(
+                        child: Text(
+                          S.of(context).GUID,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

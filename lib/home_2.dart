@@ -53,7 +53,7 @@ class Pharaohs extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Groub(
+                                  builder: (context) =>  const Groub(
                                      // Pass pharaohDataAr here
                                   ),
                               ),

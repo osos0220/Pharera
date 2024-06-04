@@ -143,10 +143,12 @@ class _FreeExploreState extends State<FreeExplore> {
           latitude: 6.619360556364552,
           width: 90,
           height: 85,
-          widget: hotspotButton(
-              text: "Let's Explore",
-              icon: Icons.open_in_browser,
-              onPressed: () => setState(() => _panoId = 1)),
+          widget: FittedBox(
+            child: hotspotButton(
+                text: "Let's Explore",
+                icon: Icons.open_in_browser,
+                onPressed: () => setState(() => _panoId = 1)),
+          ),
         ),
         Hotspot(
           longitude: -9.3,

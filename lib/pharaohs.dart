@@ -95,7 +95,7 @@ class _GroubState extends State<Groub> {
                     ? Container(
                         width: 340,
                         alignment: AlignmentDirectional.bottomCenter,
-                        height: 510,
+                        height: 470,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius:
