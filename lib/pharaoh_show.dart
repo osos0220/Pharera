@@ -66,6 +66,7 @@ class PharaohDetailPage extends StatelessWidget {
                           fit: BoxFit.fill,
                         ),
                       ),
+                      const HeartIconButton()
                     ],
                   ),
                 ),

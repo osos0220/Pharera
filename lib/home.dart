@@ -95,13 +95,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   leading: const Icon(Icons.home_filled),
                   title:  Text(S.of(context).home),
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.leftToRight,
-                        child: const MyHomePage(),
-                      ),
-                    );
+                   
                   },
                 ),
                 ListTile(

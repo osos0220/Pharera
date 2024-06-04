@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,39 +38,42 @@ class TutVid extends StatelessWidget {
               SizedBox(height: screenHeight * 0.03),
               SizedBox(
                 height: screenHeight * 0.78,
-                child: ListView.separated(
-                  itemCount: videoAssets.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: screenHeight * 0.03);
-                  },
-                  itemBuilder: (_, index) {
-                    return Padding(
-                      padding: EdgeInsets.only(left: screenWidth * 0.02),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: screenWidth * 0.85,
-                            height: screenHeight * 0.32,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.black,
+                child: Padding(
+                  padding: EdgeInsets.only(right: IsArab()? 30 : 0),
+                  child: ListView.separated(
+                    itemCount: videoAssets.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(height: screenHeight * 0.03);
+                    },
+                    itemBuilder: (_, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(left: screenWidth * 0.02),
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: screenWidth * 0.85,
+                              height: screenHeight * 0.32,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.black,
+                              ),
+                              child: VideoItem(videoAssetPath: videoAssets[index]),
                             ),
-                            child: VideoItem(videoAssetPath: videoAssets[index]),
-                          ),
-                          Positioned(
-                            top: 10,
-                            right: 10,
-                            child: IconButton(
-                              icon: const Icon(Icons.download),
-                              onPressed: () {
-                                _downloadVideo(context, videoAssets[index]);
-                              },
+                            Positioned(
+                              top: 10,
+                              right: 10,
+                              child: IconButton(
+                                icon: const Icon(Icons.download),
+                                onPressed: () {
+                                  _downloadVideo(context, videoAssets[index]);
+                                },
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                          ],
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
@@ -204,30 +208,33 @@ class _VideoItemState extends State<VideoItem> {
 Widget _buildPriceRow(String title, String price , String le) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 20,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 20,
+              ),
             ),
-          ),
-          Text(
-            price,
-            style: const TextStyle(
-              fontSize: 20,
-              decoration: TextDecoration.underline,
+            Text(
+              price,
+              style: const TextStyle(
+                fontSize: 20,
+                decoration: TextDecoration.underline,
+              ),
             ),
-          ),
-          Text(
-            le,
-            style: const TextStyle(
-              fontSize: 20,
-              decoration: TextDecoration.underline,
+            Text(
+              le,
+              style: const TextStyle(
+                fontSize: 20,
+                decoration: TextDecoration.underline,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
