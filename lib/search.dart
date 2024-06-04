@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_09/pharahos_list.dart';
-import 'package:flutter_application_09/pharaoh_show.dart';
 import 'package:flutter_application_09/pharaohs_list_ar.dart';
 
 class SearchResults extends StatefulWidget {
@@ -17,11 +17,14 @@ class _SearchResultsState extends State<SearchResults> {
   TextEditingController searchController = TextEditingController();
   late FocusNode searchFocusNode;
   bool isSearchFocused = false;
+  String? lastSearchQuery;
+  final Duration _debounceDuration = const Duration(milliseconds: 300);
+  Timer? _debounceTimer;
 
   @override
   void initState() {
     super.initState();
-    displayedPharaohs = pharaohData.pharaoh;
+    displayedPharaohs = _getAllPharaohs();
     searchFocusNode = FocusNode();
     searchFocusNode.addListener(() {
       setState(() {
@@ -32,27 +35,43 @@ class _SearchResultsState extends State<SearchResults> {
 
   @override
   void dispose() {
+    _debounceTimer?.cancel();
     searchFocusNode.dispose();
     super.dispose();
   }
 
+  List<Map<String, String>> _getAllPharaohs() {
+    return [...pharaohData.pharaoh, ...pharaohDataAr.pharaooh];
+  }
+
   void _filterPharaohs(String query) {
-    final pharaohs = pharaohData.pharaoh;
-    if (query.isNotEmpty) {
-      final filteredPharaohs = pharaohs.where((pharaoh) {
-        final nameLower = pharaoh['name']!.toLowerCase();
-        final nameeLower = pharaoh['namee']!.toLowerCase();
-        final searchLower = query.toLowerCase();
-        return nameLower.contains(searchLower) || nameeLower.contains(searchLower);
-      }).toList();
-      setState(() {
-        displayedPharaohs = filteredPharaohs;
-      });
-    } else {
-      setState(() {
-        displayedPharaohs = pharaohs;
-      });
+    if (query == lastSearchQuery) return; // Avoid redundant filtering
+
+    lastSearchQuery = query;
+
+    if (_debounceTimer != null) {
+      _debounceTimer?.cancel();
     }
+
+    _debounceTimer = Timer(_debounceDuration, () {
+      final allPharaohs = _getAllPharaohs();
+      if (query.isNotEmpty) {
+        final filteredPharaohs = allPharaohs.where((pharaoh) {
+          final nameLower = pharaoh['name']?.toLowerCase() ?? '';
+          final nameEnLower = pharaoh['namee']?.toLowerCase() ?? '';
+          final searchLower = query.toLowerCase();
+          return nameLower.contains(searchLower) ||
+              nameEnLower.contains(searchLower);
+        }).toList();
+        setState(() {
+          displayedPharaohs = filteredPharaohs;
+        });
+      } else {
+        setState(() {
+          displayedPharaohs = allPharaohs;
+        });
+      }
+    });
   }
 
   @override
@@ -65,6 +84,12 @@ class _SearchResultsState extends State<SearchResults> {
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+        title: Text(
+          isArabic ? "بحث الفراعنة" : "Search Pharaohs",
+          style: const TextStyle(
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -83,7 +108,10 @@ class _SearchResultsState extends State<SearchResults> {
                     Radius.circular(10),
                   ),
                 ),
-                contentPadding: EdgeInsets.symmetric(vertical: screenHeight * 0.01, horizontal: screenWidth * 0.03),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.01,
+                  horizontal: screenWidth * 0.03,
+                ),
               ),
             ),
           ),
@@ -96,18 +124,38 @@ class _SearchResultsState extends State<SearchResults> {
                   final pharaoh = displayedPharaohs[index];
                   return GestureDetector(
                     onTap: () {
-                     Navigator.push(
-  context,
-  MaterialPageRoute(
-    builder: (context) => PharaohDetailPage(
-      pharaohDataAr: pharaohDataAr,
-      pharaohData: pharaohData,
-      index: index,
-      // Provide an instance of ExData if needed
-    ),
-  ),
-);
+                      final name = pharaoh['name'];
+                      final namee = pharaoh['namee'];
+                      final details = pharaoh['details'];
+                      final explore = pharaoh['explore'];
+                      final image = pharaoh['image'];
 
+                      if (name != null &&
+                          namee != null &&
+                          details != null &&
+                          explore != null &&
+                          image != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PharaohDetailPage(
+                              name: name,
+                              nameEn: namee,
+                              details: details,
+                              explore: explore,
+                              image: image,
+                            ),
+                          ),
+                        );
+                      }
+                      // else {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(
+                      //       content:
+                      //           Text('Error: Pharaoh details are incomplete.'),
+                      //     ),
+                      //   );
+                      // }
                     },
                     child: ListTile(
                       leading: ClipRRect(
@@ -120,10 +168,7 @@ class _SearchResultsState extends State<SearchResults> {
                         ),
                       ),
                       title: Text(
-                       isArabic ? pharaohDataAr.getName(index) : pharaohData.getName(index),
-                      ),
-                      subtitle: Text(
-                       isArabic ? pharaohDataAr.getNamee(index) : pharaohData.getNamee(index),
+                        isArabic ? pharaoh['namee']! : pharaoh['name']!,
                       ),
                     ),
                   );
@@ -132,6 +177,54 @@ class _SearchResultsState extends State<SearchResults> {
             ),
           ],
         ],
+      ),
+    );
+  }
+}
+
+class PharaohDetailPage extends StatelessWidget {
+  final String name;
+  final String nameEn;
+  final String details;
+  final String explore;
+  final String image;
+
+  const PharaohDetailPage({
+    super.key,
+    required this.name,
+    required this.nameEn,
+    required this.details,
+    required this.explore,
+    required this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(isArabic ? nameEn : name),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(image),
+            const SizedBox(height: 16.0),
+            Text(
+              isArabic ? nameEn : name,
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8.0),
+            Text(details),
+            const SizedBox(height: 16.0),
+            Text(explore),
+          ],
+        ),
       ),
     );
   }

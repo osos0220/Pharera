@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Text.dart';
-
-import 'package:flutter_application_09/generated/l10n.dart';
-
+//import 'package:Pharera/Virtual_tour/free_explore.dart';
+//import 'package:Pharera/Virtual_Tour/tour_guide.dart';
+//import 'package:Pharera/Virtual_Tour/message.dart';
 class VITPage extends StatelessWidget {
-  const VITPage({Key? key}) : super(key: key);
+  const VITPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,24 +37,34 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => const FreeExplore()),
+                      // );
                     },
                     style: ButtonStyle(
-                      backgroundColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
+                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
                         return const Color(0xFFD5B774);
                       }),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      elevation: WidgetStateProperty.all(0),
+                      elevation: MaterialStateProperty.all(0),
                     ),
-                    child:  SizedBox(
+                    child: const SizedBox(
                       width: 280,
                       height: 80,
                       child: Center(
-                        child:TextW(text: S.of(context).Ex,)
+                        child: Text(
+                          "Explore The Museum",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -78,24 +87,35 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => const TourGuide()),
+                      // );
                       // Navigate to tour guide page
                     },
                     style: ButtonStyle(
-                      backgroundColor: WidgetStateColor.resolveWith((Set<WidgetState> states) {
+                      backgroundColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
                         return const Color(0xFFD5B774);
                       }),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      elevation: WidgetStateProperty.all(0),
+                      elevation: MaterialStateProperty.all(0),
                     ),
-                    child:  SizedBox(
+                    child: const SizedBox(
                       width: 280,
                       height: 80,
                       child: Center(
-                        child: FittedBox(child: TextW(text: S.of(context).GUID,))
+                        child: Text(
+                          "Explore With Tour guide",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ),

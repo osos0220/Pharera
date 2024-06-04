@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_09/Check.dart';
 import 'package:flutter_application_09/Text.dart';
-import 'package:flutter_application_09/fav_but.dart';
 import 'package:flutter_application_09/generated/l10n.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -37,13 +36,15 @@ class TutVid extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-           
               Padding(
-                padding: EdgeInsets.only(right: IsArab()? 20 : 30, left: IsArab()? 0 : 0, ),
+                padding: EdgeInsets.only(
+                  right: IsArab() ? 20 : 30,
+                  left: IsArab() ? 0 : 0,
+                ),
                 child: SizedBox(
                   height: screenHeight * 0.78,
                   child: ListView.separated(
-                     padding: EdgeInsets.only(top: screenHeight * 0.03),
+                    padding: EdgeInsets.only(top: screenHeight * 0.03),
                     scrollDirection: Axis.vertical,
                     itemCount: videoAssets.length,
                     separatorBuilder: (BuildContext context, int index) {
@@ -51,17 +52,21 @@ class TutVid extends StatelessWidget {
                     },
                     itemBuilder: (_, index) {
                       return Padding(
-                        padding: EdgeInsets.only(left: screenWidth * 0.04, right: screenWidth * 0.04),
+                        padding: EdgeInsets.only(
+                            left: screenWidth * 0.04,
+                            right: screenWidth * 0.04),
                         child: Stack(
                           children: [
                             Container(
                               width: screenWidth * 0.85,
-                              height: screenHeight * 0.32, // Adjust height as needed
+                              height: screenHeight * 0.32,
+                              // Adjust height as needed
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
                                 color: Colors.black,
                               ),
-                              child: VideoItem(videoAssetPath: videoAssets[index]),
+                              child:
+                                  VideoItem(videoAssetPath: videoAssets[index]),
                             ),
                             Positioned(
                               top: 10,
@@ -73,7 +78,6 @@ class TutVid extends StatelessWidget {
                                 },
                               ),
                             ),
-                            
                           ],
                         ),
                       );
@@ -88,19 +92,24 @@ class TutVid extends StatelessWidget {
     );
   }
 
-  Future<void> _downloadVideo(BuildContext context, String videoAssetPath) async {
+  Future<void> _downloadVideo(
+      BuildContext context, String videoAssetPath) async {
     try {
       if (Platform.isAndroid) {
         var permissionStatus = await Permission.storage.request();
         if (permissionStatus.isDenied) {
-          ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-            content: TextW(text: S.of(context).Permission,),
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: TextW(
+              text: S.of(context).Permission,
+            ),
           ));
           return;
         }
       }
 
-      final directory = Platform.isAndroid ? await getExternalStorageDirectory() : await getTemporaryDirectory();
+      final directory = Platform.isAndroid
+          ? await getExternalStorageDirectory()
+          : await getTemporaryDirectory();
       if (directory == null) {
         throw Exception(TextW(text: S.of(context).Directory));
       }
@@ -114,11 +123,13 @@ class TutVid extends StatelessWidget {
       );
 
       // Use taskId here if necessary
-      print(TextW(text: S.of(context).DownloadT) );
+      print(TextW(text: S.of(context).DownloadT));
     } catch (e) {
-      print( TextW(text:S.of(context).DownloadE));
-      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-        content: TextW(text: S.of(context).DownloadF,),
+      print(TextW(text: S.of(context).DownloadE));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: TextW(
+          text: S.of(context).DownloadF,
+        ),
       ));
     }
   }
@@ -143,7 +154,8 @@ class _VideoItemState extends State<VideoItem> {
     _controller = VideoPlayerController.asset(widget.videoAssetPath);
     _chewieController = ChewieController(
       videoPlayerController: _controller,
-      autoPlay: false, // Do not start playing automatically
+      autoPlay: false,
+      // Do not start playing automatically
       looping: true,
       aspectRatio: 16 / 9,
       materialProgressColors: ChewieProgressColors(
@@ -186,7 +198,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterDownloader.initialize(
       debug: true // Optional: Set false to disable printing logs to console
-  );
+      );
   runApp(const MyApp());
 }
 

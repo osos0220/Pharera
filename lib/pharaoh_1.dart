@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Text.dart';
 import 'package:flutter_application_09/Texti.dart';
-import 'package:flutter_application_09/fav_but.dart';
 import 'package:flutter_application_09/generated/l10n.dart';
 import 'package:flutter_application_09/pharahos_list.dart';
 import 'package:flutter_application_09/pharaoh_show.dart';
 import 'package:flutter_application_09/pharaohs.dart';
 import 'package:flutter_application_09/pharaohs_list_ar.dart';
- // Assuming this is the correct file name for PharaohDetailPage
+// Assuming this is the correct file name for PharaohDetailPage
 
 class Pharaohs extends StatelessWidget {
-  Pharaohs({super.key, });
+  Pharaohs({
+    super.key,
+  });
 
   final PharaohData pharaohData = PharaohData();
   final PharaohDataAr pharaohDataAr = PharaohDataAr();
-
- 
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +33,14 @@ class Pharaohs extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: Texti(text: S.of(context).Explore, size: 28,),
-                        
+                        child: Texti(
+                          text: S.of(context).Explore,
+                          size: 28,
+                        ),
                       ),
                     ),
-                    Expanded(child: Container()), // Spacer to push SEE ALL button to the right
+                    Expanded(child: Container()),
+                    // Spacer to push SEE ALL button to the right
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: InkWell(
@@ -58,7 +59,10 @@ class Pharaohs extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           child: Center(
-                            child: Texti(text: S.of(context).seeall, size: 20,),
+                            child: Texti(
+                              text: S.of(context).seeall,
+                              size: 20,
+                            ),
                           ),
                         ),
                       ),
@@ -66,8 +70,8 @@ class Pharaohs extends StatelessWidget {
                   ],
                 ),
               ),
-              Stack(
-                children:[ Container(
+              Stack(children: [
+                Container(
                   decoration: const BoxDecoration(),
                   height: 290,
                   child: Padding(
@@ -76,8 +80,8 @@ class Pharaohs extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: 3,
                       itemBuilder: (_, index) {
-                        return Stack(
-                          children:[ SizedBox(
+                        return Stack(children: [
+                          SizedBox(
                             height: 270,
                             child: GestureDetector(
                               onTap: () {
@@ -86,14 +90,15 @@ class Pharaohs extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) => PharaohDetailPage(
                                       pharaohDataAr: pharaohDataAr,
-                                      pharaohData:  pharaohData,
+                                      pharaohData: pharaohData,
                                       index: index,
                                     ),
                                   ),
                                 );
                               },
                               child: Container(
-                                margin: const EdgeInsets.symmetric(horizontal: 10),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 width: 350,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
@@ -108,17 +113,12 @@ class Pharaohs extends StatelessWidget {
                               ),
                             ),
                           ),
-                        
-                          ]
-                        );
+                        ]);
                       },
                     ),
                   ),
                 ),
-                
-                
-                ]
-              ),
+              ]),
             ],
           ),
         ),

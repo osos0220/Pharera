@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_09/Fav_page.dart';
 import 'package:flutter_application_09/Text.dart';
 import 'package:flutter_application_09/about_us.dart';
 import 'package:flutter_application_09/contact.dart';
 import 'package:flutter_application_09/exhibition.dart';
-import 'package:flutter_application_09/fav_page.dart';
 import 'package:flutter_application_09/generated/l10n.dart';
 import 'package:flutter_application_09/pharaoh_1.dart';
 import 'package:flutter_application_09/navigation_bar.dart';
@@ -22,7 +20,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late TabController tab;
 
   @override
@@ -46,7 +45,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           backgroundColor: const Color.fromARGB(255, 226, 226, 226),
           actions: [
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.01, left: screenWidth * 0.01),
+              padding: EdgeInsets.only(
+                  top: screenHeight * 0.01, left: screenWidth * 0.01),
               child: Container(
                 width: screenWidth * 0.2,
                 height: screenHeight * 0.1,
@@ -80,14 +80,17 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               padding: EdgeInsets.zero,
               children: [
                 DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFFAE9E82),
-                  ),
-                  child: TextW(text: S.of(context).wellcome,)
-                ),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFAE9E82),
+                    ),
+                    child: TextW(
+                      text: S.of(context).wellcome,
+                    )),
                 ListTile(
                   leading: const Icon(Icons.home_filled),
-                  title: TextW(text: S.of(context).home,),
+                  title: TextW(
+                    text: S.of(context).home,
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -100,7 +103,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.info),
-                  title: TextW(text: S.of(context).ABOUT,),
+                  title: TextW(
+                    text: S.of(context).ABOUT,
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -113,7 +118,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.contact_phone),
-                  title: TextW(text: S.of(context).contact,),
+                  title: TextW(
+                    text: S.of(context).contact,
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -126,7 +133,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.star),
-                  title: TextW(text: S.of(context).rate,),
+                  title: TextW(
+                    text: S.of(context).rate,
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -144,32 +153,35 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.01),
-              child: TextW(text: S.of(context).Welcome,)
+                padding: EdgeInsets.only(top: screenHeight * 0.01),
+                child: TextW(
+                  text: S.of(context).Welcome,
+                )),
+            SizedBox(
+              height: screenHeight * 0.01,
+              width: 50,
             ),
-            SizedBox(height: screenHeight * 0.01, width: 50,),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.03),
               child: SizedBox(
-                width: screenWidth * 0.8,  // Adjust the width as needed
-                height: screenHeight * 0.05,  // Adjust the height as needed
+                width: screenWidth * 0.8, // Adjust the width as needed
+                height: screenHeight * 0.05, // Adjust the height as needed
                 child: TextField(
                   decoration: InputDecoration(
                     suffixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(screenWidth * 0.05), // Adjust border radius according to screen width
+                        Radius.circular(screenWidth *
+                            0.05), // Adjust border radius according to screen width
                       ),
                     ),
                     contentPadding: EdgeInsets.symmetric(
                         vertical: screenHeight * 0.01,
-                        horizontal: screenWidth * 0.03
-                    ),
+                        horizontal: screenWidth * 0.03),
                   ),
                 ),
               ),
             ),
-
             SizedBox(height: screenHeight * 0.01),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
@@ -194,13 +206,17 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/pharaohs.png"),
+                              image: AssetImage(
+                                  "assets/images/icons/pharaohs.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                       TextW(text: S.of(context).pharaohs,)
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
+                        TextW(
+                          text: S.of(context).pharaohs,
+                        )
                       ],
                     ),
                   ),
@@ -222,13 +238,17 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/exibitions.png"),
+                              image: AssetImage(
+                                  "assets/images/icons/exibitions.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                       TextW(text: S.of(context).Exhibition1,)
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
+                        TextW(
+                          text: S.of(context).Exhibition1,
+                        )
                       ],
                     ),
                   ),
@@ -250,20 +270,22 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/tickets.png"),
+                              image:
+                                  AssetImage("assets/images/icons/tickets.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                        TextW(text: S.of(context).ticket,)
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
+                        TextW(
+                          text: S.of(context).ticket,
+                        )
                       ],
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                     
-                    },
+                    onTap: () {},
                     child: Column(
                       children: [
                         Container(
@@ -272,13 +294,17 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/Fav_Final.png"),
+                              image: AssetImage(
+                                  "assets/images/icons/Fav_Final.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
-                       TextW(text: S.of(context).fav,)
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
+                        TextW(
+                          text: S.of(context).fav,
+                        )
                       ],
                     ),
                   ),
@@ -292,7 +318,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   Pharaohs(),
                   const Tut(),
                   const DiscountPage(),
-                  
                 ],
               ),
             ),

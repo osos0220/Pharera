@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'fav_but.dart';
 import 'pharahos_list.dart';
 import 'pharaohs_list_ar.dart';
 
@@ -20,8 +19,8 @@ class PharaohDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
-   String imagePath = isArabic ? pharaohDataAr.getImage(index) : pharaohData.getImage(index);
-
+    String imagePath =
+        isArabic ? pharaohDataAr.getImage(index) : pharaohData.getImage(index);
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -39,7 +38,8 @@ class PharaohDetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
               child: Center(
                 child: Container(
                   width: 400,
@@ -65,7 +65,6 @@ class PharaohDetailPage extends StatelessWidget {
                           height: 750,
                         ),
                       ),
-                      
                     ],
                   ),
                 ),
@@ -92,7 +91,9 @@ class PharaohDetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            isArabic ? pharaohDataAr.getName(index) : pharaohData.getName(index),
+                            isArabic
+                                ? pharaohDataAr.getName(index)
+                                : pharaohData.getName(index),
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -109,7 +110,9 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            isArabic ? pharaohDataAr.getDetails(index) : pharaohData.getDetails(index),
+                            isArabic
+                                ? pharaohDataAr.getDetails(index)
+                                : pharaohData.getDetails(index),
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

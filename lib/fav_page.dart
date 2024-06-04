@@ -3,7 +3,6 @@ import 'package:flutter_application_09/generated/l10n.dart';
 import 'package:flutter_application_09/welcome_page.dart';
 
 import 'app_text_widget.dart';
-import 'favorite_button_category_widget.dart';
 
 class FavPage extends StatefulWidget {
   const FavPage({super.key});
@@ -15,7 +14,11 @@ class FavPage extends StatefulWidget {
 class _FavPageState extends State<FavPage> {
   @override
   Widget build(BuildContext context) {
-    final List<String> titles = [S.of(context).image, S.of(context).Show, S.of(context).video];
+    final List<String> titles = [
+      S.of(context).image,
+      S.of(context).Show,
+      S.of(context).video
+    ];
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -74,16 +77,15 @@ class _FavPageState extends State<FavPage> {
                           if (i == 0) {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const ImagePage()),
+                              MaterialPageRoute(
+                                  builder: (context) => const ImagePage()),
                             );
                           } else if (i == 1) {
-                           
-                          } else if (i == 2) {
-                           
-                          }
+                          } else if (i == 2) {}
                         },
                         style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16), // Adjust padding here
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          // Adjust padding here
                           backgroundColor: Colors.black,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
