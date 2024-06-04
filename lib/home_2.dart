@@ -1,15 +1,17 @@
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharaoh_show.dart';
 import 'package:Pharera/pharahos_list.dart';
 import 'package:Pharera/pharaohs.dart';
+import 'package:Pharera/Check.dart';
 
 class Pharaohs extends StatelessWidget {
   Pharaohs({super.key, });
 
   final PharaohData pharaohData = PharaohData();
-  final PharaohDataAr pharaohDataAr = PharaohDataAr(); // Add this line
+  // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class Pharaohs extends StatelessWidget {
                     ),
                     Expanded(child: Container()), // Spacer to push SEE ALL button to the right
                     Padding(
-                      padding: const EdgeInsets.only(top: 40, left: 80),
+                      padding:  EdgeInsets.only(top: 40, left: IsArab() ? 10 : 80 , right: IsArab() ? 0 : 0 ),
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
@@ -79,7 +81,7 @@ class Pharaohs extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(),
-                height: 290,
+                height: 330,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(
@@ -87,7 +89,7 @@ class Pharaohs extends StatelessWidget {
                     itemCount: 3,
                     itemBuilder: (_, index) {
                       return SizedBox(
-                        height: 270,
+                        height: 370,
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -96,7 +98,7 @@ class Pharaohs extends StatelessWidget {
                                   builder: (context) => PharaohDetailPage(
                                       pharaohData: pharaohData,
                                       index: index,
-                                      pharaohDataAr: pharaohDataAr, // Pass pharaohDataAr here
+                                      // Pass pharaohDataAr here
                                   ),
                               ),
                             );
@@ -110,7 +112,7 @@ class Pharaohs extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Image.asset(
-                                pharaohData.getImage(index),
+                                IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!,
                                 fit: BoxFit.cover,
                               ),
                             ),

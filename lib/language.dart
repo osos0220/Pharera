@@ -7,30 +7,70 @@ class LanguageSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     backgroundColor:  const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
-        
+       backgroundColor: const Color.fromARGB(255, 226, 226, 226), 
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ElevatedButton.icon(
-              icon: const Icon(Icons.language),
-              label: Text(S.of(context).English),
-              onPressed: () {
-                var locale = const Locale('en', 'Us');
+           InkWell(
+            onTap: (){
+              var locale = const Locale('en', 'Us');
                 Get.updateLocale(locale);
-              },
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.language),
-              label: Text(S.of(context).arabic),
-              onPressed: () {
-                var locale = const Locale('ar', 'arb');
+            },
+             child: Container(width: 200, height: 50, decoration:  BoxDecoration(
+              color: Colors.white,
+               boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+              borderRadius: const BorderRadius.all(Radius.circular(20))),
+             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Icon(Icons.language),
+                Text(S.of(context).English,style: const TextStyle(fontSize: 25),)
+              ],
+             ),
+             
+             
+             ),
+           ),
+            const SizedBox(height: 30),
+             InkWell(
+            onTap: (){
+              var locale = const Locale('ar', 'arb');
                 Get.updateLocale(locale);
-              },
-            ),
+            },
+             child: Container(width: 200, height: 50, decoration:  BoxDecoration(
+              color: Colors.white,
+               boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+              
+              borderRadius: const BorderRadius.all(Radius.circular(20))),
+             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Icon(Icons.language),
+                Text(S.of(context).arabic , style: const TextStyle(fontSize: 25),)
+              ],
+             ),
+             
+             
+             ),
+           ),
           ],
         ),
       ),

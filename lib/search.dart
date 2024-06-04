@@ -1,3 +1,4 @@
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharahos_list.dart';
@@ -12,16 +13,18 @@ class SearchResults extends StatefulWidget {
 
 class _SearchResultsState extends State<SearchResults> {
   final PharaohData pharaohData = PharaohData();
-  final PharaohDataAr pharaohDataAr = PharaohDataAr();
+  
   List<Map<String, String>> displayedPharaohs = [];
   TextEditingController searchController = TextEditingController();
   late FocusNode searchFocusNode;
   bool isSearchFocused = false;
+  
+
 
   @override
   void initState() {
     super.initState();
-    displayedPharaohs = [...pharaohData.pharaoh]; // Use only English list initially
+    displayedPharaohs = [...IsArab() ?  pharaohData.pharaooh :  pharaohData.pharaoh]; // Use only English list initially
     searchFocusNode = FocusNode();
     searchFocusNode.addListener(() {
       setState(() {
@@ -38,10 +41,10 @@ class _SearchResultsState extends State<SearchResults> {
 
   void _filterPharaohs(String query) {
     List<Map<String, String>> allPharaohs = [];
-    allPharaohs.addAll(pharaohData.pharaoh);
+    allPharaohs.addAll(IsArab() ?  pharaohData.pharaooh :  pharaohData.pharaoh);
 
     if (query.isNotEmpty) {
-      final filteredPharaohs = allPharaohs.where((pharaoh) {
+      final filteredPharaohs = allPharaohs.where((pharaoh ,) {
         final nameLowerEn = pharaoh['name']!.toLowerCase();
         final searchLower = query.toLowerCase();
         return nameLowerEn.contains(searchLower);
@@ -101,7 +104,7 @@ class _SearchResultsState extends State<SearchResults> {
                         MaterialPageRoute(
                           builder: (context) => PharaohDetailPage(
                             pharaohData: pharaohData,
-                            index: index, pharaohDataAr: pharaohDataAr,
+                            index: index,
                           ),
                         ),
                       );
@@ -110,18 +113,16 @@ class _SearchResultsState extends State<SearchResults> {
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          pharaoh['image']!,
+                          IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!,
                           width: 80,
                           height: 80,
                           fit: BoxFit.fill,
                         ),
                       ),
                       title: Text(
-                        pharaoh['name']!,
+                        IsArab() ?  pharaohData.pharaooh[index]['name']! :  pharaohData.pharaoh[index]['name']!,
                       ),
-                      subtitle: Text(
-                        pharaoh['name']!,
-                      ),
+                      
                     ),
                   );
                 },

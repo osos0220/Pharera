@@ -1,6 +1,6 @@
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:Pharera/Virtual_tour/free_explore.dart';
+
 
 
 class VITPage extends StatelessWidget {
@@ -61,11 +61,7 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FreeExplore()),
-                      );
+                     
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.transparent,

@@ -144,8 +144,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.star),
-                  title:  Text(S.of(context).rate),
+                  leading: const Icon(Icons.language),
+                  title:  Text(S.of(context).language),
                   onTap: () {
                     Navigator.push(
                       context,

@@ -1,3 +1,4 @@
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'fav_but.dart';
@@ -8,19 +9,19 @@ List<String> favoriteImages = [];
 class PharaohDetailPage extends StatelessWidget {
   final PharaohData pharaohData;
   final int index;
-  final PharaohDataAr pharaohDataAr;
+ 
 
   const PharaohDetailPage({
     super.key,
     required this.pharaohData,
     required this.index, 
-    required this.pharaohDataAr,
+   
   });
 
   @override
   Widget build(BuildContext context) {
-    String imagePath = pharaohData.getImage(index);
-    bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
+    String imagePath = IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!;
+    
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -42,7 +43,7 @@ class PharaohDetailPage extends StatelessWidget {
               child: Center(
                 child: Container(
                   width: 230,
-                  height: 430,
+                  height: 370,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     boxShadow: [
@@ -70,7 +71,7 @@ class PharaohDetailPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SizedBox(
@@ -85,13 +86,14 @@ class PharaohDetailPage extends StatelessWidget {
                     ),
                   ),
                   child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            isArabic ? pharaohDataAr.getName(index) : pharaohData.getName(index),
+                            IsArab() ?  pharaohData.pharaooh[index]['name']! :  pharaohData.pharaoh[index]['name']! ,
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -108,7 +110,7 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            isArabic ? pharaohDataAr.getDetails(index) : pharaohData.getDetails(index),
+                             IsArab() ?  pharaohData.pharaooh[index]['details']! :  pharaohData.pharaoh[index]['details']! ,
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

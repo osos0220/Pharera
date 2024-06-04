@@ -1,3 +1,4 @@
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class Groub extends StatefulWidget {
 
 class _GroubState extends State<Groub> {
   late PharaohData _pharaohData;
-  late PharaohDataAr _pharaohDataAr;
+
   String _selectedPhoto = "";
   String _selectedName = "";
   String _selectedDetails = "";
@@ -29,17 +30,19 @@ class _GroubState extends State<Groub> {
   void initState() {
     super.initState();
     _pharaohData = PharaohData();
-    _pharaohDataAr = PharaohDataAr();
+   
     // Set the initial selected index to 0
-    _selectedPhoto = _pharaohData.pharaoh[0]['name']!;
-    _selectedName = _pharaohData.pharaoh[0]['name']!;
-    _selectedDetails = _pharaohData.pharaoh[0]['details']!;
+    _selectedPhoto = IsArab() ?  _pharaohData.pharaooh[0]['image']! :  _pharaohData.pharaoh[0]['image']! ;
+    _selectedName = IsArab() ?  _pharaohData.pharaooh[0]['name']! :  _pharaohData.pharaoh[0]['name']! ;
+    _selectedDetails = IsArab() ?  _pharaohData.pharaooh[0]['details']! :  _pharaohData.pharaoh[0]['details']! ;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
         actions: [
           GestureDetector(
             onTap: () {
@@ -71,89 +74,110 @@ class _GroubState extends State<Groub> {
       ),
       body: Stack(
         children: [
-          Column(
-            children: [
-              SizedBox(
-                height: 56,
-                child: Expanded(
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (ctx, i) => _buildPhotoWidget(i),
-                    separatorBuilder: (ctx, i) => const SizedBox(width: 8),
-                    itemCount: _pharaohData.pharaoh.length,
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 56,
+                  child: Expanded(
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (ctx, i) => _buildPhotoWidget(i),
+                      separatorBuilder: (ctx, i) => const SizedBox(width: 8),
+                      itemCount: _pharaohData.pharaoh.length,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              _selectedPhoto.isNotEmpty
-                  ? Container(
-                      width: 340,
-                      alignment: AlignmentDirectional.bottomCenter,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(24)),
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(
-                            _pharaohData.pharaoh[_selectedIndex]['image'] ??
-                                "",
-                          ),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            _selectedName,
-                            style: const TextStyle(
-                                color: Colors.transparent, fontSize: 24),
-                          ),
-                          const SizedBox(height: 24),
-                          SizedBox(
-                            width: 110,
-                            height: 48,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PharaohDetailPage(
-                                      pharaohData: _pharaohData,
-                                      pharaohDataAr: _pharaohDataAr,
-                                      index: _selectedIndex,
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                S.of(context).Explore,
-                                style: const TextStyle(color: Colors.black),
-                              ),
+                const SizedBox(height: 10),
+                _selectedPhoto.isNotEmpty
+                    ? Container(
+                        width: 340,
+                        alignment: AlignmentDirectional.bottomCenter,
+                        height: 510,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(24)),
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(
+                              IsArab() ?  _pharaohData.pharaooh[_selectedIndex]['image']! :  _pharaohData.pharaoh[_selectedIndex]['image']! ,
+                                
                             ),
-                          )
-                        ],
-                      ),
-                    )
-                  : Container(
-                      width: 340,
-                      height: 540,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(24)),
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(_pharaohData.pharaoh.firstWhere(
-                                  (e) =>
-                                      e['name'] == "King Akhenaten")['image'] ??
-                              ""),
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              _selectedName,
+                              style: const TextStyle(
+                                  color: Colors.transparent, fontSize: 24),
+                            ),
+                             InkWell(
+                              onTap: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PharaohDetailPage(
+                                        pharaohData: _pharaohData,
+                                       
+                                        index: _selectedIndex,
+                                      ),
+                                    ),
+                                  );
+                              },
+                              child: Container(
+                                                  width: 90,
+                                                  height: 60,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(20),
+                                                    color: Colors.white,
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black.withOpacity(0.5),
+                                                        spreadRadius: 5,
+                                                        blurRadius: 7,
+                                                        offset: const Offset(0, 3),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  child:  Center(
+                                                    child: Text(
+                                                     S.of(context).Explore,
+                                                      style: const TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 22,
+                                                        
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                            ),
+
+                          ],
+                        ),
+                      )
+                    : Container(
+                        width: 340,
+                        height: 540,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(24)),
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: AssetImage(_pharaohData.pharaoh.firstWhere(
+                                    (e) =>
+                                        e['name'] == "King Akhenaten")['image'] ??
+                                ""),
+                          ),
                         ),
                       ),
-                    ),
-            ],
+              ],
+            ),
           ),
           GestureDetector(
             onTap: () {
@@ -176,20 +200,23 @@ class _GroubState extends State<Groub> {
                   height: MediaQuery.of(context).size.height * 0.7,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _selectedName,
-                          style: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          _selectedDetails,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      ],
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _selectedName,
+                            style: const TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            _selectedDetails,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -204,9 +231,9 @@ class _GroubState extends State<Groub> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          _selectedPhoto = _pharaohData.pharaoh[index]['name']!;
-          _selectedName = _pharaohData.pharaoh[index]['name']!;
-          _selectedDetails = _pharaohDataAr.pharaooh[index]['details']!;
+          _selectedPhoto = IsArab() ?  _pharaohData.pharaooh[index]['image']! :  _pharaohData.pharaoh[index]['image']! ;
+          _selectedName =IsArab() ?  _pharaohData.pharaooh[index]['name']! :  _pharaohData.pharaoh[index]['name']! ;
+          _selectedDetails = IsArab() ?  _pharaohData.pharaooh[index]['details']! :  _pharaohData.pharaoh[index]['details']! ;
           _selectedIndex = index;
         });
         _isSheetAttached = false; // Reset the attachment flag
@@ -223,7 +250,7 @@ class _GroubState extends State<Groub> {
             width: 2,
           ),
           image: DecorationImage(
-            image: AssetImage(_pharaohData.pharaoh[index]['image']!),
+            image: AssetImage(IsArab() ?  _pharaohData.pharaooh[index]['image']! :  _pharaohData.pharaoh[index]['image']!),
             fit: BoxFit.cover,
           ),
         ),

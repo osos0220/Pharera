@@ -1,3 +1,4 @@
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 // import 'package:Pharera/Check.dart';
@@ -11,7 +12,7 @@ import 'package:Pharera/pharaoh_show.dart';
 class TutPic extends StatelessWidget {
   TutPic({super.key});
   final PharaohData pharaohData = PharaohData();
-  final PharaohDataAr pharaohDataAr = PharaohDataAr();
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -32,12 +33,12 @@ class TutPic extends StatelessWidget {
                   child: ListView.separated(
                     padding: EdgeInsets.only(top: screenHeight * 0.03),
                     scrollDirection: Axis.vertical,
-                    itemCount: pharaohData.pharaoh.length,
+                    itemCount: IsArab() ?  pharaohData.pharaooh.length :  pharaohData.pharaoh.length,
                     separatorBuilder: (BuildContext context, int index) {
                       return SizedBox(height: screenHeight * 0.03);
                     },
                     itemBuilder: (_, index) {
-                      final ex = pharaohData.pharaoh[index];
+                      final ex = IsArab() ?  pharaohData.pharaooh[index] :  pharaohData.pharaoh[index];
                       return Padding(
                         padding: EdgeInsets.only(left: screenWidth * 0.04, right: screenWidth * 0.04),
                         child: Stack(
@@ -56,7 +57,7 @@ class TutPic extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) => PharaohDetailPage(
                                         pharaohData: pharaohData,
-                                        index: index, pharaohDataAr: pharaohDataAr,
+                                        index: index, 
                                       ),
                                     ),
                                   );
