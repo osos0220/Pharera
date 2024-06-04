@@ -92,6 +92,9 @@
     "donenot":"Some error happend",
     "donnothaveaccount" : "Do not have an account" ,
     "donelogin":"User is successfully loged in",
-    "invalid" : "Invalid Email or Password"
+    "invalid" : "Invalid Email or Password",
+    "password_reset":"password reset link sent check email",
+    "EnterEmail" : "Enter Your Email and we will send you a password reset link",
+    "Reset" : "Reset Password"
    
 }

@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Download failed. Please try again."),
         "DownloadT": MessageLookupByLibrary.simpleMessage("Download task ID:"),
         "English": MessageLookupByLibrary.simpleMessage("ENGLISH"),
+        "EnterEmail": MessageLookupByLibrary.simpleMessage(
+            "Enter Your Email and we will send you a password reset link"),
         "Ex": MessageLookupByLibrary.simpleMessage("Explore The Musuem"),
         "Exhibition":
             MessageLookupByLibrary.simpleMessage("Exhibition Pictures"),
@@ -55,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Permission denied. Please enable storage permission."),
         "Permission": MessageLookupByLibrary.simpleMessage(
             "Permission denied. Please enable storage permission."),
+        "Reset": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "Royal": MessageLookupByLibrary.simpleMessage("ROYAL JOURNEY"),
         "Show": MessageLookupByLibrary.simpleMessage("Show"),
         "Sonsrt1": MessageLookupByLibrary.simpleMessage("King Sonsrt 1"),
@@ -109,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Come And Visit Our New VRroom"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "password_reset": MessageLookupByLibrary.simpleMessage(
+            "password reset link sent check email"),
         "pay": MessageLookupByLibrary.simpleMessage("pay now"),
         "payy": MessageLookupByLibrary.simpleMessage(
             "For getting ticket click pay now"),

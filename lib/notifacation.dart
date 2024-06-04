@@ -29,7 +29,7 @@ class Not extends StatelessWidget {
                 child:  Text(S.of(context).have,style: const TextStyle(fontSize: 20,fontWeight: FontWeight.w400),),
               ),
               Container(width: double.infinity,height: screenHeight *0.9,margin:  EdgeInsets.only(top: screenHeight * 0.005),
-              decoration: const BoxDecoration(color:  Color.fromARGB(199, 146, 112, 57),borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40))),
+              decoration: const BoxDecoration(color:  Color.fromARGB(255, 174, 158, 130),borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40))),
               child:  Column(children: [
                 Padding(
                   padding: EdgeInsets.only(top: screenHeight *0.03),

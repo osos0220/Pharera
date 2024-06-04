@@ -1,5 +1,5 @@
 import 'package:Pharera/Check.dart';
-import 'package:Pharera/pharaohs_list_ar.dart';
+
 import 'package:flutter/material.dart';
 import 'fav_but.dart';
 import 'pharahos_list.dart';

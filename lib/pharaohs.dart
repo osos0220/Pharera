@@ -1,6 +1,6 @@
 import 'package:Pharera/Check.dart';
 import 'package:Pharera/generated/l10n.dart';
-import 'package:Pharera/pharaohs_list_ar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:Pharera/notifacation.dart';
 import 'package:Pharera/pharahos_list.dart';

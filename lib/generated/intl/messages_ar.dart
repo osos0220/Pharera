@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("فشل التنزيل. حاول مرة أخرى."),
         "DownloadT": MessageLookupByLibrary.simpleMessage("معرف مهمة التنزيل:"),
         "English": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+        "EnterEmail": MessageLookupByLibrary.simpleMessage(
+            "أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور"),
         "Ex": MessageLookupByLibrary.simpleMessage("استكشاف المتحف"),
         "Exhibition": MessageLookupByLibrary.simpleMessage("صور المعرض"),
         "Exhibition1": MessageLookupByLibrary.simpleMessage("معرض"),
@@ -48,6 +50,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "تم رفض الإذن. يرجى تمكين إذن التخزين."),
         "Permission": MessageLookupByLibrary.simpleMessage(
             "تم رفض الإذن. يرجى تمكين إذن التخزين."),
+        "Reset":
+            MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
         "Royal": MessageLookupByLibrary.simpleMessage("رحلة ملكية"),
         "Show": MessageLookupByLibrary.simpleMessage("عرض"),
         "Sonsrt1": MessageLookupByLibrary.simpleMessage("الملك سنوسرت الأول"),
@@ -96,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "مرحبًا! تعال وزر غرفة الواقع الافتراضي الجديدة لدينا"),
         "ok": MessageLookupByLibrary.simpleMessage("موافق"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "password_reset": MessageLookupByLibrary.simpleMessage(
+            "تم إرسال رابط إعادة تعيين كلمة المرور بالبريد الإلكتروني"),
         "pay": MessageLookupByLibrary.simpleMessage("ادفع الآن"),
         "payy": MessageLookupByLibrary.simpleMessage(
             "للحصول على التذكرة انقر على ادفع الآن"),

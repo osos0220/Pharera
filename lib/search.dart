@@ -1,5 +1,4 @@
 import 'package:Pharera/Check.dart';
-import 'package:Pharera/pharaohs_list_ar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharahos_list.dart';
 import 'package:Pharera/pharaoh_show.dart';

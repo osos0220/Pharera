@@ -5,6 +5,7 @@ import 'package:Pharera/features/user_auth/presentation/pages/sign_up_page.dart'
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/navigation_bar.dart';
+import 'package:Pharera/navigation_bar_2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/global/common/toast.dart';
@@ -186,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                     child:  Text(
-                      S.of(context).signin,
+                      S.of(context).signup,
                       style: const TextStyle(
                           color: Color.fromARGB(255, 174, 158, 130),
                           fontWeight: FontWeight.bold,
@@ -223,7 +224,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const MyHomePage()),
+        MaterialPageRoute(builder: (context) => const MyHomePagee()),
       );
     } else {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));

@@ -989,6 +989,36 @@ class S {
       args: [],
     );
   }
+
+  /// `password reset link sent check email`
+  String get password_reset {
+    return Intl.message(
+      'password reset link sent check email',
+      name: 'password_reset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Your Email and we will send you a password reset link`
+  String get EnterEmail {
+    return Intl.message(
+      'Enter Your Email and we will send you a password reset link',
+      name: 'EnterEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Password`
+  String get Reset {
+    return Intl.message(
+      'Reset Password',
+      name: 'Reset',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

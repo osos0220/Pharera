@@ -21,7 +21,7 @@ class LanguageSelectionPage extends StatelessWidget {
                 Get.updateLocale(locale);
             },
              child: Container(width: 200, height: 50, decoration:  BoxDecoration(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 174, 158, 130),
                boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.5),
@@ -49,7 +49,7 @@ class LanguageSelectionPage extends StatelessWidget {
                 Get.updateLocale(locale);
             },
              child: Container(width: 200, height: 50, decoration:  BoxDecoration(
-              color: Colors.white,
+              color: const Color.fromARGB(255, 174, 158, 130),
                boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.5),

@@ -23,6 +23,7 @@ class AboutUs extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 30,),
              Padding(
               padding: const EdgeInsets.all(10),
               child: Column(

@@ -1,7 +1,9 @@
 
 
+import 'package:Pharera/Check.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/language.dart';
+import 'package:Pharera/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/fav_page.dart';
 import 'package:Pharera/notifacation.dart';
@@ -22,7 +24,7 @@ class ProfilePage extends StatelessWidget {
         height: double.infinity,
         child: Column(children: [
           Padding(
-            padding: EdgeInsets.only(top: screenHeight * 0.2 , left: screenWidth* 0.009),
+            padding: EdgeInsets.only(top: screenHeight * 0.1 , left: screenWidth* 0.009),
             child:  Container(
           width: screenWidth * 0.9,
           height: screenHeight * 0.11,
@@ -147,7 +149,7 @@ class ProfilePage extends StatelessWidget {
           padding:  EdgeInsets.only(top: screenHeight* 0.04),
           child: InkWell(
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>  LanguageSelectionPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>  const LanguageSelectionPage()));
             },
             child: Container(
               width: screenWidth * 0.9,
@@ -227,9 +229,11 @@ class ProfilePage extends StatelessWidget {
         ),
           
           Padding(
-            padding:  EdgeInsets.only(top: screenHeight*0.04 , right: screenWidth *0.65 ),
+            padding:  EdgeInsets.only(top: screenHeight*0.04 , right:  IsArab()? 0 : 260 , left: IsArab()? 250 : 0 ),
             child: InkWell(
-              onTap: (){},
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+              },
               child:  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

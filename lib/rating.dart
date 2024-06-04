@@ -24,6 +24,7 @@ class _RatingPageState extends State<RatingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 100,),
                Text(
                 S.of(context).How,
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -47,6 +48,7 @@ class _RatingPageState extends State<RatingPage> {
               ),
               const SizedBox(height: 20),
               TextField(
+                maxLines: 10,
                 decoration:  InputDecoration(
                   hintText: S.of(context).provide,
                   border: const OutlineInputBorder(),
@@ -58,9 +60,8 @@ class _RatingPageState extends State<RatingPage> {
                 },
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle rating submission and feedback
+               GestureDetector(
+                onTap: () {
                   if (_rating > 0 && _feedback.isNotEmpty) {
                     showDialog(
                       context: context,
@@ -95,9 +96,28 @@ class _RatingPageState extends State<RatingPage> {
                     );
                   }
                 },
-                child:  Text(S.of(context).submit),
+                child: Container(
+                  width: double.infinity,
+                  height: 55,
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 174, 158, 130),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [BoxShadow(color: Colors.grey.shade600)]),
+                  child: Center(
+                    child: Text(
+                            S.of(context).submit,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Vollkorn',
+                            ),
+                          ),
+                  ),
+                ),
               ),
-            ],
+              
+            ]
           ),
         ),
       ),

@@ -1,11 +1,10 @@
-import 'package:Pharera/features/user_auth/presentation/pages/sign_up_page.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 
 
-class VITPage extends StatelessWidget {
-  const VITPage({super.key});
+class VITPagee extends StatelessWidget {
+  const VITPagee({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -115,14 +114,7 @@ class VITPage extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                       Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SignUpPage(
-                                     // Pass pharaohDataAr here
-                                  ),
-                              ),
-                          );
+                      
                       // Navigate to tour guide page
                     },
                     style: ElevatedButton.styleFrom(
