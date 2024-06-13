@@ -5,7 +5,7 @@ class Loacalstring extends Translations{
   // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
    'en_Us' : {
-"Welcome" : "Welcome To The Gym" ,
+    "Welcome" : "Welcome To The GEM" ,
     "Explore" : "Explore" ,
     "seeall" : "See All",
     "Akhenaten" : "King Akhenaten",
@@ -93,7 +93,7 @@ class Loacalstring extends Translations{
     "English" : "ENGLISH"
    },
    'ar_arb' : {
-    "Welcome": "مرحبًا في الجيم",
+    "Welcome": "مرحبًا بكم",
     "Explore": "استكشاف",
     "seeall": "عرض الكل",
     "Akhenaten": "الملك أخناتون",

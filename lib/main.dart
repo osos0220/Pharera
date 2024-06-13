@@ -1,6 +1,7 @@
 
 
 import 'package:Pharera/Local.dart';
+import 'package:Pharera/cache_helper.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/panorama.dart';
 import 'package:Pharera/welcome_page.dart';
@@ -15,6 +16,7 @@ import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(

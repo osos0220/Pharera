@@ -1,3 +1,5 @@
+// import 'dart:js';
+
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/search.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ import 'package:Pharera/navigation_bar.dart';
 import 'package:Pharera/ticket.dart';
 import 'package:Pharera/exhibition.dart';
 import 'package:page_transition/page_transition.dart';
+// import 'package:Pharera/models/favorite_utils.dart';
+import 'package:Pharera/features/user_auth/presentation/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +25,8 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late TabController tab;
   TextEditingController searchController = TextEditingController();
 
@@ -46,7 +51,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           backgroundColor: const Color.fromARGB(255, 226, 226, 226),
           actions: [
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.01, left: screenWidth * 0.01),
+              padding: EdgeInsets.only(
+                  top: screenHeight * 0.01, left: screenWidth * 0.01),
               child: Container(
                 width: screenWidth * 0.2,
                 height: screenHeight * 0.1,
@@ -95,12 +101,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   leading: const Icon(Icons.home_filled),
                   title:  Text(S.of(context).home),
                   onTap: () {
-                   
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: const MyHomePage(),
+                      ),
+                    );
                   },
                 ),
                 ListTile(
                   leading: const Icon(Icons.info),
-                  title:  Text(S.of(context).ABOUT),
+                  title: Text(S.of(context).ABOUT),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -113,7 +125,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.contact_phone),
-                  title:  Text(S.of(context).contact),
+                  title: Text(S.of(context).contact),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -126,7 +138,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.star),
-                  title:  Text(S.of(context).rate),
+                  title: Text(S.of(context).rate),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -139,7 +151,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
                 ListTile(
                   leading: const Icon(Icons.language),
-                  title:  Text(S.of(context).language),
+                  title: Text(S.of(context).language),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -150,6 +162,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     );
                   },
                 ),
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: Text(S.of(context).profile),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.leftToRight,
+                        child: const ProfilePage(),
+                      ),
+                    );
+                  },
+                )
               ],
             ),
           ),
@@ -158,46 +183,48 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           children: [
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.01),
-              child: Text(
-                S.of(context).Welcome,
+              child: Text( S.of(context).Welcome,
                 style: TextStyle(
-                  fontSize: screenWidth * 0.07, // Adjust text size according to screen width
+                  fontSize: screenWidth * 0.07,
+                  // Adjust text size according to screen width
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(height: screenHeight * 0.01, width: 50,),
+            SizedBox(
+              height: screenHeight * 0.01,
+              width: 50,
+            ),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.03),
               child: SizedBox(
-                width: screenWidth * 0.8,  // Adjust the width as needed
-                height: screenHeight * 0.05,  // Adjust the height as needed
+                width: screenWidth * 0.8, // Adjust the width as needed
+                height: screenHeight * 0.05, // Adjust the height as needed
                 child: TextField(
                   controller: searchController,
                   onTap: () {
                     // Navigate to the search page when tapping on the search field
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const SearchResults()),
+                      MaterialPageRoute(
+                          builder: (context) => const SearchResults()),
                     );
                   },
                   decoration: InputDecoration(
                     suffixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
-                        Radius.circular(screenWidth * 0.05), // Adjust border radius according to screen width
+                        Radius.circular(screenWidth *
+                            0.05), // Adjust border radius according to screen width
                       ),
                     ),
-                    contentPadding: EdgeInsets.symmetric
-(
-                      vertical: screenHeight * 0.01,
-                      horizontal: screenWidth * 0.03
-                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: screenHeight * 0.01,
+                        horizontal: screenWidth * 0.03),
                   ),
                 ),
               ),
             ),
-
             SizedBox(height: screenHeight * 0.01),
             Padding(
               padding: EdgeInsets.only(top: screenHeight * 0.02),
@@ -222,15 +249,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/pharaohs.png"),
+                              image: AssetImage(
+                                  "assets/images/icons/pharaohs.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
                         Text(
                           S.of(context).pharaohs,
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
                     ),
@@ -253,15 +283,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/exibitions.png"),
+                              image: AssetImage(
+                                  "assets/images/icons/exibitions.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
                         Text(
                           S.of(context).exihibtion,
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
                     ),
@@ -284,15 +317,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/tickets.png"),
+                              image:
+                              AssetImage("assets/images/icons/tickets.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
                         Text(
                           S.of(context).ticket,
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
                     ),
@@ -315,15 +351,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                              image: AssetImage("assets/images/icons/Fav_Final.png"),
+                              image: AssetImage(
+                                  "assets/images/icons/Fav_Final.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                         ),
-                        SizedBox(height: screenHeight * 0.01), // Add spacing between image and text
+                        SizedBox(height: screenHeight * 0.01),
+                        // Add spacing between image and text
                         Text(
                           S.of(context).fav,
-                          style: TextStyle(fontSize: screenWidth * 0.04), // Adjust text size
+                          style: TextStyle(
+                              fontSize: screenWidth * 0.04), // Adjust text size
                         ),
                       ],
                     ),

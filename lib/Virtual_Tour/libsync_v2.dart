@@ -82,7 +82,7 @@ class _LibSyncPageState extends State<LibSyncPage> {
         i++;
         final text = StringBuffer();
         while (i < lines.length && lines[i].trim().isNotEmpty) {
-          text.write('${lines[i].trim()} ');
+          text.write(lines[i].trim() + ' ');
           i++;
         }
         subtitles.add(SubtitleLB(start: start, end: end, text: text.toString().trim()));

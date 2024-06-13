@@ -2,7 +2,6 @@ import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/exhibition_photo.dart';
 import 'package:Pharera/exhibition_video.dart';
-// import 'package:Pharera/generated/l10n.dart';
 
 class Tut extends StatefulWidget {
   const Tut({super.key});
@@ -12,43 +11,40 @@ class Tut extends StatefulWidget {
 }
 
 class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
-  late TabController ta;
+  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
-    ta = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor:  const Color.fromARGB(255, 226, 226, 226),),
-      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+      appBar: AppBar(
+        backgroundColor: Colors.grey[300], // Use Colors class for better readability
+      ),
+      backgroundColor: Colors.grey[300], // Use Colors class for better readability
       body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: Column(
           children: [
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 10),
               child: SizedBox(
                 width: 410,
                 child: TabBar(
-                  // Remove the 'const' keyword here
-                  controller: ta,
+                  controller: _tabController,
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.grey,
-                  tabs:  [
-                    Expanded(
-                      child: Tab(
-                        text: S.of(context).image,
-                      ),
+                  tabs: [
+                    Tab(
+                      text: S.of(context).image,
                     ),
-                    Expanded(
-                      child: Tab(
-                        text: S.of(context).video,
-                      ),
+                    Tab(
+                      text: S.of(context).video,
                     ),
                   ],
                 ),
@@ -58,10 +54,10 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
               child: Container(
                 margin: const EdgeInsets.only(left: 20),
                 child: TabBarView(
-                  controller: ta,
-                  children:  [
+                  controller: _tabController,
+                  children: [
                     TutPic(),
-                    const TutVid(),
+                    TutVid(), // Remove const keyword as it's not necessary
                   ],
                 ),
               ),
@@ -74,7 +70,7 @@ class _TutState extends State<Tut> with SingleTickerProviderStateMixin {
 
   @override
   void dispose() {
-    ta.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 }

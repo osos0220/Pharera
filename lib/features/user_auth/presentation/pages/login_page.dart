@@ -1,17 +1,22 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:Pharera/Virtual_Tour/token.dart';
 import 'package:Pharera/features/user_auth/presentation/pages/forget_password_page.dart';
+import 'package:Pharera/features/user_auth/presentation/pages/home_page.dart';
 import 'package:Pharera/features/user_auth/presentation/pages/sign_up_page.dart';
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
-import 'package:Pharera/generated/l10n.dart';
-import 'package:Pharera/navigation_bar.dart';
-import 'package:Pharera/navigation_bar_2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:Pharera/global/common/toast.dart';
-import 'package:Pharera/features/user_auth/firebase_auth_implementaion/firebase_auth_services.dart';
+import 'package:Pharera/cache_helper.dart';
+
 // import 'package:flutter/widgets.dart';
+
+import 'package:Pharera/global/common/toast.dart';
+import 'package:Pharera/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:Pharera/home.dart';
+import 'package:Pharera/navigation_bar.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -22,6 +27,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _isSigning = false;
   final FirebaseAuthService _auth = FirebaseAuthService();
+
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -36,17 +42,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 241, 241, 241),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 241, 241, 241),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back),
-        ),
-        automaticallyImplyLeading: false,
-        title:  Text(S.of(context).signin ,style: const TextStyle(fontFamily: 'Vollkorn')),
+        automaticallyImplyLeading: true,
+        title: const Text("Login", style: TextStyle(fontFamily: 'Vollkorn')),
       ),
       body: Center(
         child: Padding(
@@ -65,10 +63,10 @@ class _LoginPageState extends State<LoginPage> {
               // SizedBox(
               //   height: 30,
               // ),
-               Text(
-                S.of(context).email,
+              const Text(
+                "Email Address",
                 textAlign: TextAlign.start,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Vollkorn'),
@@ -84,10 +82,10 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 35,
               ),
-              Text(
-                S.of(context).password,
+              const Text(
+                "Password",
                 textAlign: TextAlign.start,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Vollkorn'),
@@ -97,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               FormContainerWidget(
                 controller: _passwordController,
-                hintText: S.of(context).enterp,
+                hintText: "enter your password",
                 // hintStyle: TextStyle(fontFamily: 'Volkorn')
                 isPasswordField: true,
               ),
@@ -121,9 +119,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         );
                       },
-                      child: Text(
-                        S.of(context).Forget,
-                        style: const TextStyle(
+                      child: const Text(
+                        'Forget Password',
+                        style: TextStyle(
                             color: Color.fromARGB(255, 174, 158, 130),
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Vollkorn'),
@@ -139,7 +137,10 @@ class _LoginPageState extends State<LoginPage> {
 
               GestureDetector(
                 onTap: () {
-                  _signIn();
+                  signIn();
+                  CacheHelper.saveDate(key: 'token', value: FirebaseAuth.instance.currentUser?.uid).then((value){
+                    token = FirebaseAuth.instance.currentUser!.uid;
+                  });
                 },
                 child: Container(
                   width: double.infinity,
@@ -153,9 +154,9 @@ class _LoginPageState extends State<LoginPage> {
                         ? const CircularProgressIndicator(
                             color: Colors.white,
                           )
-                        :  Text(
-                            S.of(context).login,
-                            style: const TextStyle(
+                        : const Text(
+                            "Login",
+                            style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -171,9 +172,9 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    S.of(context).donnothaveaccount,
-                    style: const TextStyle(fontFamily: 'vollkorn'),
+                  const Text(
+                    "Don't have an account?",
+                    style: TextStyle(fontFamily: 'vollkorn'),
                   ),
                   const SizedBox(
                     width: 5,
@@ -182,13 +183,13 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => const SignUpPage()),
+                        MaterialPageRoute(builder: (context) => SignUpPage()),
                         (route) => false,
                       );
                     },
-                    child:  Text(
-                      S.of(context).signup,
-                      style: const TextStyle(
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(
                           color: Color.fromARGB(255, 174, 158, 130),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Vollkorn'),
@@ -203,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _signIn() async {
+  void signIn() async {
     setState(() {
       _isSigning = true;
     });
@@ -212,6 +213,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordController.text;
 
     User? user = await _auth.signInWithEmailAndPassword(email, password);
+    String? token = user?.uid;
 
     setState(() {
       _isSigning = false;
@@ -220,15 +222,15 @@ class _LoginPageState extends State<LoginPage> {
     if (user != null) {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
       showToast(
-        message: S.of(context).donelogin,
+        message: "User is successfully logged in",
       );
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const MyHomePagee()),
+        MaterialPageRoute(builder: (context) => const MyHomePage()),
       );
     } else {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: S.of(context).invalid);
+      showToast(message: "Invalid Email or Password");
     }
   }
 }

@@ -1,6 +1,5 @@
 import 'package:Pharera/Check.dart';
 import 'package:Pharera/generated/l10n.dart';
-
 import 'package:flutter/material.dart';
 import 'package:Pharera/notifacation.dart';
 import 'package:Pharera/pharahos_list.dart';
@@ -30,11 +29,17 @@ class _GroubState extends State<Groub> {
   void initState() {
     super.initState();
     _pharaohData = PharaohData();
-   
+
     // Set the initial selected index to 0
-    _selectedPhoto = IsArab() ?  _pharaohData.pharaooh[0]['image']! :  _pharaohData.pharaoh[0]['image']! ;
-    _selectedName = IsArab() ?  _pharaohData.pharaooh[0]['name']! :  _pharaohData.pharaoh[0]['name']! ;
-    _selectedDetails = IsArab() ?  _pharaohData.pharaooh[0]['details']! :  _pharaohData.pharaoh[0]['details']! ;
+    _selectedPhoto = IsArab()
+        ? _pharaohData.pharaooh[0]['image']!
+        : _pharaohData.pharaoh[0]['image']!;
+    _selectedName = IsArab()
+        ? _pharaohData.pharaooh[0]['name']!
+        : _pharaohData.pharaoh[0]['name']!;
+    _selectedDetails = IsArab()
+        ? _pharaohData.pharaooh[0]['explore']!
+        : _pharaohData.pharaoh[0]['explore']!;
   }
 
   @override
@@ -80,14 +85,12 @@ class _GroubState extends State<Groub> {
               children: [
                 SizedBox(
                   height: 56,
-                  child: Expanded(
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (ctx, i) => _buildPhotoWidget(i),
-                      separatorBuilder: (ctx, i) => const SizedBox(width: 8),
-                      itemCount: _pharaohData.pharaoh.length,
-                    ),
+                  child: ListView.separated(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (ctx, i) => _buildPhotoWidget(i),
+                    separatorBuilder: (ctx, i) => const SizedBox(width: 8),
+                    itemCount: _pharaohData.pharaoh.take(7).length,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -95,7 +98,7 @@ class _GroubState extends State<Groub> {
                     ? Container(
                         width: 340,
                         alignment: AlignmentDirectional.bottomCenter,
-                        height: 470,
+                        height: 410,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius:
@@ -103,8 +106,11 @@ class _GroubState extends State<Groub> {
                           image: DecorationImage(
                             fit: BoxFit.fill,
                             image: AssetImage(
-                              IsArab() ?  _pharaohData.pharaooh[_selectedIndex]['image']! :  _pharaohData.pharaoh[_selectedIndex]['image']! ,
-                                
+                              IsArab()
+                                  ? _pharaohData.pharaooh[_selectedIndex]
+                                      ['image']!
+                                  : _pharaohData.pharaoh[_selectedIndex]
+                                      ['image']!,
                             ),
                           ),
                         ),
@@ -116,53 +122,50 @@ class _GroubState extends State<Groub> {
                               style: const TextStyle(
                                   color: Colors.transparent, fontSize: 24),
                             ),
-                             InkWell(
-                              onTap: (){
+                            InkWell(
+                              onTap: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PharaohDetailPage(
-                                        pharaohData: _pharaohData,
-                                       
-                                        index: _selectedIndex,
-                                      ),
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => PharaohDetailPage(
+                                      pharaohData: _pharaohData,
+                                      index: _selectedIndex,
                                     ),
-                                  );
+                                  ),
+                                );
                               },
                               child: Container(
-                                                  width: 90,
-                                                  height: 60,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(20),
-                                                    color: Colors.white,
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                        color: Colors.black.withOpacity(0.5),
-                                                        spreadRadius: 5,
-                                                        blurRadius: 7,
-                                                        offset: const Offset(0, 3),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  child:  Center(
-                                                    child: Text(
-                                                     S.of(context).Explore,
-                                                      style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontSize: 22,
-                                                        
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                width: 90,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.5),
+                                      spreadRadius: 5,
+                                      blurRadius: 7,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    S.of(context).Explore,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-
                           ],
                         ),
                       )
                     : Container(
                         width: 340,
-                        height: 540,
+                        height: 460,
                         decoration: BoxDecoration(
                           color: Colors.transparent,
                           borderRadius:
@@ -170,8 +173,8 @@ class _GroubState extends State<Groub> {
                           image: DecorationImage(
                             fit: BoxFit.fill,
                             image: AssetImage(_pharaohData.pharaoh.firstWhere(
-                                    (e) =>
-                                        e['name'] == "King Akhenaten")['image'] ??
+                                        (e) => e['name'] == "King Akhenaten")[
+                                    'image'] ??
                                 ""),
                           ),
                         ),
@@ -227,13 +230,20 @@ class _GroubState extends State<Groub> {
       ),
     );
   }
-    Widget _buildPhotoWidget(int index) {
+
+  Widget _buildPhotoWidget(int index) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          _selectedPhoto = IsArab() ?  _pharaohData.pharaooh[index]['image']! :  _pharaohData.pharaoh[index]['image']! ;
-          _selectedName =IsArab() ?  _pharaohData.pharaooh[index]['name']! :  _pharaohData.pharaoh[index]['name']! ;
-          _selectedDetails = IsArab() ?  _pharaohData.pharaooh[index]['details']! :  _pharaohData.pharaoh[index]['details']! ;
+          _selectedPhoto = IsArab()
+              ? _pharaohData.pharaooh[index]['image']!
+              : _pharaohData.pharaoh[index]['image']!;
+          _selectedName = IsArab()
+              ? _pharaohData.pharaooh[index]['name']!
+              : _pharaohData.pharaoh[index]['name']!;
+          _selectedDetails = IsArab()
+              ? _pharaohData.pharaooh[index]['explore']!
+              : _pharaohData.pharaoh[index]['explore']!;
           _selectedIndex = index;
         });
         _isSheetAttached = false; // Reset the attachment flag
@@ -250,7 +260,9 @@ class _GroubState extends State<Groub> {
             width: 2,
           ),
           image: DecorationImage(
-            image: AssetImage(IsArab() ?  _pharaohData.pharaooh[index]['image']! :  _pharaohData.pharaoh[index]['image']!),
+            image: AssetImage(IsArab()
+                ? _pharaohData.pharaooh[index]['image']!
+                : _pharaohData.pharaoh[index]['image']!),
             fit: BoxFit.cover,
           ),
         ),

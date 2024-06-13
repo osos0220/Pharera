@@ -66,7 +66,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ticket_dis": MessageLookupByLibrary.simpleMessage(
             "For Getting Discount For The Res-ervation, book From Your Booth"),
         "Tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
-        "Welcome": MessageLookupByLibrary.simpleMessage("Welcome To The Gym"),
+        "Welcome": MessageLookupByLibrary.simpleMessage("Welcome To The GEM"),
+        "WelcomeGEM":
+            MessageLookupByLibrary.simpleMessage("Welcome To The GEM"),
         "adult": MessageLookupByLibrary.simpleMessage("Adult"),
         "ago": MessageLookupByLibrary.simpleMessage("Ago"),
         "arabic": MessageLookupByLibrary.simpleMessage("ARABIC"),

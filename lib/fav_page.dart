@@ -1,27 +1,64 @@
-import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'app_text_widget.dart';
+import 'fav_image_page.dart'; // Import FavImagePage
 
 class favpage extends StatefulWidget {
-  const favpage({super.key});
+  const favpage({Key? key}) : super(key: key);
 
   @override
   State<favpage> createState() => _favpageState();
 }
 
 class _favpageState extends State<favpage> {
- 
+  User? user = FirebaseAuth.instance.currentUser;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  List<int> _favoriteIndexes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavorites();
+  }
+
+  void _loadFavorites() async {
+    if (user != null) {
+      DocumentSnapshot doc = await users.doc(user!.uid).get();
+      if (doc.exists) {
+        List<dynamic> favorites = doc['favorites'] ?? [];
+        setState(() {
+          _favoriteIndexes = favorites.cast<int>();
+        });
+      }
+    }
+  }
+
+  void _handlePhotoButtonPress() {
+    // Navigate to FavImagePage
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FavImagePage()),
+    );
+  }
+
+  void _handleShowButtonPress() {
+    // Replace with your logic for handling show button press
+    print('Show button pressed');
+  }
+
+  void _handleVideoButtonPress() {
+    // Replace with your logic for handling video button press
+    print('Video button pressed');
+  }
 
   @override
   Widget build(BuildContext context) {
-     final List<String> titles = [S.of(context).image, S.of(context).Show, S.of(context).video];
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+      backgroundColor: const Color.fromARGB(255, 226, 226, 226), // Light gray background
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226), // Light gray background
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -35,65 +72,101 @@ class _favpageState extends State<favpage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              AppTextWidget(
-                title: S.of(context).top,
+              const AppTextWidget(
+                title: 'Top Favorites', // Replace with your localization string
                 fontSize: 32,
               ),
-              const SizedBox(
-                height: 16,
-              ),
+              const SizedBox(height: 16),
               Container(
-                width: screenWidth*0.9,
-                height: screenHeight*0.15,
-                decoration: const BoxDecoration(
+                width: MediaQuery.of(context).size.width * 0.9,
+                height: MediaQuery.of(context).size.height * 0.15,
+                decoration: BoxDecoration(
                   color: Colors.black,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(16),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Â©',
+                    style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-               SizedBox(
-                height: screenHeight*0.009,
-              ),
-              AppTextWidget(
-                title: S.of(context).category,
+              SizedBox(height: MediaQuery.of(context).size.height * 0.009),
+              const AppTextWidget(
+                title: 'Category', // Replace with your localization string
                 fontSize: 32,
               ),
-               SizedBox(
-                height: screenHeight *0.008,
-              ),
-              Expanded(
-                child: ListView.separated(
-                  itemBuilder: (ctx, i) {
-                    return SizedBox(
-                      height: 72, // Adjust button height here
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Handle button press
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16), // Adjust padding here
-                          backgroundColor: Colors.black,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        child: Text(
-                          titles[i],
-                          style: const TextStyle(
-                            fontSize: 24,
-                            color: Colors.white,
-                          ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.008),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 72, // Adjust button height here
+                    child: ElevatedButton(
+                      onPressed: _handlePhotoButtonPress,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 16), // Adjust padding here
+                        backgroundColor: Colors.black, // Black background
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
                         ),
                       ),
-                    );
-                  },
-                  separatorBuilder: (ctx, i) {
-                    return const SizedBox(height: 24);
-                  },
-                  itemCount: titles.length,
-                ),
-              )
+                      child: const Text(
+                        'photo',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white, // White text
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24), // Adjust spacing between buttons
+                  SizedBox(
+                    height: 72, // Adjust button height here
+                    child: ElevatedButton(
+                      onPressed: _handleShowButtonPress,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 16), // Adjust padding here
+                        backgroundColor: Colors.black, // Black background
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      child: const Text(
+                        'show',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white, // White text
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 24), // Adjust spacing between buttons
+                  SizedBox(
+                    height: 72, // Adjust button height here
+                    child: ElevatedButton(
+                      onPressed: _handleVideoButtonPress,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 16), // Adjust padding here
+                        backgroundColor: Colors.black, // Black background
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                      ),
+                      child: const Text(
+                        'video',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.white, // White text
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

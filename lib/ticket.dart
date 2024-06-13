@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'webview_page.dart'; // Import the WebViewPage
+import 'dart:io';
 
 class Ticket extends StatelessWidget {
   const Ticket({super.key});
@@ -23,7 +24,7 @@ class Ticket extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                     Padding(
+                    Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: Text(
                         S.of(context).pay,
@@ -104,17 +105,20 @@ class Ticket extends StatelessWidget {
   }
 
   void _launchURL(BuildContext context) async {
-    const url = 'https://visit-gem.com/en/tut';
-    if (await canLaunch(url)) {
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rotate,
-          alignment: Alignment.bottomCenter, // Set the alignment for the rotation
-          duration: const Duration(seconds: 1), // Optional: adjust the duration if needed
-          child: const WebViewPage(url: url),
-        ),
-      );
+    final url = Uri.parse('https://visit-gem.com/en/tut'); // Convert the URL to a Uri
+    if (await canLaunchUrl(url)) {
+      if (Platform.isAndroid) {
+        // Android-specific handling
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+      // else if (Platform.isIOS) {
+      //   // iOS-specific handling
+      //   await launchUrl(url);
+      // }
+      else {
+        // Handle other platforms (e.g., desktop, web)
+        await launchUrl(url);
+      }
     } else {
       print('Error launching URL: $url');
     }

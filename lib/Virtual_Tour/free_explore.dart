@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:image_picker/image_picker.dart';
-// import 'package:Pharera/Virtual_Tour/libsync.dart';
+import 'package:Pharera/Virtual_Tour/libsync_v2.dart';
+// import '../Virtual_Tour_Old/libsync_v2.dart';
 import 'constants.dart';
 
 class FreeExplore extends StatefulWidget {
@@ -143,12 +144,10 @@ class _FreeExploreState extends State<FreeExplore> {
           latitude: 6.619360556364552,
           width: 90,
           height: 85,
-          widget: FittedBox(
-            child: hotspotButton(
-                text: "Let's Explore",
-                icon: Icons.open_in_browser,
-                onPressed: () => setState(() => _panoId = 1)),
-          ),
+          widget: hotspotButton(
+              text: "Let's Explore",
+              icon: Icons.open_in_browser,
+              onPressed: () => setState(() => _panoId = 1)),
         ),
         Hotspot(
           longitude: -9.3,
@@ -172,7 +171,7 @@ class _FreeExploreState extends State<FreeExplore> {
       onViewChanged: onViewChanged,
       longitude: -112.0,
       latitude: 20.8 ,
-      onTap: (longitude, latitude, tilt) =>
+       onTap: (longitude, latitude, tilt) =>
           print('onTap: $longitude, $latitude, $tilt'),
       child: Image.asset('assets/images/360_images/Entrance2.webp'),
       hotspots: [
@@ -379,16 +378,21 @@ class _FreeExploreState extends State<FreeExplore> {
           widget: hotspotButton(
               icon: Icons.search_outlined,
             onPressed: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => LibSyncPage(
-              //           text: "Senusret I was a powerful pharaoh of ancient Egypt during the Middle Kingdom (around 1971-1926 BCE). He led military campaigns into Nubia, undertook extensive building projects (including the White Chapel at Karnak), and implemented administrative reforms that strengthened Egypt's central authority. His reign marked a period of stability and prosperity in Egyptian history, contributing significantly to the kingdom's cultural and economic development.",
-              //           video: 'assets/videos/Libsync/Senusrt_I.mp4',
-              //           title: 'Senusrt The First',
-              //           languageCode: 'en',
-              //           panoId: 0,
-              //         )));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LibSyncPage(
+                    video: 'assets/videos/Libsync/Senusrt_I.mp4',
+                    title: 'Senusrt_I.mp4',
+                    subtitlePaths:{
+                      'English': 'assets/sub_libsync/1/subtitles_en_1.srt',
+                      'Arabic': 'assets/sub_libsync/1/subtitles_ar_1.srt',
+                      'French': 'assets/sub_libsync/1/subtitles_fr_1.srt',
+                      'German': 'assets/sub_libsync/1/subtitles_de_1.srt',
+                    },
+                  ),
+                ),
+              );
             },
           ),
         ),
@@ -790,16 +794,21 @@ class _FreeExploreState extends State<FreeExplore> {
           widget: hotspotButton(
             icon: Icons.search,
             onPressed: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => LibSyncPage(
-              //               text: 'Greetings, esteemed visitors! I am Ramesses II, the great pharaoh of Egypt. I am honored to welcome you to this magnificent museum, where you can learn about the rich history and culture of my people.',
-              //               video: 'assets/videos/Libsync/Ramses_II.mp4',
-              //               title: 'Ramesses-II welcoming you!',
-              //           languageCode: 'en', // Replace with the actual language code
-              //           panoId: 1,
-              //             )));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LibSyncPage(
+                    video: 'assets/videos/Libsync/Ramses_II.mp4',
+                    title: 'Ramses_II',
+                    subtitlePaths:{
+                      'English': 'assets/sub_libsync/0/ramses_en.srt',
+                      'Arabic': 'assets/sub_libsync/0/ramses_ar.srt',
+                      'French': 'assets/sub_libsync/0/ramses_fr_0.srt',
+                      'German': 'assets/sub_libsync/0/ramses_de_0.srt',
+                    },
+                  ),
+                ),
+              );
             },
           ),
         ),
@@ -1113,51 +1122,54 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.search,
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => LibSyncPage(
-                  //           text: "Senusret III was a Pharaoh of Egypt who reigned from 1878 to 1839 BC. He was the son of Senusret II and succeeded him as Pharaoh. During his reign, he focused on strengthening Egypt's economy and military, and he also launched several successful military campaigns. He was known for his wisdom and justice, and his reign is often referred to as the 'Golden Age' of the 12th dynasty.",
-                  //           video: 'assets/videos/Libsync/Senusrt_III.mp4',
-                  //           title: 'Senusrt III',
-                  //           languageCode: 'en', // Replace with the actual language code
-                  //           panoId: 2,
-                  //         )
-                  //     )
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LibSyncPage(
+                        video: 'assets/videos/Libsync/Senusrt_III.mp4',
+                        title: 'Senusrt_III',
+                        subtitlePaths:{
+                          'English': 'assets/sub_libsync/2/subtitles_en_2.srt',
+                          'Arabic': 'assets/sub_libsync/2/subtitles_ar_2.srt',
+                          'French': 'assets/sub_libsync/2/subtitles_fr_2.srt',
+                          'German': 'assets/sub_libsync/2/subtitles_de_2.srt',
+                        },
+                      ),
+                    ),
+                  );
                 },
               ),
           ),
-          Hotspot(
-              // Libsync 2
-              longitude: -61.1,
-              latitude: 17.0,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
-          Hotspot(
-              // Black - IDK
-              longitude: -3.1,
-              latitude: 17.1,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
-          Hotspot(
-              // No name
-              longitude: -94.9,
-              latitude: 13.3,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     // Libsync 2
+          //     longitude: -61.1,
+          //     latitude: 17.0,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
+          // Hotspot(
+          //     // Black - IDK
+          //     longitude: -3.1,
+          //     latitude: 17.1,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
+          // Hotspot(
+          //     // No name
+          //     longitude: -94.9,
+          //     latitude: 13.3,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -1287,7 +1299,23 @@ class _FreeExploreState extends State<FreeExplore> {
               height: 48,
               widget: hotspotButton(
                 icon: Icons.search,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LibSyncPage(
+                        video: 'assets/videos/Libsync/Hatshibsut.mp4',
+                        title: 'Hatshibsut',
+                        subtitlePaths:{
+                          'English': 'assets/sub_libsync/4/subtitles_en_4.srt',
+                          'Arabic': 'assets/sub_libsync/4/subtitles_ar_4.srt',
+                          'French': 'assets/sub_libsync/4/subtitles_fr_4.srt',
+                          'German': 'assets/sub_libsync/4/subtitles_de_4.srt',
+                        },
+                      ),
+                    ),
+                  );
+                },
               )),
           Hotspot(
               // Libsync امنحتب التالت
@@ -1298,16 +1326,21 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.search,
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => LibSyncPage(
-                  //           text: "Amenhotep III was a prominent pharaoh of ancient Egypt during the New Kingdom (around 1386-1353 BCE). He focused on diplomacy rather than military conquests, maintaining peace and prosperity through strategic alliances. Amenhotep III oversaw extensive building projects, including the Temple of Luxor and the Colossi of Memnon. His reign marked a golden age of artistic achievement, with remarkable sculptures and architecture reflecting Egypt's wealth and power. He left a legacy of cultural richness and diplomatic success, contributing to Egypt's prominence in the ancient world.",
-                  //           video: 'assets/videos/Libsync/Amenhotep_III.mp4',
-                  //           title: 'Amenhotep The Third',
-                  //           languageCode: 'en', // Replace with the actual language code
-                  //           panoId: 3,
-                  //         )));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LibSyncPage(
+                        video: 'assets/videos/Libsync/Amenhotep_III.mp4',
+                        title: 'Amenhotep_III',
+                        subtitlePaths:{
+                          'English': 'assets/sub_libsync/3/subtitles_en_3.srt',
+                          'Arabic': 'assets/sub_libsync/3/subtitles_ar_3.srt',
+                          'French': 'assets/sub_libsync/3/subtitles_fr_3.srt',
+                          'German': 'assets/sub_libsync/3/subtitles_de_3.srt',
+                        },
+                      ),
+                    ),
+                  );
                 },
               ),
           ),
@@ -1320,39 +1353,44 @@ class _FreeExploreState extends State<FreeExplore> {
             widget: hotspotButton(
               icon: Icons.search,
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => LibSyncPage(
-                //           text: "Thutmose III was a powerful pharaoh of ancient Egypt during the New Kingdom (around 1479-1425 BCE). He was renowned for his military campaigns, which expanded Egypt's empire into Canaan and Syria, greatly increasing its wealth and influence. Thutmose III also supported artistic and architectural projects, leaving a legacy of territorial expansion and cultural advancement that strengthened Egypt's prominence in the ancient world.",
-                //           video: 'assets/videos/Libsync/Thutmose_III.mp4',
-                //           title: 'Thutmose The Third',
-                //           languageCode: 'en', // Replace with the actual language code
-                //           panoId: 4,
-                //         )));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LibSyncPage(
+                      video: 'assets/videos/Libsync/Thutmose_III.mp4',
+                      title: 'Thutmose_III',
+                      subtitlePaths:{
+                        'English': 'assets/sub_libsync/5/subtitles_en_5.srt',
+                        'Arabic': 'assets/sub_libsync/5/subtitles_ar_5.srt',
+                        'French': 'assets/sub_libsync/5/subtitles_fr_5.srt',
+                        'German': 'assets/sub_libsync/5/subtitles_de_5.srt',
+                      },
+                    ),
+                  ),
+                );
               },
             ),
           ),
-          Hotspot(
-              // Unknown
-              longitude: -141.2,
-              latitude: 10.7,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
-          Hotspot(
-              // Libsync اخناتون
-              longitude: 5.8,
-              latitude: 3.7,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     // Unknown
+          //     longitude: -141.2,
+          //     latitude: 10.7,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
+          // Hotspot(
+          //     // Libsync اخناتون
+          //     longitude: 5.8,
+          //     latitude: 3.7,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -1403,16 +1441,16 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              // Unknown
-              longitude: 164.2,
-              latitude: 13.2,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     // Unknown
+          //     longitude: 164.2,
+          //     latitude: 13.2,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
           Hotspot(
               // Libsymc تحتمس
               longitude: 96.6,
@@ -1422,29 +1460,34 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.search,
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => LibSyncPage(
-                  //           text: "Thutmose III was a powerful pharaoh of ancient Egypt during the New Kingdom (around 1479-1425 BCE). He was renowned for his military campaigns, which expanded Egypt's empire into Canaan and Syria, greatly increasing its wealth and influence. Thutmose III also supported artistic and architectural projects, leaving a legacy of territorial expansion and cultural advancement that strengthened Egypt's prominence in the ancient world.",
-                  //           video: 'assets/videos/Libsync/Thutmose_III.mp4',
-                  //           title: 'Thutmose The Third',
-                  //           languageCode: 'en', // Replace with the actual language code
-                  //           panoId: 5,
-                  //         )));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LibSyncPage(
+                        video: 'assets/videos/Libsync/Thutmose_III.mp4',
+                        title: 'Thutmose_III',
+                        subtitlePaths:{
+                          'English': 'assets/sub_libsync/5/subtitles_en_5.srt',
+                          'Arabic': 'assets/sub_libsync/5/subtitles_ar_5.srt',
+                          'French': 'assets/sub_libsync/5/subtitles_fr_5.srt',
+                          'German': 'assets/sub_libsync/5/subtitles_de_5.srt',
+                        },
+                      ),
+                    ),
+                  );
                 },
               ),
           ),
-          Hotspot(
-              // Libsync اخناتون
-              longitude: -15.1,
-              latitude: -6.7,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     // Libsync اخناتون
+          //     longitude: -15.1,
+          //     latitude: -6.7,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -1655,15 +1698,15 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              longitude: 148.9,
-              latitude: -2.9,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     longitude: 148.9,
+          //     latitude: -2.9,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -1789,6 +1832,8 @@ class _FreeExploreState extends State<FreeExplore> {
     return PanoramaViewer(
         // animSpeed: 0.0,
         // sensorControl: SensorControl.orientation,
+        onTap: (longitude, latitude, tilt) =>
+            print('onTap: $longitude, $latitude, $tilt'),
         onViewChanged: onViewChanged,
         child: Image.asset('assets/images/360_images/4.2.3.2.webp'),
         hotspots: [
@@ -1848,7 +1893,7 @@ class _FreeExploreState extends State<FreeExplore> {
               widget: hotspotButton(
                 icon: Icons.arrow_upward_outlined,
                 onPressed: () {
-                  final int newIndex = _imageMap['staircase4_2_3_2']!;
+                  final int newIndex = _imageMap['staircase4_2_4_2']!;
                   setState(() => _panoId = newIndex);
                 },
               )),
@@ -2107,46 +2152,46 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              //تابوت
-              longitude: 164.7,
-              latitude: -14.8,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
-          Hotspot(
-              //مسله صغننه
-              longitude: 91.0,
-              latitude: -18.5,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
-          Hotspot(
-              //حاجه مجوفه
-              longitude: 108.0,
-              latitude: -9.0,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
-          Hotspot(
-              //تلات شباب وجوزين
-              longitude: 23.0,
-              latitude: -9.9,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     //تابوت
+          //     longitude: 164.7,
+          //     latitude: -14.8,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
+          // Hotspot(
+          //     //مسله صغننه
+          //     longitude: 91.0,
+          //     latitude: -18.5,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
+          // Hotspot(
+          //     //حاجه مجوفه
+          //     longitude: 108.0,
+          //     latitude: -9.0,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
+          // Hotspot(
+          //     //تلات شباب وجوزين
+          //     longitude: 23.0,
+          //     latitude: -9.9,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -2209,15 +2254,15 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              longitude: 1.6,
-              latitude: -18.5,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     longitude: 1.6,
+          //     latitude: -18.5,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -2266,15 +2311,15 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              longitude: -0.0,
-              latitude: -17.5,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search_outlined,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     longitude: -0.0,
+          //     latitude: -17.5,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search_outlined,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -2620,15 +2665,15 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              longitude: -148.9,
-              latitude: -2.9,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     longitude: -148.9,
+          //     latitude: -2.9,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -2664,15 +2709,15 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
-              longitude: 104.8,
-              latitude: -8.3,
-              width: 48,
-              height: 48,
-              widget: hotspotButton(
-                icon: Icons.search,
-                onPressed: () {},
-              )),
+          // Hotspot(
+          //     longitude: 104.8,
+          //     latitude: -8.3,
+          //     width: 48,
+          //     height: 48,
+          //     widget: hotspotButton(
+          //       icon: Icons.search,
+          //       onPressed: () {},
+          //     )),
         ]);
   }
 
@@ -2970,12 +3015,12 @@ void maslaoutside(BuildContext context) {
 
 
         contentPadding: EdgeInsets.all(7.0), // Reduce padding
-        title: Text('المسلة المعلقة للملك رمسيس الثاني'),
-        scrollable: true,
-        content: Title(title: 'Masala_Outside', color: Colors.white,child: Text('تم اكتشافها في مكان اسمه صهر الحجر ف الشرقيه حاليا مقسمة إلى عدة أجزاء وهى منحوتة من حجر الجرانيت الوردي وتتميز بجمال نقوشها التى تصور الملك رمسيس الثانى، واقفا أمام أحد المعبودات، بالإضافة إلى الألقاب المختلفة له.'
-      ),),
+      //   title: Text('المسلة المعلقة للملك رمسيس الثاني'),
+      //   scrollable: true,
+      //   content: Title(title: 'Masala_Outside', color: Colors.white,child: Text('تم اكتشافها في مكان اسمه صهر الحجر ف الشرقيه حاليا مقسمة إلى عدة أجزاء وهى منحوتة من حجر الجرانيت الوردي وتتميز بجمال نقوشها التى تصور الملك رمسيس الثانى، واقفا أمام أحد المعبودات، بالإضافة إلى الألقاب المختلفة له.'
+      // ),),
         // Text('Senusret'),
-        // content: Image.asset('assets/images/artifacts/masla-outside.png'),
+        content: Image.asset('assets/images/artifacts/masla-outside.png'),
       );
     },
   );

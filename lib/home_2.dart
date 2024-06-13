@@ -15,6 +15,12 @@ class Pharaohs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    // Define the proportional width and height
+    final containerWidth = screenWidth * 0.35; // 35% of screen width
+    final containerHeight = screenHeight * 0.08; // 8% of screen height
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
@@ -51,17 +57,17 @@ class Pharaohs extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>  const Groub(
-                                     // Pass pharaohDataAr here
-                                  ),
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Groub(
+                                // Pass pharaohDataAr here
                               ),
+                            ),
                           );
                         },
                         child: Container(
-                          width: 130,
-                          height: 60,
+                          width: containerWidth,
+                          height: containerHeight,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30)),
                           child:  Center(
@@ -95,11 +101,11 @@ class Pharaohs extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PharaohDetailPage(
-                                      pharaohData: pharaohData,
-                                      index: index,
-                                      // Pass pharaohDataAr here
-                                  ),
+                                builder: (context) => PharaohDetailPage(
+                                  pharaohData: pharaohData,
+                                  index: index,
+                                  // Pass pharaohDataAr here
+                                ),
                               ),
                             );
                           },

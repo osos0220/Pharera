@@ -60,7 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "Ticket_dis": MessageLookupByLibrary.simpleMessage(
             "للحصول على خصم للحجز، احجز من كشكك"),
         "Tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
-        "Welcome": MessageLookupByLibrary.simpleMessage("مرحبًا في الجيم"),
+        "Welcome": MessageLookupByLibrary.simpleMessage("مرحبًا بكم"),
+        "WelcomeGEM": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "adult": MessageLookupByLibrary.simpleMessage("بالغ"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "category": MessageLookupByLibrary.simpleMessage("الفئات"),

@@ -1,10 +1,10 @@
-import 'package:Pharera/Check.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharahos_list.dart';
-import 'package:Pharera/pharaoh_show.dart';
+
 
 class SearchResults extends StatefulWidget {
-  const SearchResults({super.key});
+  const SearchResults({Key? key}) : super(key: key);
 
   @override
   State<SearchResults> createState() => _SearchResultsState();
@@ -12,18 +12,18 @@ class SearchResults extends StatefulWidget {
 
 class _SearchResultsState extends State<SearchResults> {
   final PharaohData pharaohData = PharaohData();
-  
   List<Map<String, String>> displayedPharaohs = [];
   TextEditingController searchController = TextEditingController();
   late FocusNode searchFocusNode;
   bool isSearchFocused = false;
-  
-
+  String? lastSearchQuery;
+  final Duration _debounceDuration = const Duration(milliseconds: 300);
+  Timer? _debounceTimer;
 
   @override
   void initState() {
     super.initState();
-    displayedPharaohs = [...IsArab() ?  pharaohData.pharaooh :  pharaohData.pharaoh]; // Use only English list initially
+    displayedPharaohs = _getAllPharaohs();
     searchFocusNode = FocusNode();
     searchFocusNode.addListener(() {
       setState(() {
@@ -34,32 +34,48 @@ class _SearchResultsState extends State<SearchResults> {
 
   @override
   void dispose() {
+    _debounceTimer?.cancel();
     searchFocusNode.dispose();
     super.dispose();
   }
 
-  void _filterPharaohs(String query) {
-    List<Map<String, String>> allPharaohs = [];
-    allPharaohs.addAll(IsArab() ?  pharaohData.pharaooh :  pharaohData.pharaoh);
+  List<Map<String, String>> _getAllPharaohs() {
+    return [...pharaohData.pharaoh,];
+  }
 
-    if (query.isNotEmpty) {
-      final filteredPharaohs = allPharaohs.where((pharaoh ,) {
-        final nameLowerEn = pharaoh['name']!.toLowerCase();
-        final searchLower = query.toLowerCase();
-        return nameLowerEn.contains(searchLower);
-      }).toList();
-      setState(() {
-        displayedPharaohs = filteredPharaohs;
-      });
-    } else {
-      setState(() {
-        displayedPharaohs = allPharaohs;
-      });
+  void _filterPharaohs(String query) {
+    if (query == lastSearchQuery) return; // Avoid redundant filtering
+
+    lastSearchQuery = query;
+
+    if (_debounceTimer != null) {
+      _debounceTimer?.cancel();
     }
+
+    _debounceTimer = Timer(_debounceDuration, () {
+      final allPharaohs = _getAllPharaohs();
+      if (query.isNotEmpty) {
+        final filteredPharaohs = allPharaohs.where((pharaoh) {
+          final nameLower = pharaoh['name']?.toLowerCase() ?? '';
+          final nameEnLower = pharaoh['namee']?.toLowerCase() ?? '';
+          final searchLower = query.toLowerCase();
+          return nameLower.contains(searchLower) ||
+              nameEnLower.contains(searchLower);
+        }).toList();
+        setState(() {
+          displayedPharaohs = filteredPharaohs;
+        });
+      } else {
+        setState(() {
+          displayedPharaohs = allPharaohs;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -67,6 +83,12 @@ class _SearchResultsState extends State<SearchResults> {
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+        title: Text(
+          isArabic ? "بحث الفراعنة" : "Search Pharaohs",
+          style: const TextStyle(
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -85,7 +107,10 @@ class _SearchResultsState extends State<SearchResults> {
                     Radius.circular(10),
                   ),
                 ),
-                contentPadding: EdgeInsets.symmetric(vertical: screenHeight * 0.01, horizontal: screenWidth * 0.03),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.01,
+                  horizontal: screenWidth * 0.03,
+                ),
               ),
             ),
           ),
@@ -98,30 +123,41 @@ class _SearchResultsState extends State<SearchResults> {
                   final pharaoh = displayedPharaohs[index];
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PharaohDetailPage(
-                            pharaohData: pharaohData,
-                            index: index,
+                      final name = pharaoh['name'];
+                      final namee = pharaoh['namee'];
+                      final details = pharaoh['details'];
+                      final image = pharaoh['image'];
+
+                      if (name != null &&
+                          namee != null &&
+                          details != null &&
+                          image != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PharaohDetailPage(
+                              name: name,
+                              nameEn: namee,
+                              details: details,
+                              image: image,
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      }
                     },
                     child: ListTile(
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
-                          IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!,
+                          pharaoh['image']!,
                           width: 80,
                           height: 80,
                           fit: BoxFit.fill,
                         ),
                       ),
                       title: Text(
-                        IsArab() ?  pharaohData.pharaooh[index]['name']! :  pharaohData.pharaoh[index]['name']!,
+                        isArabic ? pharaoh['namee']! : pharaoh['name']!,
                       ),
-                      
                     ),
                   );
                 },
@@ -129,6 +165,51 @@ class _SearchResultsState extends State<SearchResults> {
             ),
           ],
         ],
+      ),
+    );
+  }
+}
+
+class PharaohDetailPage extends StatelessWidget {
+  final String name;
+  final String nameEn;
+  final String details;
+  final String image;
+
+  const PharaohDetailPage({
+    required this.name,
+    required this.nameEn,
+    required this.details,
+    required this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(isArabic ? nameEn : name),
+      ),
+      body: SingleChildScrollView(scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(image),
+              const SizedBox(height: 16.0),
+              Text(
+                isArabic ? nameEn : name,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8.0),
+              Text(details),
+            ],
+          ),
+        ),
       ),
     );
   }

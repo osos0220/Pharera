@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../global/common/toast.dart';
 
 class FirebaseAuthService {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+   FirebaseAuth auth = FirebaseAuth.instance;
 
   Future<User?> signUpWithEmailAndPassword(
       String email, String password) async {
     try {
-      UserCredential credential = await _auth.createUserWithEmailAndPassword(
+      UserCredential credential = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
       return credential.user;
     } on FirebaseAuthException catch (e) {
@@ -24,8 +24,10 @@ class FirebaseAuthService {
   Future<User?> signInWithEmailAndPassword(
       String email, String password) async {
     try {
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
+      UserCredential credential = await auth.signInWithEmailAndPassword(
           email: email, password: password);
+      print(credential.user?.uid);
+
       return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {

@@ -155,7 +155,7 @@ class _TourGuideState extends State<TourGuide> {
           latitude: 0,
           minLatitude: -20,
           minLongitude: -40,
-          maxLatitude: 25,
+          maxLatitude: 35,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
           onTap: (longitude, latitude, tilt) =>
@@ -217,7 +217,7 @@ class _TourGuideState extends State<TourGuide> {
                     MaterialPageRoute(
                       builder: (context) => const LibSyncPage(
                         video: 'assets/videos/Libsync/Ramses_II.mp4',
-                        title: 'Ramesses-II welcoming you!',
+                        title: 'Ramesses-II',
                         subtitlePaths:{
                           'English': 'assets/sub_libsync/0/ramses_en.srt',
                           'Arabic': 'assets/sub_libsync/0/ramses_ar.srt',
@@ -290,7 +290,7 @@ class _TourGuideState extends State<TourGuide> {
                     MaterialPageRoute(
                       builder: (context) => const LibSyncPage(
                         video: 'assets/videos/Libsync/Senusrt_I.mp4',
-                        title: 'Senusrt I',
+                        title: 'Senusret I',
                         subtitlePaths:{
                           'English': 'assets/sub_libsync/1/subtitles_en_1.srt',
                           'Arabic': 'assets/sub_libsync/1/subtitles_ar_1.srt',
@@ -772,7 +772,7 @@ class _TourGuideState extends State<TourGuide> {
                 borderRadius: BorderRadius.circular(10.0),
                 border: Border.all(color: Colors.orange.shade300, width: 2.0),
               ),
-              width: 200,
+              width: 170,
               child: Directionality(
                 textDirection: selectedLanguage == 'ar'
                     ? TextDirection.rtl
@@ -789,7 +789,7 @@ class _TourGuideState extends State<TourGuide> {
           ),
           Positioned(
             bottom: 20,
-            right: 20,
+            right: 10,
             child: _videoController.value.isInitialized
                 ? SizedBox(
                     width: 120,

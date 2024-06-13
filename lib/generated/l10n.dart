@@ -50,11 +50,21 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Welcome To The Gym`
+  /// `Welcome To The GEM`
   String get Welcome {
     return Intl.message(
-      'Welcome To The Gym',
+      'Welcome To The GEM',
       name: 'Welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome To The GEM`
+  String get WelcomeGEM {
+    return Intl.message(
+      'Welcome To The GEM',
+      name: 'WelcomeGEM',
       desc: '',
       args: [],
     );
