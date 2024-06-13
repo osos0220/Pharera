@@ -199,7 +199,7 @@ class PharaohData {
 
     },
     {
-      "image": "assets/images/قناع-الملك-توت-عنخ-آمون.jpg",
+      "image": "assets/images/king_tut_mask.jpg",
       "name": "الملك توت عنخ آمون",
       "namee": "King Tutankhamun",
       "details": ". توت عنخ آمون، الفرعون المصري، تولى الحكم على العرش في سن مبكرة، حوالي 9 سنوات، خلال السلالة الثامنة عشر. كانت فترة حكمه قصيرة، من حوالي 1332 إلى 1323 قبل الميلاد. وهو معروف بأفضل حالات الدفن المكتملة التي تم اكتشافها في وادي الملوك في عام 1922، والتي كانت مليئة بالكنوز والآثار، مما سلط الضوء على ثقافة وتاريخ مصر القديمة. وموته في سن مبكرة يظل لغزًا، مما أثار الاهتمام والتكهن لقرون \n"
@@ -420,7 +420,7 @@ class PharaohData {
       "details": "King Amenhotep III sits in this statue next to the sun god, Ra Hor-akheti, who is represented by the head of a falcon. This statue is distinguished by the fact that it is carved from a unique piece of colored granite stone, which combines the colors red, like the sun, and black, like the fertile ground. The king’s features indicate his narrow eyes and his mouth, which appears naturally to This statue may date back to the end of the thirty-eighth year of the reign of King Amenhotep III."
     },
     {
-      "image": "assets/images/قناع-الملك-توت-عنخ-آمون.jpg",
+      "image": "assets/images/king_tut_mask.jpg",
       "name": "King Tutankhamun",
       "namee": "الملك توت عنخ امون",
       "details": "Tutankhamun, an Egyptian pharaoh, ascended the throne at a young age, around 9 years old, during the 18th dynasty. His reign was brief, from approximately 1332 to 1323 BCE. He is best known for the intact tomb discovered in the Valley of the Kings in 1922, filled with treasures and artifacts, shedding light on ancient Egyptian culture and history. His death at a young age remains a mystery, sparking speculation and fascination for centuries.",
