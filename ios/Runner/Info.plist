@@ -2,6 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSFileManagerUsageDescription</key>
+    <string>This app needs access to your files to download and store files.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs access to your photo library to select and upload photos and videos.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>This app needs access to your photo library to save photos and videos.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app needs access to your microphone to record audio for uploading to our servers.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>This app needs access to your camera to take photos for uploading to our servers.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
