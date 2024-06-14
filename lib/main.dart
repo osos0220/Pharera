@@ -31,7 +31,7 @@ Future main() async {
     await Firebase.initializeApp();
   }
   await FlutterDownloader.initialize(
-      debug: true // Optional: Set false to disable printing logs to console
+      debug: false // Optional: Set false to disable printing logs to console
   );
   runApp(const MyApp());
 }
