@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:video_player/video_player.dart';
 import 'package:Pharera/Virtual_Tour/constants.dart';
 import 'package:Pharera/Virtual_Tour/libsync_v2.dart';
 // import 'package:image_picker/image_picker.dart';
+import '../Check.dart';
 import 'tour_sub.dart';
 
 // import 'dart:math';
@@ -22,7 +23,7 @@ class _TourGuideState extends State<TourGuide> {
   late VideoPlayerController _videoController;
   List<Subtitle> subtitles = [];
   String currentSubtitle = '';
-  String selectedLanguage = 'en'; // Default language
+  String selectedLanguage = IsArab()?'ar': 'en'; // Default language
 
   int _panoId = 0;
 

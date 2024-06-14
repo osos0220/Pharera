@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:page_transition/page_transition.dart';
 
-
 import '../../../../global/common/toast.dart';
 import '../../../../navigation_bar.dart';
 import '../widgets/drawer_widget.dart';
 import 'login_page.dart';
-///////////////////////////////////////
+
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
@@ -41,12 +41,24 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  void _navigateToHomePage(BuildContext context) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const MyHomePage()), // Navigate to MyHomePage
+          (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
         backgroundColor: const Color.fromARGB(255, 174, 158, 130),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => _navigateToHomePage(context),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -81,7 +93,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding: EdgeInsets.only(right: 240.0),
                         child: Text(
                           'My Details',
-                          style: TextStyle(color: Color.fromARGB(255, 174, 158, 130)),
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 174, 158, 130)),
                         ),
                       ),
                       MyTextBox(
@@ -121,14 +134,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(width: 8),
                   TextButton(
                     onPressed: () => signOut(context),
-
-                    child: const Text('Sign Out',
-                        style: TextStyle(
+                    child: const Text(
+                      'Sign Out',
+                      style: TextStyle(
                         color: Color.fromARGB(255, 174, 158, 130),
-                    )
-                    )
-                    ,
-
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -4,24 +4,47 @@ import 'package:firebase_auth/firebase_auth.dart';
 class FavoritesProvider {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final User? _user = FirebaseAuth.instance.currentUser;
-  Set<int> _favoriteIndexes = {};
+  Set<int> _favoritePharaohIndexes = {};
+  Set<String> _favoriteVideoPaths = {}; // Add this line
 
-  Set<int> get favoriteIndexes => _favoriteIndexes;
+  Set<int> get favoriteIndexes => _favoritePharaohIndexes;
+  Set<String> get favoriteVideoPaths => _favoriteVideoPaths; // Add this getter
 
-  Future<void> loadFavorites() async {
+  FavoritesProvider() {
     if (_user != null) {
-      final snapshot = await _firestore.collection('favorites').doc(_user!.uid).get();
-      if (snapshot.exists) {
-        _favoriteIndexes = Set<int>.from(snapshot.data()?['favorites'] ?? []);
-      }
+      loadFavorites();
     }
   }
 
+  Future<void> loadFavorites() async {
+    if (_user == null) return;
+
+    final snapshot = await _firestore.collection('favorites').doc(_user!.uid).get();
+    if (snapshot.exists) {
+      _favoritePharaohIndexes = Set<int>.from(snapshot.data()?['pharaohFavorites'] ?? []);
+      _favoriteVideoPaths = Set<String>.from(snapshot.data()?['videoFavorites'] ?? []);
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> fetchTopFavorites() async {
+    final querySnapshot = await _firestore.collection('favorites').orderBy('count', descending: true).limit(10).get();
+    return querySnapshot.docs.map((doc) => doc.data()).toList();
+  }
+
   void toggleFavorite(int index) {
-    if (_favoriteIndexes.contains(index)) {
-      _favoriteIndexes.remove(index);
+    if (_favoritePharaohIndexes.contains(index)) {
+      _favoritePharaohIndexes.remove(index);
     } else {
-      _favoriteIndexes.add(index);
+      _favoritePharaohIndexes.add(index);
+    }
+    _updateFavoritesInFirestore();
+  }
+
+  void toggleVideoFavorite(String videoPath) {
+    if (_favoriteVideoPaths.contains(videoPath)) {
+      _favoriteVideoPaths.remove(videoPath);
+    } else {
+      _favoriteVideoPaths.add(videoPath);
     }
     _updateFavoritesInFirestore();
   }
@@ -29,7 +52,8 @@ class FavoritesProvider {
   void _updateFavoritesInFirestore() {
     if (_user != null) {
       _firestore.collection('favorites').doc(_user!.uid).set({
-        'favorites': _favoriteIndexes.toList(),
+        'pharaohFavorites': _favoritePharaohIndexes.toList(),
+        'videoFavorites': _favoriteVideoPaths.toList(),
       });
     }
   }

@@ -1,7 +1,7 @@
 import 'package:Pharera/Check.dart';
 
 import 'package:flutter/material.dart';
-import 'fav_but.dart';
+
 import 'pharahos_list.dart';
 
 List<String> favoriteImages = [];
@@ -9,19 +9,19 @@ List<String> favoriteImages = [];
 class PharaohDetailPage extends StatelessWidget {
   final PharaohData pharaohData;
   final int index;
- 
+
 
   const PharaohDetailPage({
     super.key,
     required this.pharaohData,
-    required this.index, 
-   
+    required this.index,
+
   });
 
   @override
   Widget build(BuildContext context) {
     String imagePath = IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!;
-    
+
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -42,7 +42,7 @@ class PharaohDetailPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
               child: Center(
                 child: Container(
-                  width: 230,
+                  width: 300,
                   height: 370,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
@@ -61,7 +61,7 @@ class PharaohDetailPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: Image.asset(
                           imagePath,
-                          width: 250, // تحديد عرض الصورة
+                          width: 300, // تحديد عرض الصورة
                           height: 430, // تحديد ارتفاع الصورة
                           fit: BoxFit.fill,
                         ),
@@ -110,7 +110,7 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                             IsArab() ?  pharaohData.pharaooh[index]['details']! :  pharaohData.pharaoh[index]['details']! ,
+                            IsArab() ?  pharaohData.pharaooh[index]['details']! :  pharaohData.pharaoh[index]['details']! ,
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

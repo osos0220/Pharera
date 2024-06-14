@@ -1,13 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:Pharera/features/user_auth/presentation/pages/home_page.dart';
+//import 'package:auth/features/user_auth/presentation/pages/home_page.dart';
 import 'package:Pharera/features/user_auth/presentation/pages/login_page.dart';
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/global/common/toast.dart';
-import 'package:Pharera/features/user_auth/firebase_auth_implementation/firebase_auth_services.dart';
 import 'package:flutter/widgets.dart';
+import '../../firebase_auth_implementation/firebase_auth_services.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -37,134 +38,136 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: const Text(
           "SignUp",
           style: TextStyle(fontFamily: 'Vollkorn'),
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "User name",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Vollkorn'),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              FormContainerWidget(
-                controller: _usernameController,
-                hintText: "eg.Fayroz_AbdEl-Mageed",
-                hintStyle: 'Vollkorn',
-                isPasswordField: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Email Address",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Vollkorn'),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              FormContainerWidget(
-                controller: _emailController,
-                hintText: "example@gmail.com",
-                isPasswordField: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Password",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: 'Vollkorn'),
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              FormContainerWidget(
-                controller: _passwordController,
-                hintText: "enter your password",
-                isPasswordField: true,
-              ),
-              const SizedBox(
-                height: 23,
-              ),
-              GestureDetector(
-                onTap: () {
-                  _signUp();
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 55,
-                  decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 174, 158, 130),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [BoxShadow(color: Colors.grey.shade600)]),
-                  child: Center(
-                      child: isSigningUp
-                          ? const CircularProgressIndicator(
-                              color: Colors.white,
-                            )
-                          : const Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Vollkorn'),
-                            )),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "User name",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Vollkorn'),
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Already have an account?",
-                    style: TextStyle(fontFamily: 'Vollkorn'),
+                const SizedBox(
+                  height: 7,
+                ),
+                FormContainerWidget(
+                  controller: _usernameController,
+                  hintText: "eg.Mohamed_Ahmed",
+                  hintStyle: 'Vollkorn',
+                  isPasswordField: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  "Email Address",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Vollkorn'),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                FormContainerWidget(
+                  controller: _emailController,
+                  hintText: "example@gmail.com",
+                  isPasswordField: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text(
+                  "Password",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Vollkorn'),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                FormContainerWidget(
+                  controller: _passwordController,
+                  hintText: "enter your password",
+                  isPasswordField: true,
+                ),
+                const SizedBox(
+                  height: 23,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _signUp();
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 55,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 174, 158, 130),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [BoxShadow(color: Colors.grey.shade600)]),
+                    child: Center(
+                        child: isSigningUp
+                            ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
+                            : const Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Vollkorn'),
+                        )),
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LoginPage()),
-                            (route) => false);
-                      },
-                      child:const Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 174, 158, 130),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Vollkorn'),
-                      ))
-                ],
-              )
-            ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Already have an account?",
+                      style: TextStyle(fontFamily: 'Vollkorn'),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                                  (route) => false);
+                        },
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 174, 158, 130),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Vollkorn'),
+                        ))
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -186,6 +189,13 @@ class _SignUpPageState extends State<SignUpPage> {
       isSigningUp = false;
     });
     if (user != null) {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      await firestore.collection("users").doc(user.uid).set({
+        "username": username,
+        "email": email,
+        "createdAt": FieldValue.serverTimestamp(),
+        "uid": user.uid
+      });
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
       showToast(message: "User is successfully created");
       // Navigator.pushNamed(context as BuildContext, "/home");
@@ -195,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     } else {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: "Some error happend");
+      showToast(message: "Some error happened");
     }
   }
 }

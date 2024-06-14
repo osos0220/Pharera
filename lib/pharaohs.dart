@@ -139,10 +139,10 @@ class _GroubState extends State<Groub> {
                                 height: 60,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  color: Colors.white,
+                                  color: Colors.white24,
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withOpacity(0.5),
+                                      color: Colors.white.withOpacity(0.5),
                                       spreadRadius: 5,
                                       blurRadius: 7,
                                       offset: const Offset(0, 3),

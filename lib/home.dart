@@ -162,19 +162,19 @@ class _HomePageState extends State<HomePage>
                     );
                   },
                 ),
-                ListTile(
-                  leading: const Icon(Icons.person),
-                  title: Text(S.of(context).profile),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.leftToRight,
-                        child: const ProfilePage(),
-                      ),
-                    );
-                  },
-                )
+                // ListTile(
+                //   leading: const Icon(Icons.person),
+                //   title: Text(S.of(context).profile),
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       PageTransition(
+                //         type: PageTransitionType.leftToRight,
+                //         child: const ProfilePage(),
+                //       ),
+                //     );
+                //   },
+                // )
               ],
             ),
           ),

@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+import 'favorites_provider.dart'; // Import your favorites provider
 
 class TutVid extends StatelessWidget {
   const TutVid({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final favoritesProvider = FavoritesProvider(); // Initialize favorites provider
 
     List<String> videoAssets = [
       'assets/videos/video1.mp4',
@@ -24,6 +23,9 @@ class TutVid extends StatelessWidget {
       'assets/videos/video6.mp4',
     ];
 
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
@@ -33,39 +35,60 @@ class TutVid extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.03),
+              SizedBox(height: MediaQuery.of(context).padding.top),
               SizedBox(
-                height: screenHeight * 0.78,
+                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
                 child: ListView.separated(
                   itemCount: videoAssets.length,
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(height: screenHeight * 0.03);
                   },
                   itemBuilder: (_, index) {
+                    final videoPath = videoAssets[index];
+                    final isFavorite = favoritesProvider.favoriteVideoPaths.contains(videoPath);
                     return Padding(
                       padding: EdgeInsets.only(left: screenWidth * 0.02),
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: screenWidth * 0.85,
-                            height: screenHeight * 0.32,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.black,
-                            ),
-                            child: VideoItem(videoAssetPath: videoAssets[index]),
-                          ),
-                          Positioned(
-                            top: 10,
-                            right: 10,
-                            child: IconButton(
-                              icon: const Icon(Icons.download),
-                              onPressed: () {
-                                _downloadVideo(context, videoAssets[index]);
-                              },
-                            ),
-                          ),
-                        ],
+                      child: StatefulBuilder(
+                        builder: (BuildContext context, StateSetter setState) {
+                          return Stack(
+                            children: [
+                              Container(
+                                width: screenWidth * 0.85,
+                                height: screenHeight * 0.32,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                  color: Colors.black,
+                                ),
+                                child: VideoItem(videoAssetPath: videoPath),
+                              ),
+                              Positioned(
+                                top: 10,
+                                right: 10,
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                      icon: Icon(
+                                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                                        color: isFavorite ? Colors.red : Colors.white,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          favoritesProvider.toggleVideoFavorite(videoPath);
+                                        });
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.download),
+                                      onPressed: () {
+                                        _downloadVideo(context, videoPath);
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     );
                   },
@@ -136,12 +159,15 @@ class _VideoItemState extends State<VideoItem> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(widget.videoAssetPath);
+    _controller = VideoPlayerController.asset(widget.videoAssetPath)
+      ..initialize().then((_) {
+        setState(() {});
+      });
     _chewieController = ChewieController(
       videoPlayerController: _controller,
-      autoPlay: false, // Do not start playing automatically
-      looping: true,
-      aspectRatio: 16 / 9,
+      autoPlay: false,
+      looping: false,
+      aspectRatio: _controller.value.aspectRatio,
       materialProgressColors: ChewieProgressColors(
         playedColor: Colors.red,
         handleColor: Colors.blue,
@@ -150,10 +176,11 @@ class _VideoItemState extends State<VideoItem> {
       ),
       allowPlaybackSpeedChanging: true,
       allowedScreenSleep: false,
-      deviceOrientationsAfterFullScreen: [DeviceOrientation.portraitUp],
-      placeholder: Container(
-        color: Colors.black,
-      ),
+      deviceOrientationsAfterFullScreen: [
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ],
     );
   }
 
@@ -177,26 +204,3 @@ class _VideoItemState extends State<VideoItem> {
     _controller.pause();
   }
 }
-
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await FlutterDownloader.initialize(
-//       debug: true // Optional: Set false to disable printing logs to console
-//   );
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const TutVid(),
-//     );
-//   }
-// }

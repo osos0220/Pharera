@@ -27,6 +27,11 @@ class _TutPicState extends State<TutPic> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    int startIndex = 8;
+    int itemCount = IsArab()
+        ? pharaohData.pharaooh.length - startIndex
+        : pharaohData.pharaoh.length - startIndex;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
@@ -40,20 +45,23 @@ class _TutPicState extends State<TutPic> {
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.only(top: screenHeight * 0.03),
                 scrollDirection: Axis.vertical,
-                itemCount: IsArab() ? pharaohData.pharaooh.length : pharaohData.pharaoh.length,
+                itemCount: itemCount,
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(height: screenHeight * 0.03);
                 },
                 itemBuilder: (_, index) {
-                  final ex = IsArab() ? pharaohData.pharaooh[index] : pharaohData.pharaoh[index];
-                  final isFavorite = favoritesProvider.favoriteIndexes.contains(index);
+                  int actualIndex = index + startIndex;
+                  final ex = IsArab()
+                      ? pharaohData.pharaooh[actualIndex]
+                      : pharaohData.pharaoh[actualIndex];
+                  final isFavorite = favoritesProvider.favoriteIndexes.contains(actualIndex);
                   return Padding(
                     padding: EdgeInsets.only(left: screenWidth * 0.04, right: screenWidth * 0.04),
                     child: Stack(
                       children: [
                         Container(
                           width: screenWidth * 0.95,
-                          height: screenHeight * 0.32,
+                          height: screenHeight * 0.37,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.black,
@@ -65,7 +73,7 @@ class _TutPicState extends State<TutPic> {
                                 MaterialPageRoute(
                                   builder: (context) => PharaohDetailPage(
                                     pharaohData: pharaohData,
-                                    index: index,
+                                    index: actualIndex,
                                   ),
                                 ),
                               );
@@ -88,7 +96,7 @@ class _TutPicState extends State<TutPic> {
                               color: isFavorite ? Colors.red : Colors.white,
                             ),
                             onPressed: () {
-                              favoritesProvider.toggleFavorite(index);
+                              favoritesProvider.toggleFavorite(actualIndex);
                               setState(() {}); // Force rebuild to update favorite status
                             },
                           ),
