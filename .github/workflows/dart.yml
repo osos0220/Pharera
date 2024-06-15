@@ -25,14 +25,19 @@ jobs:
       - name: Get packages
         run: flutter pub get
 
-      - name: Ensure iOS deployment target is 12
+      - name: Create or update Podfile
         run: |
-          if grep -q "platform :ios" Podfile; then
-            sed -i '' "s/platform :ios, '[^']*'/platform :ios, '12.0'/" Podfile
-          else
-            echo "platform :ios, '12.0'" >> Podfile
-          fi
-          cat Podfile
+          cat <<EOF > Podfile
+          platform :ios, '12.0'
+          use_frameworks!
+          target 'Runner' do
+            flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+            pod 'Firebase/Core', '10.25.0'
+            pod 'Firebase/Auth', '10.25.0'
+            pod 'Firebase/Firestore', '10.25.0'
+            pod 'Firebase/Storage', '10.25.0'
+          end
+          EOF
         working-directory: ios
 
       - name: Update CocoaPods dependencies
