@@ -25,55 +25,65 @@ jobs:
       - name: Get packages
         run: flutter pub get
 
-      - name: Create or update Podfile
+      - name: Ensure podhelper.rb exists
         run: |
-          cat <<EOF > Podfile
-          platform :ios, '12.0'
-          use_frameworks!
-          # add the required flutter pod helper
-          require File.expand_path(File.join(File.dirname(__FILE__), 'Flutter', 'podhelper.rb'))
-          target 'Runner' do
-            flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
-            pod 'Firebase/Core', '10.25.0'
-            pod 'Firebase/Auth', '10.25.0'
-            pod 'Firebase/Firestore', '10.25.0'
-            pod 'Firebase/Storage', '10.25.0'
+          mkdir -p ios/Flutter
+          cat <<EOF > ios/Flutter/podhelper.rb
+          # Define helper methods for Flutter iOS integration
+          require 'json'
+
+          def parse_KV_file(file, separator='=')
+            if !File.exist?(file)
+              return {};
+            end
+            File.open(file).read()
+              .split("\n")
+              .map{|line| line.strip}
+              .reject{|line| line.start_with?("#")}
+              .map{|line| line.split(separator)}
+              .reject{|kv| kv.length != 2}
+              .map{|kv| kv.map{|s| s.strip}}
+              .to_h
           end
-          EOF
-        working-directory: ios
 
-      - name: Update CocoaPods dependencies
-        run: pod install --repo-update
-        working-directory: ios
+          def flutter_root(f)
+            while !File.exist?("#{f}/.flutter")
+              parent = File.dirname(f)
+              if parent == f
+                raise "Unable to find Flutter root at #{f}"
+              end
+              f = parent
+            end
+            f
+          end
 
-      - name: Clear CocoaPods cache and clean install
-        run: |
-          rm -rf ~/Library/Caches/CocoaPods
-          pod cache clean --all
-          pod deintegrate
-          pod install
-        working-directory: ios
+          def flutter_ios_podfile_setup(iOSDir)
+            framework_dir = File.join(flutter_root(iOSDir), '.ios', 'Flutter')
+            app_framework_dir = File.join(framework_dir, 'engine', 'Flutter.framework')
+            unless File.exist?(app_framework_dir)
+              raise "#{app_framework_dir} must exist. Make sure \"flutter build ios\" is run."
+            end
 
-      - run: pod repo update
-        working-directory: ios
+            engine_dir = File.join(flutter_root(iOSDir), 'bin', 'cache', 'artifacts', 'engine')
+            unless File.exist?(engine_dir)
+              raise "#{engine_dir} must exist. Make sure \"flutter build ios\" is run."
+            end
 
-      - run: flutter build ios --release --no-codesign
+            ENV['FLUTTER_APPLICATION_PATH'] = iOSDir
+            ENV['FLUTTER_ROOT'] = flutter_root(iOSDir)
+            system('pod', 'deintegrate')
+            system('pod', 'install')
+          end
 
-      - run: mkdir Payload
-        working-directory: build/ios/iphoneos
+          def flutter_install_all_ios_pods(iOSDir)
+            framework_dir = File.join(flutter_root(iOSDir), '.ios', 'Flutter')
+            engine_dir = File.join(flutter_root(iOSDir), 'bin', 'cache', 'artifacts', 'engine')
+            if !File.exist?(File.join(framework_dir, 'engine', 'Flutter.framework'))
+              raise "Invalid flutter framework directory."
+            end
+            if !File.exist?(engine_dir)
+              raise "Invalid flutter engine directory."
+            end
 
-      - run: mv Runner.app/ Payload
-        working-directory: build/ios/iphoneos
-
-      - name: Zip output
-        run: zip -qq -r -9 FlutterIpaExport.ipa Payload
-        working-directory: build/ios/iphoneos
-
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/ios/iphoneos/FlutterIpaExport.ipa
-          tag: v1.0
-          overwrite: true
-          body: "This is first release"
+            pod 'Flutter', :path => File.join(framework_dir, 'engine')
+            pod 'FlutterPluginRegistrant', :path => 
