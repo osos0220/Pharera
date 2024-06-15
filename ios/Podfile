@@ -32,9 +32,9 @@ target 'Runner' do
   
   # Add any additional pods you want to include below this line.
   # Pods for Firebase services, for example:
-   pod 'Firebase/Core'
-   pod 'Firebase/Auth'
-   pod 'Firebase/Firestore'
+   pod 'FirebaseCore'
+   pod 'FirebaseAuth'
+   pod 'FirebaseFirestore'
   
   target 'RunnerTests' do
     inherit! :search_paths
