@@ -133,6 +133,7 @@ class _SearchResultsState extends State<SearchResults> {
               focusNode: searchFocusNode,
               onChanged: (value) {
                 _filterPharaohs(value);
+                _filterPharaoohs(value);
               },
               decoration: InputDecoration(
                 suffixIcon: const Icon(Icons.search),
