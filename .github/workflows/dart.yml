@@ -10,120 +10,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install CocoaPods
-        run: |
-          gem install cocoapods
-          pod setup
-        working-directory: ios
-
-      - name: Install Flutter dependencies
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           architecture: x64
 
-      - name: Get packages
-        run: flutter pub get
+      - run: flutter pub get
 
-      - name: Build Flutter project for iOS
-        run: flutter build ios --no-codesign
-
-      - name: Ensure podhelper.rb exists
-        run: |
-          mkdir -p ios/Flutter
-          cat <<EOF > ios/Flutter/podhelper.rb
-          # Define helper methods for Flutter iOS integration
-          require 'json'
-
-          def parse_KV_file(file, separator='=')
-            if !File.exist?(file)
-              return {};
-            end
-            File.open(file).read()
-              .split("\n")
-              .map{|line| line.strip}
-              .reject{|line| line.start_with?("#")}
-              .map{|line| line.split(separator)}
-              .reject{|kv| kv.length != 2}
-              .map{|kv| kv.map{|s| s.strip}}
-              .to_h
-          end
-
-          def flutter_root(f)
-            while !File.exist?("#{f}/.flutter")
-              parent = File.dirname(f)
-              if parent == f
-                raise "Unable to find Flutter root at #{f}"
-              end
-              f = parent
-            end
-            f
-          end
-
-          def flutter_ios_podfile_setup(iOSDir)
-            framework_dir = File.join(flutter_root(iOSDir), '.ios', 'Flutter')
-            app_framework_dir = File.join(framework_dir, 'engine', 'Flutter.framework')
-            unless File.exist?(app_framework_dir)
-              raise "#{app_framework_dir} must exist. Make sure \"flutter build ios\" is run."
-            end
-
-            engine_dir = File.join(flutter_root(iOSDir), 'bin', 'cache', 'artifacts', 'engine')
-            unless File.exist?(engine_dir)
-              raise "#{engine_dir} must exist. Make sure \"flutter build ios\" is run."
-            end
-
-            ENV['FLUTTER_APPLICATION_PATH'] = iOSDir
-            ENV['FLUTTER_ROOT'] = flutter_root(iOSDir)
-            system('pod', 'deintegrate')
-            system('pod', 'install')
-          end
-
-          def flutter_install_all_ios_pods(iOSDir)
-            framework_dir = File.join(flutter_root(iOSDir), '.ios', 'Flutter')
-            engine_dir = File.join(flutter_root(iOSDir), 'bin', 'cache', 'artifacts', 'engine')
-            if !File.exist?(File.join(framework_dir, 'engine', 'Flutter.framework'))
-              raise "Invalid flutter framework directory."
-            end
-            if !File.exist?(engine_dir)
-              raise "Invalid flutter engine directory."
-            end
-
-            pod 'Flutter', :path => File.join(framework_dir, 'engine')
-            pod 'FlutterPluginRegistrant', :path => File.join(iOSDir, '.flutter-plugins')
-          end
-          EOF
-
-      - name: Create or update Podfile
-        run: |
-          cat <<EOF > Podfile
-          platform :ios, '12.0'
-          use_frameworks!
-          # Add the required flutter pod helper
-          require File.expand_path(File.join(File.dirname(__FILE__), 'Flutter', 'podhelper.rb'))
-          target 'Runner' do
-            flutter_install_all_ios_pods(File.dirname(File.realpath(__FILE__)))
-            pod 'Firebase/Core', '10.25.0'
-            pod 'Firebase/Auth', '10.25.0'
-            pod 'Firebase/Firestore', '10.25.0'
-            pod 'Firebase/Storage', '10.25.0'
-          end
-          EOF
-        working-directory: ios
-
-      - name: Update CocoaPods dependencies
+      # Install CocoaPods dependencies
+      - name: Install CocoaPods
         run: pod install --repo-update
         working-directory: ios
 
-      - name: Clear CocoaPods cache and clean install
-        run: |
-          rm -rf ~/Library/Caches/CocoaPods
-          pod cache clean --all
-          pod deintegrate
-          pod install
-        working-directory: ios
+      # Verify GoogleService-Info.plist is present
+      - name: Check GoogleService-Info.plist
+        run: ls -l ios/Runner/GoogleService-Info.plist
 
-      - run: pod repo update
-        working-directory: ios
+      # Debugging step to print the Podfile
+      - name: Print Podfile
+        run: cat ios/Podfile
+
+      # Debugging step to print the Podfile.lock
+      - name: Print Podfile.lock
+        run: cat ios/Podfile.lock
 
       - run: flutter build ios --release --no-codesign
 
