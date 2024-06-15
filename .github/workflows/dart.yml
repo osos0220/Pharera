@@ -107,6 +107,9 @@ jobs:
           EOF
         working-directory: ios
 
+      - name: Build Flutter project for iOS
+        run: flutter build ios --no-codesign
+
       - name: Update CocoaPods dependencies
         run: pod install --repo-update
         working-directory: ios
