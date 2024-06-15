@@ -110,7 +110,7 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            IsArab() ?  pharaohData.pharaooh[index]['details']! :  pharaohData.pharaoh[index]['details']! ,
+                            IsArab() ?  pharaohData.pharaooh[index]['detailss']! :  pharaohData.pharaoh[index]['details']! ,
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

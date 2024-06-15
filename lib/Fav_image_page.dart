@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:Pharera/pharaoh_show.dart';
@@ -6,6 +7,8 @@ import 'package:Pharera/Check.dart';
 import 'favorites_provider.dart'; // Import your favorites provider
 
 class FavImagePage extends StatefulWidget {
+  const FavImagePage({super.key});
+
   @override
   _FavImagePageState createState() => _FavImagePageState();
 }
@@ -58,11 +61,11 @@ class _FavImagePageState extends State<FavImagePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorites Image'),
+       
       ),
       body: Center(
         child: _likedImages.isEmpty
-            ? const Text('No liked images found.')
+            ?  Text(S.of(context).NoLike)
             : GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

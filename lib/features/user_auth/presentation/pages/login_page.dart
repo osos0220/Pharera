@@ -5,6 +5,7 @@ import 'package:Pharera/features/user_auth/presentation/pages/forget_password_pa
 import 'package:Pharera/features/user_auth/presentation/pages/home_page.dart';
 import 'package:Pharera/features/user_auth/presentation/pages/sign_up_page.dart';
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/cache_helper.dart';
@@ -44,8 +45,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: const Text("Login", style: TextStyle(fontFamily: 'Vollkorn')),
-      ),
+        title: Text(S.of(context).login, style: const TextStyle(fontFamily: 'Vollkorn')),
+        leading: IconButton(icon:const Icon( Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        }),
+        ),
+      
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -63,10 +69,10 @@ class _LoginPageState extends State<LoginPage> {
               // SizedBox(
               //   height: 30,
               // ),
-              const Text(
-                "Email Address",
+               Text(
+               S.of(context).email ,
                 textAlign: TextAlign.start,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Vollkorn'),
@@ -82,10 +88,10 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 35,
               ),
-              const Text(
-                "Password",
+               Text(
+                S.of(context).password,
                 textAlign: TextAlign.start,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Vollkorn'),
@@ -95,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               FormContainerWidget(
                 controller: _passwordController,
-                hintText: "enter your password",
+                hintText: S.of(context).enterp,
                 // hintStyle: TextStyle(fontFamily: 'Volkorn')
                 isPasswordField: true,
               ),
@@ -119,9 +125,9 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         );
                       },
-                      child: const Text(
-                        'Forget Password',
-                        style: TextStyle(
+                      child:  Text(
+                       S.of(context).Forget,
+                        style: const TextStyle(
                             color: Color.fromARGB(255, 174, 158, 130),
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Vollkorn'),
@@ -154,9 +160,9 @@ class _LoginPageState extends State<LoginPage> {
                         ? const CircularProgressIndicator(
                             color: Colors.white,
                           )
-                        : const Text(
-                            "Login",
-                            style: TextStyle(
+                        :  Text(
+                            S.of(context).login,
+                            style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -172,9 +178,9 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Don't have an account?",
-                    style: TextStyle(fontFamily: 'vollkorn'),
+                   Text(
+                    S.of(context).donnothaveaccount,
+                    style: const TextStyle(fontFamily: 'vollkorn'),
                   ),
                   const SizedBox(
                     width: 5,
@@ -183,13 +189,13 @@ class _LoginPageState extends State<LoginPage> {
                     onTap: () {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                        MaterialPageRoute(builder: (context) => const SignUpPage()),
                         (route) => false,
                       );
                     },
-                    child: const Text(
-                      "Sign Up",
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).signup,
+                      style: const TextStyle(
                           color: Color.fromARGB(255, 174, 158, 130),
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Vollkorn'),
@@ -222,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
     if (user != null) {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
       showToast(
-        message: "User is successfully logged in",
+        message: S.of(context).done,
       );
       Navigator.push(
         context,
@@ -230,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
       );
     } else {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: "Invalid Email or Password");
+      showToast(message: S.of(context).invalid);
     }
   }
 }

@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:Pharera/Check.dart';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -36,62 +38,66 @@ class TutVid extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: MediaQuery.of(context).padding.top),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
-                child: ListView.separated(
-                  itemCount: videoAssets.length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: screenHeight * 0.03);
-                  },
-                  itemBuilder: (_, index) {
-                    final videoPath = videoAssets[index];
-                    final isFavorite = favoritesProvider.favoriteVideoPaths.contains(videoPath);
-                    return Padding(
-                      padding: EdgeInsets.only(left: screenWidth * 0.02),
-                      child: StatefulBuilder(
-                        builder: (BuildContext context, StateSetter setState) {
-                          return Stack(
-                            children: [
-                              Container(
-                                width: screenWidth * 0.85,
-                                height: screenHeight * 0.32,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                  color: Colors.black,
+              Padding(
+                padding: EdgeInsets.only(right: IsArab()? 30 : 0),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+                  child: ListView.separated(
+                    itemCount: videoAssets.length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(height: screenHeight * 0.03);
+                    },
+                    itemBuilder: (_, index) {
+                      final videoPath = videoAssets[index];
+                      final isFavorite = favoritesProvider.favoriteVideoPaths.contains(videoPath);
+                      return Padding(
+                        padding: EdgeInsets.only(left: screenWidth * 0.02),
+                        child: StatefulBuilder(
+                          builder: (BuildContext context, StateSetter setState) {
+                            return Stack(
+                              children: [
+                                Container(
+                                  width: screenWidth * 0.85,
+                                  height: screenHeight * 0.32,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.black
+                                   
+                                  ),
+                                  child: VideoItem(videoAssetPath: videoPath),
                                 ),
-                                child: VideoItem(videoAssetPath: videoPath),
-                              ),
-                              Positioned(
-                                top: 10,
-                                right: 10,
-                                child: Row(
-                                  children: [
-                                    IconButton(
-                                      icon: Icon(
-                                        isFavorite ? Icons.favorite : Icons.favorite_border,
-                                        color: isFavorite ? Colors.red : Colors.white,
+                                Positioned(
+                                  top: 10,
+                                  right: 300,
+                                  child: Row(
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                                          color: isFavorite ? Colors.red : Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            favoritesProvider.toggleVideoFavorite(videoPath);
+                                          });
+                                        },
                                       ),
-                                      onPressed: () {
-                                        setState(() {
-                                          favoritesProvider.toggleVideoFavorite(videoPath);
-                                        });
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.download),
-                                      onPressed: () {
-                                        _downloadVideo(context, videoPath);
-                                      },
-                                    ),
-                                  ],
+                                      IconButton(
+                                        icon: const Icon(Icons.download),
+                                        onPressed: () {
+                                          _downloadVideo(context, videoPath);
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                    );
-                  },
+                              ],
+                            );
+                          },
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
@@ -107,8 +113,8 @@ class TutVid extends StatelessWidget {
       if (Platform.isAndroid) {
         var permissionStatus = await Permission.storage.request();
         if (permissionStatus.isDenied) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Permission denied. Please enable storage permission."),
+          ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+            content: Text(S.of(context).Permision),
           ));
           return;
         }
@@ -119,7 +125,7 @@ class TutVid extends StatelessWidget {
           ? await getExternalStorageDirectory()
           : await getApplicationDocumentsDirectory();
       if (directory == null) {
-        throw Exception("Directory not found.");
+        throw Exception(S.of(context).Directory);
       }
 
       // Copy asset to a temporary location
@@ -135,9 +141,9 @@ class TutVid extends StatelessWidget {
 
       print('File downloaded to: $tempFilePath');
     } catch (e) {
-      print("Download error: $e");
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Download failed. Please try again."),
+      print(S.of(context).DownloadE);
+      ScaffoldMessenger.of(context).showSnackBar( SnackBar(
+        content: Text(S.of(context).DownloadF),
       ));
     }
   }
