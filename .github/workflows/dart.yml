@@ -10,6 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Write to Podfile
+        run: echo "platform :ios, '12.0'" > ios/Podfile
+        working-directory: ios
+
       - name: Install CocoaPods
         run: |
           gem install cocoapods
@@ -26,9 +30,7 @@ jobs:
         run: flutter pub get
 
       - name: Update CocoaPods dependencies
-        run: |
-          echo "platform :ios, '12.0'" > ios/Podfile
-          pod install
+        run: pod install
         working-directory: ios
 
       - run: pod repo update
