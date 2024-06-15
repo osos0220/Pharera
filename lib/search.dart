@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:Pharera/pharahos_list.dart';
 
-
 class SearchResults extends StatefulWidget {
   const SearchResults({Key? key}) : super(key: key);
 
@@ -13,6 +12,8 @@ class SearchResults extends StatefulWidget {
 class _SearchResultsState extends State<SearchResults> {
   final PharaohData pharaohData = PharaohData();
   List<Map<String, String>> displayedPharaohs = [];
+  List<Map<String, String>> displayedPharaoohs = [];
+
   TextEditingController searchController = TextEditingController();
   late FocusNode searchFocusNode;
   bool isSearchFocused = false;
@@ -24,6 +25,7 @@ class _SearchResultsState extends State<SearchResults> {
   void initState() {
     super.initState();
     displayedPharaohs = _getAllPharaohs();
+    displayedPharaoohs = _getAllPharaoohs();
     searchFocusNode = FocusNode();
     searchFocusNode.addListener(() {
       setState(() {
@@ -41,6 +43,9 @@ class _SearchResultsState extends State<SearchResults> {
 
   List<Map<String, String>> _getAllPharaohs() {
     return [...pharaohData.pharaoh,];
+  }
+  List<Map<String, String>> _getAllPharaoohs() {
+    return [...pharaohData.pharaooh,];
   }
 
   void _filterPharaohs(String query) {
@@ -68,6 +73,35 @@ class _SearchResultsState extends State<SearchResults> {
       } else {
         setState(() {
           displayedPharaohs = allPharaohs;
+        });
+      }
+    });
+  }
+  void _filterPharaoohs(String query) {
+    if (query == lastSearchQuery) return; // Avoid redundant filtering
+
+    lastSearchQuery = query;
+
+    if (_debounceTimer != null) {
+      _debounceTimer?.cancel();
+    }
+
+    _debounceTimer = Timer(_debounceDuration, () {
+      final allPharaoohs = _getAllPharaoohs();
+      if (query.isNotEmpty) {
+        final filteredPharaoohs = allPharaoohs.where((pharaooh) {
+          final nameLower = pharaooh['name']?.toLowerCase() ?? '';
+          final nameEnLower = pharaooh['namee']?.toLowerCase() ?? '';
+          final searchLower = query.toLowerCase();
+          return nameLower.contains(searchLower) ||
+              nameEnLower.contains(searchLower);
+        }).toList();
+        setState(() {
+          displayedPharaoohs = filteredPharaoohs;
+        });
+      } else {
+        setState(() {
+          displayedPharaoohs = allPharaoohs;
         });
       }
     });
@@ -118,19 +152,22 @@ class _SearchResultsState extends State<SearchResults> {
             SizedBox(height: screenHeight * 0.01),
             Expanded(
               child: ListView.builder(
-                itemCount: displayedPharaohs.length,
+                itemCount:isArabic ? displayedPharaohs.length:displayedPharaoohs.length,
                 itemBuilder: (context, index) {
                   final pharaoh = displayedPharaohs[index];
+                  final paharooh= displayedPharaoohs[index];
                   return GestureDetector(
                     onTap: () {
                       final name = pharaoh['name'];
                       final namee = pharaoh['namee'];
-                      final details = pharaoh['details'];
+                      final details =pharaoh['details'];
+                      final detailss =paharooh['detailss'];
                       final image = pharaoh['image'];
 
                       if (name != null &&
                           namee != null &&
                           details != null &&
+                          detailss != null &&
                           image != null) {
                         Navigator.push(
                           context,
@@ -139,7 +176,7 @@ class _SearchResultsState extends State<SearchResults> {
                               name: name,
                               nameEn: namee,
                               details: details,
-                              image: image,
+                              image: image, detailss: detailss,
                             ),
                           ),
                         );
@@ -174,12 +211,14 @@ class PharaohDetailPage extends StatelessWidget {
   final String name;
   final String nameEn;
   final String details;
+  final String detailss;
   final String image;
 
   const PharaohDetailPage({
     required this.name,
     required this.nameEn,
     required this.details,
+    required this.detailss,
     required this.image,
   });
 
@@ -206,7 +245,7 @@ class PharaohDetailPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8.0),
-              Text(details),
+              Text(isArabic?detailss:details),
             ],
           ),
         ),
