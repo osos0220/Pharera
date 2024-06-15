@@ -32,6 +32,7 @@ jobs:
           else
             echo "platform :ios, '12.0'" >> Podfile
           fi
+          cat Podfile
         working-directory: ios
 
       - name: Update CocoaPods dependencies
@@ -69,4 +70,3 @@ jobs:
           tag: v1.0
           overwrite: true
           body: "This is first release"
-
