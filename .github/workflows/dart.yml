@@ -25,13 +25,25 @@ jobs:
       - name: Get packages
         run: flutter pub get
 
-      - name: Update CocoaPods dependencies
-        run: pod install
-        working-directory: ios
-
       - name: Ensure iOS deployment target is 12
         run: |
-          sed -i '' "s/platform :ios, '[^']*'/platform :ios, '12.0'/" Podfile || echo "platform :ios, '12.0'" >> Podfile
+          if grep -q "platform :ios" Podfile; then
+            sed -i '' "s/platform :ios, '[^']*'/platform :ios, '12.0'/" Podfile
+          else
+            echo "platform :ios, '12.0'" >> Podfile
+          fi
+        working-directory: ios
+
+      - name: Update CocoaPods dependencies
+        run: pod install --repo-update
+        working-directory: ios
+
+      - name: Clear CocoaPods cache and clean install
+        run: |
+          rm -rf ~/Library/Caches/CocoaPods
+          pod cache clean --all
+          pod deintegrate
+          pod install
         working-directory: ios
 
       - run: pod repo update
@@ -57,3 +69,4 @@ jobs:
           tag: v1.0
           overwrite: true
           body: "This is first release"
+
