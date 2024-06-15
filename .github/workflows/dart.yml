@@ -30,6 +30,8 @@ jobs:
           cat <<EOF > Podfile
           platform :ios, '12.0'
           use_frameworks!
+          # add the required flutter pod helper
+          require File.expand_path(File.join(File.dirname(__FILE__), 'Flutter', 'podhelper.rb'))
           target 'Runner' do
             flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
             pod 'Firebase/Core', '10.25.0'
