@@ -10,10 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Write to Podfile
-        run: echo "platform :ios, '12.0'" > ios/Podfile
-        working-directory: ios
-
       - name: Install CocoaPods
         run: |
           gem install cocoapods
@@ -31,6 +27,11 @@ jobs:
 
       - name: Update CocoaPods dependencies
         run: pod install
+        working-directory: ios
+
+      - name: Ensure iOS deployment target is 12
+        run: |
+          sed -i '' "s/platform :ios, '[^']*'/platform :ios, '12.0'/" Podfile || echo "platform :ios, '12.0'" >> Podfile
         working-directory: ios
 
       - run: pod repo update
