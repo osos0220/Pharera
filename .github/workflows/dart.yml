@@ -22,9 +22,14 @@ jobs:
           if [ ! -f ios/Podfile ]; then
             echo "Creating Podfile"
             echo "platform :ios, '12.0'" > ios/Podfile
-          else
+            echo "" >> ios/Podfile
+            cat ios/Podfile >> ios/Podfile
+          fi
+          if ! grep -q "platform :ios, '12.0'" ios/Podfile; then
             echo "Updating Podfile"
-            sed -i '' "s/platform :ios, .*/platform :ios, '12.0'/g" ios/Podfile
+            sed -i '' '1i\
+            platform :ios, '\''12.0'\''
+            ' ios/Podfile
           fi
           cat ios/Podfile
 
