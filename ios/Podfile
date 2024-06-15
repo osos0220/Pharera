@@ -1,0 +1,14 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+
+target 'Runner' do
+  # Pods for Runner
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Firestore'
+  # Add more pods for other Firebase services as needed
+
+  # Example of a pod required by firebase_auth
+  pod 'GoogleSignIn'
+end

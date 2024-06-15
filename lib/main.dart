@@ -1,5 +1,5 @@
 
-
+import 'dart:io';
 import 'package:Pharera/Local.dart';
 import 'package:Pharera/cache_helper.dart';
 import 'package:Pharera/generated/l10n.dart';
@@ -23,7 +23,18 @@ Future main() async {
         // Your web Firebase config options
       ),
     );
-  } else {
+  }
+  else if (Platform.isIOS) {
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyBs97qnInrR-sg864j5br75F4S3TXwj2zI",
+        appId: "1:337345392254:ios:36b3d653d95d6a8cc2722f",
+        messagingSenderId: "337345392254",
+        projectId: "signup-login-93587",
+        // Your iOS Firebase config options
+      ),
+    );
+  }else {
     await Firebase.initializeApp();
   }
   await FlutterDownloader.initialize(

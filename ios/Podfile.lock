@@ -1,0 +1,26 @@
+PODS:
+  - Firebase/Auth (7.9.0):
+    - Firebase/CoreOnly (= 7.9.0)
+    - Firebase/Analytics
+  - Firebase/CoreOnly (7.9.0):
+    - FirebaseCore (= 7.9.0)
+  - Firebase/Analytics (7.9.0):
+    - FirebaseCore (~> 7.9)
+    - FirebaseAnalytics (~> 7.9)
+
+DEPENDENCIES:
+  - Firebase/Auth (~> 7.9)
+  - Firebase/CoreOnly (~> 7.9)
+  - Firebase/Analytics (~> 7.9)
+
+SPEC CHECKSUMS:
+  Firebase: ...
+  FirebaseAnalytics: ...
+  FirebaseCore: ...
+  FirebaseCoreDiagnostics: ...
+  FirebaseInstallations: ...
+  FirebaseUI: ...
+  GoogleUtilities: ...
+  GTMSessionFetcher: ...
+
+COCOAPODS: 1.11.2
