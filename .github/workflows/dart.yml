@@ -17,22 +17,23 @@ jobs:
 
       - run: flutter pub get
 
-      # Install CocoaPods dependencies
+      - name: Create or update Podfile for iOS 12.0
+        run: |
+          if [ ! -f ios/Podfile ]; then
+            echo "Creating Podfile"
+            echo "platform :ios, '12.0'" > ios/Podfile
+          else
+            echo "Updating Podfile"
+            sed -i '' 's/platform :ios, .*/platform :ios, \'12.0\'/g' ios/Podfile
+          fi
+          cat ios/Podfile
+
       - name: Install CocoaPods
         run: pod install --repo-update
         working-directory: ios
 
-      # Verify GoogleService-Info.plist is present
-      - name: Check GoogleService-Info.plist
+      - name: Verify GoogleService-Info.plist
         run: ls -l ios/Runner/GoogleService-Info.plist
-
-      # Debugging step to print the Podfile
-      - name: Print Podfile
-        run: cat ios/Podfile
-
-      # Debugging step to print the Podfile.lock
-      - name: Print Podfile.lock
-        run: cat ios/Podfile.lock
 
       - run: flutter build ios --release --no-codesign
 
