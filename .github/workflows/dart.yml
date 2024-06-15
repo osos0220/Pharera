@@ -25,6 +25,9 @@ jobs:
       - name: Get packages
         run: flutter pub get
 
+      - name: Build Flutter project for iOS
+        run: flutter build ios --no-codesign
+
       - name: Ensure podhelper.rb exists
         run: |
           mkdir -p ios/Flutter
@@ -106,9 +109,6 @@ jobs:
           end
           EOF
         working-directory: ios
-
-      - name: Build Flutter project for iOS
-        run: flutter build ios --no-codesign
 
       - name: Update CocoaPods dependencies
         run: pod install --repo-update
