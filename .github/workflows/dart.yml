@@ -10,11 +10,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: subosito/flutter-action@v2
+      - name: Install CocoaPods
+        run: |
+          gem install cocoapods
+          pod setup
+        working-directory: ios
+
+      - name: Install Flutter dependencies
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           architecture: x64
-      - run: flutter pub get
+
+      - name: Get packages
+        run: flutter pub get
+
+      - name: Update CocoaPods dependencies
+        run: pod install
+        working-directory: ios
+
       
 
       - run: pod repo update
