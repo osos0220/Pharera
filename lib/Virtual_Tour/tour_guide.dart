@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
@@ -726,7 +727,7 @@ class _TourGuideState extends State<TourGuide> {
             top: 10,
             left: 10,
             child: BackNForthButton(
-              text: "Back",
+              text: S.of(context).Back,
               icon: Icons.arrow_back,
               onPressed: _panoId > 0 ? () => _onPanoChanged(_panoId - 1) : null,
             ),
@@ -735,7 +736,7 @@ class _TourGuideState extends State<TourGuide> {
             top: 10,
             right: 10,
             child: BackNForthButton(
-              text: "Next",
+              text: S.of(context).Next,
               icon: Icons.arrow_forward,
               onPressed: _panoId < panoImages.length - 1
                   ? () => _onPanoChanged(_panoId + 1)

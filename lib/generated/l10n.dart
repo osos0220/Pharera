@@ -1029,6 +1029,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Successfully signed out`
+  String get Successfully {
+    return Intl.message(
+      'Successfully signed out',
+      name: 'Successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error signing out:`
+  String get ErrorS {
+    return Intl.message(
+      'Error signing out:',
+      name: 'ErrorS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to sign out`
+  String get Failedtosign {
+    return Intl.message(
+      'Failed to sign out',
+      name: 'Failedtosign',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No email available`
+  String get NoE {
+    return Intl.message(
+      'No email available',
+      name: 'NoE',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Details`
+  String get MyD {
+    return Intl.message(
+      'My Details',
+      name: 'MyD',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get SignOut {
+    return Intl.message(
+      'Log Out',
+      name: 'SignOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top Favorites`
+  String get Top {
+    return Intl.message(
+      'Top Favorites',
+      name: 'Top',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trending`
+  String get Trending {
+    return Intl.message(
+      'Trending',
+      name: 'Trending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get Category {
+    return Intl.message(
+      'Category',
+      name: 'Category',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No liked images found.`
+  String get NoLike {
+    return Intl.message(
+      'No liked images found.',
+      name: 'NoLike',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No liked video found.`
+  String get NoVIDEO {
+    return Intl.message(
+      'No liked video found.',
+      name: 'NoVIDEO',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error loading favorites.`
+  String get ErroR {
+    return Intl.message(
+      'Error loading favorites.',
+      name: 'ErroR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No favorite videos or images found.`
+  String get NoFAV {
+    return Intl.message(
+      'No favorite videos or images found.',
+      name: 'NoFAV',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get Next {
+    return Intl.message(
+      'Next',
+      name: 'Next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back`
+  String get Back {
+    return Intl.message(
+      'Back',
+      name: 'Back',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

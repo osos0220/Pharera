@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "ABOUT": MessageLookupByLibrary.simpleMessage("عنا"),
         "Akhenaten": MessageLookupByLibrary.simpleMessage("الملك أخناتون"),
+        "Back": MessageLookupByLibrary.simpleMessage("رجوع"),
+        "Category": MessageLookupByLibrary.simpleMessage("الفئة"),
         "Conform": MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "Directory": MessageLookupByLibrary.simpleMessage("الدليل غير موجود."),
         "DownloadE": MessageLookupByLibrary.simpleMessage("خطأ في التنزيل."),
@@ -33,17 +35,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "English": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
         "EnterEmail": MessageLookupByLibrary.simpleMessage(
             "أدخل بريدك الإلكتروني وسنرسل لك رابط إعادة تعيين كلمة المرور"),
+        "ErrorS": MessageLookupByLibrary.simpleMessage("خطأ في تسجيل الخروج:"),
         "Ex": MessageLookupByLibrary.simpleMessage("استكشاف المتحف"),
         "Exhibition": MessageLookupByLibrary.simpleMessage("صور المعرض"),
         "Exhibition1": MessageLookupByLibrary.simpleMessage("معرض"),
         "ExhibitionV": MessageLookupByLibrary.simpleMessage("فيديو المعرض"),
         "Explore": MessageLookupByLibrary.simpleMessage("استكشاف"),
         "Face": MessageLookupByLibrary.simpleMessage("فيسبوك"),
+        "Failedtosign":
+            MessageLookupByLibrary.simpleMessage("فشل في تسجيل الخروج"),
         "Forget": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور"),
         "GUID": MessageLookupByLibrary.simpleMessage("استكشاف مع مرشد سياحي"),
         "Hatshbsot": MessageLookupByLibrary.simpleMessage("الملك حتشبسوت"),
         "How": MessageLookupByLibrary.simpleMessage("كيف تقيم تطبيقنا؟"),
         "Logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "MyD": MessageLookupByLibrary.simpleMessage("تفاصيلي"),
+        "Next": MessageLookupByLibrary.simpleMessage("التالي"),
+        "NoE":
+            MessageLookupByLibrary.simpleMessage("لا يوجد بريد إلكتروني متاح"),
+        "NoLike": MessageLookupByLibrary.simpleMessage(
+            "لم يتم العثور على صور مفضلة."),
+        "NoVIDEO": MessageLookupByLibrary.simpleMessage(
+            "لم يتم العثور على فديو مفضلة."),
         "Our": MessageLookupByLibrary.simpleMessage(
             "حولنا تطبيقنا المحمول يوفر جولة افتراضية لأحد أقدم العصور الحضارات الفرعونية. ولكن هذا ليس كل شيء - نحن نذهب أبعد من ذلك بإحياء التاريخ من خلال التزامن الشفوي المدعوم بالذكاء الاصطناعي، حيث تحكي الشخصيات التاريخية داخل المتحف قصصها. نقدم للسياح تجربة فريدة وملهمة. جولتنا الافتراضية بزاوية 360 درجة تخلق شعورًا بالانغماس، مما يتيح للمستخدمين التعمق في تاريخ وحضارة مصر الغنية."),
         "Permision": MessageLookupByLibrary.simpleMessage(
@@ -54,12 +67,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إعادة تعيين كلمة المرور"),
         "Royal": MessageLookupByLibrary.simpleMessage("رحلة ملكية"),
         "Show": MessageLookupByLibrary.simpleMessage("عرض"),
+        "SignOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "Sonsrt1": MessageLookupByLibrary.simpleMessage("الملك سنوسرت الأول"),
         "Sonsrt2": MessageLookupByLibrary.simpleMessage("الملك سنوسرت الثاني"),
+        "Successfully":
+            MessageLookupByLibrary.simpleMessage("تم تسجيل الخروج بنجاح"),
         "Tahtmos": MessageLookupByLibrary.simpleMessage("الملك تحتمس"),
         "Ticket_dis": MessageLookupByLibrary.simpleMessage(
             "للحصول على خصم للحجز، احجز من كشكك"),
         "Tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
+        "Top": MessageLookupByLibrary.simpleMessage("أفضل المفضلات"),
+        "Trending": MessageLookupByLibrary.simpleMessage("الشائع"),
         "Welcome": MessageLookupByLibrary.simpleMessage("مرحبًا بكم"),
         "WelcomeGEM": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "adult": MessageLookupByLibrary.simpleMessage("بالغ"),
