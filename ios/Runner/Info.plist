@@ -55,5 +55,23 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+    <!-- Firebase Configuration -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <!-- Replace this value with the REVERSED_CLIENT_ID from your GoogleService-Info.plist -->
+                <string>com.googleusercontent.apps.337345392254-36b3d653d95d6a8cc2722f</string>
+            </array>
+        </dict>
+    </array>
+    <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+    <true/>
+    <key>FirebaseAppDelegateProxyEnabled</key>
+    <false/>
 </dict>
 </plist>
