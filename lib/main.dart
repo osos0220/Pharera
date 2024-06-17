@@ -5,7 +5,10 @@ import 'package:Pharera/cache_helper.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/welcome_page.dart';
 import 'package:flutter/material.dart';
+// import 'package:Pharera/welcome_page.dart';
+// import 'package:Pharera/panorama.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -31,7 +34,7 @@ Future main() async {
   //   await Firebase.initializeApp();
   // }
   await FlutterDownloader.initialize(
-      debug: false // Optional: Set false to disable printing logs to console
+      debug: true // Optional: Set false to disable printing logs to console
   );
   runApp(const MyApp());
 }
