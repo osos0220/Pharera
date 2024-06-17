@@ -1,11 +1,11 @@
-name: iOS-ipa-test01
+name: iOS-ipa-build
 
 on:
   workflow_dispatch:
 
 jobs:
   build-ios:
-    name: 🎉 iOS v0.9
+    name: 🎉 iOS Build
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,25 +14,11 @@ jobs:
         with:
           channel: 'stable'
           architecture: x64
-
       - run: flutter pub get
+      
 
-      # Install CocoaPods dependencies
-      - name: Install CocoaPods
-        run: pod install --repo-update
+      - run: pod repo update
         working-directory: ios
-
-      # Verify GoogleService-Info.plist is present
-      - name: Check GoogleService-Info.plist
-        run: ls -l ios/Runner/GoogleService-Info.plist
-
-      # Debugging step to print the Podfile
-      - name: Print Podfile
-        run: cat ios/Podfile
-
-      # Debugging step to print the Podfile.lock
-      - name: Print Podfile.lock
-        run: cat ios/Podfile.lock
 
       - run: flutter build ios --release --no-codesign
 
