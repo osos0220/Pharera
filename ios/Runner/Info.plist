@@ -72,6 +72,6 @@
     <key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
     <true/>
     <key>FirebaseAppDelegateProxyEnabled</key>
-    <false/>
+    <true/>
 </dict>
 </plist>
