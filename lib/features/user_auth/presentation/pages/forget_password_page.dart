@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
@@ -27,7 +28,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text('password reset link sent check email'),
+            content: Text(S.of(context).password_reset),
           );
         },
       );
@@ -48,7 +49,11 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 174, 158, 130),
+        leading: IconButton(icon:const Icon( Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        }),
+        backgroundColor: const Color.fromARGB(255, 174, 158, 130),
         elevation: 5.0,
       ),
       body: Column(
@@ -57,12 +62,12 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Text(
-              'Enter Your Email and we will send you a password reset link',
+              S.of(context).EnterEmail,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
@@ -73,13 +78,13 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               isPasswordField: false,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           MaterialButton(
             onPressed: PasswordReset,
-            child: Text('Reset Password'),
-            color: Color.fromARGB(255, 174, 158, 130),
+            color: const Color.fromARGB(255, 174, 158, 130),
+            child: Text(S.of(context).Reset),
           )
         ],
       ),

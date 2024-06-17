@@ -10,29 +10,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install CocoaPods
-        run: |
-          gem install cocoapods
-          pod setup
-        working-directory: ios
-
-      - name: Install Flutter dependencies
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           architecture: x64
 
-      - name: Get packages
-        run: flutter pub get
+      - run: flutter pub get
 
-      - name: Update CocoaPods dependencies
-        run: pod install
+      # Install CocoaPods dependencies
+      - name: Install CocoaPods
+        run: pod install --repo-update
         working-directory: ios
 
-      
+      # Verify GoogleService-Info.plist is present
+      - name: Check GoogleService-Info.plist
+        run: ls -l ios/Runner/GoogleService-Info.plist
 
-      - run: pod repo update
-        working-directory: ios
+      # Debugging step to print the Podfile
+      - name: Print Podfile
+        run: cat ios/Podfile
+
+      # Debugging step to print the Podfile.lock
+      - name: Print Podfile.lock
+        run: cat ios/Podfile.lock
 
       - run: flutter build ios --release --no-codesign
 

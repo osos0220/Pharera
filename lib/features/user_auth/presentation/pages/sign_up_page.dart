@@ -3,6 +3,7 @@
 //import 'package:auth/features/user_auth/presentation/pages/home_page.dart';
 import 'package:Pharera/features/user_auth/presentation/pages/login_page.dart';
 import 'package:Pharera/features/user_auth/presentation/widgets/form_container_widget.dart';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,9 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final FirebaseAuthService _auth = FirebaseAuthService();
 
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   bool isSigningUp = false;
 
@@ -38,10 +39,14 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(icon:const Icon( Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        }),
         automaticallyImplyLeading: false,
-        title: const Text(
-          "SignUp",
-          style: TextStyle(fontFamily: 'Vollkorn'),
+        title:  Text(
+          S.of(context).signup,
+          style: const TextStyle(fontFamily: 'Vollkorn'),
         ),
       ),
       body: SingleChildScrollView(
@@ -52,10 +57,10 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "User name",
+                Text(
+                  S.of(context).name,
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Vollkorn'),
@@ -72,10 +77,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Email Address",
+                 Text(
+                  S.of(context).email,
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Vollkorn'),
@@ -91,10 +96,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                  "Password",
+                 Text(
+                 S.of(context).password,
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Vollkorn'),
@@ -104,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 FormContainerWidget(
                   controller: _passwordController,
-                  hintText: "enter your password",
+                  hintText: S.of(context).enterp,
                   isPasswordField: true,
                 ),
                 const SizedBox(
@@ -126,9 +131,9 @@ class _SignUpPageState extends State<SignUpPage> {
                             ? const CircularProgressIndicator(
                           color: Colors.white,
                         )
-                            : const Text(
-                          "Sign Up",
-                          style: TextStyle(
+                            :  Text(
+                          S.of(context).signup,
+                          style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -142,9 +147,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Already have an account?",
-                      style: TextStyle(fontFamily: 'Vollkorn'),
+                     Text(
+                      S.of(context).haveaccount,
+                      style: const TextStyle(fontFamily: 'Vollkorn'),
                     ),
                     const SizedBox(
                       width: 5,
@@ -154,12 +159,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
+                                  builder: (context) => const LoginPage()),
                                   (route) => false);
                         },
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
+                        child:  Text(
+                          S.of(context).login,
+                          style: const TextStyle(
                               color: Color.fromARGB(255, 174, 158, 130),
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Vollkorn'),
@@ -197,7 +202,7 @@ class _SignUpPageState extends State<SignUpPage> {
         "uid": user.uid
       });
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: "User is successfully created");
+      showToast(message:S.of(context).donelogin);
       // Navigator.pushNamed(context as BuildContext, "/home");
       Navigator.push(
         context,
@@ -205,7 +210,7 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     } else {
       StrutStyle.fromTextStyle(const TextStyle(fontFamily: 'Vollkorn'));
-      showToast(message: "Some error happened");
+      showToast(message: S.of(context).donenot);
     }
   }
 }

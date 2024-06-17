@@ -1,3 +1,4 @@
+import 'package:Pharera/generated/l10n.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,8 @@ import 'favorites_provider.dart'; // Import your favorites provider
 import 'video_item.dart'; // Separate file for VideoItem widget
 
 class FavVideoPage extends StatefulWidget {
+  const FavVideoPage({super.key});
+
   @override
   _FavVideoPageState createState() => _FavVideoPageState();
 }
@@ -17,7 +20,7 @@ class _FavVideoPageState extends State<FavVideoPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Videos'),
+        
       ),
       body: FutureBuilder(
         future: favoritesProvider.loadFavorites(),
@@ -25,7 +28,7 @@ class _FavVideoPageState extends State<FavVideoPage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (favoritesProvider.favoriteVideoPaths.isEmpty) {
-            return const Center(child: Text('No favorite videos found.'));
+            return  Center(child: Text(S.of(context).NoVIDEO));
           } else {
             return GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -93,7 +96,7 @@ class VideoItem extends StatefulWidget {
   final bool showPlayButton;
   final bool showReplayButton;
 
-  const VideoItem({
+  const VideoItem({super.key, 
     required this.videoAssetPath,
     this.showPlayButton = true,
     this.showReplayButton = false,
@@ -145,7 +148,7 @@ class _VideoItemState extends State<VideoItem> {
         if (widget.showPlayButton)
           Center(
             child: IconButton(
-              icon: Icon(Icons.play_arrow),
+              icon: const Icon(Icons.play_arrow),
               onPressed: () {
                 _chewieController.play();
               },
@@ -155,7 +158,7 @@ class _VideoItemState extends State<VideoItem> {
           Align(
             alignment: Alignment.bottomRight,
             child: IconButton(
-              icon: Icon(Icons.replay),
+              icon: const Icon(Icons.replay),
               onPressed: () {
                 _chewieController.seekTo(Duration.zero);
               },

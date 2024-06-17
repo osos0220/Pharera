@@ -15,7 +15,7 @@ class FavPharaohPage extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          title: const Text('Favorites Pharaoh'),
+         
           backgroundColor: Colors.white,
         ),
         body: const ContainerGrid(),

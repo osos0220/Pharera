@@ -65,18 +65,21 @@
 //     );
 //   }
 // }
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'fav_prov_temp.dart';
 import 'video_item.dart'; // Separate file for VideoItem widget
 
 class TopFavoritesPage extends StatelessWidget {
+  const TopFavoritesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final favoritesProvider = FavoritesProvider();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Top Favorites'),
+        
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: favoritesProvider.fetchTopFavorites(),
@@ -84,9 +87,9 @@ class TopFavoritesPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return const Center(child: Text('Error loading favorites.'));
+            return  Center(child: Text(S.of(context).ErroR));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No favorite videos or images found.'));
+            return  Center(child: Text(S.of(context).NoFAV));
           } else {
             final favorites = snapshot.data!;
             final images = favorites.where((element) => element['type'] == 'image').toList();

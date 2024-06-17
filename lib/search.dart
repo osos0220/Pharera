@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:Pharera/pharahos_list.dart';
 
 class SearchResults extends StatefulWidget {
-  const SearchResults({Key? key}) : super(key: key);
+  const SearchResults({super.key});
 
   @override
   State<SearchResults> createState() => _SearchResultsState();
@@ -153,37 +153,91 @@ class _SearchResultsState extends State<SearchResults> {
             SizedBox(height: screenHeight * 0.01),
             Expanded(
               child: ListView.builder(
-                itemCount:isArabic ? displayedPharaohs.length:displayedPharaoohs.length,
-                itemBuilder: (context, index) {
-                  final pharaoh = displayedPharaohs[index];
-                  final paharooh= displayedPharaoohs[index];
-                  return GestureDetector(
-                    onTap: () {
-                      final name = pharaoh['name'];
-                      final namee = pharaoh['namee'];
-                      final details =pharaoh['details'];
-                      final detailss =paharooh['detailss'];
-                      final image = pharaoh['image'];
+  itemCount: isArabic ? displayedPharaohs.length : displayedPharaoohs.length,
+  itemBuilder: (context, index) {
+    if ((isArabic && index >= displayedPharaohs.length) || 
+        (!isArabic && index >= displayedPharaoohs.length)) {
+      return Container(); // إرجاع عنصر فارغ إذا كان الفهرس خارج النطاق
+    }
 
-                      if (name != null &&
-                          namee != null &&
-                          details != null &&
-                          detailss != null &&
-                          image != null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PharaohDetailPage(
-                              name: name,
-                              nameEn: namee,
-                              details: details,
-                              image: image, detailss: detailss,
-                            ),
-                          ),
-                        );
-                      }
-                    },
-                    child: ListTile(
+    final pharaoh =  displayedPharaohs[index];
+    final paharooh = displayedPharaoohs[index];
+    return GestureDetector(
+      onTap: () {
+        final name = pharaoh['name'];
+        final namee = pharaoh['namee'];
+        final details = pharaoh['details'];
+        final detailss = paharooh['detailss'];
+        final image = pharaoh['image'];
+
+        if (name != null &&
+            namee != null &&
+            details != null &&
+            detailss != null &&
+            image != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PharaohDetailPage(
+                name: name,
+                nameEn: namee,
+                details: details,
+                image: image,
+                detailss: detailss,
+              ),
+            ),
+          );
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Container(
+          width:500,
+          height: 100,
+          
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.asset(
+                  pharaoh['image']!,
+                  fit: BoxFit.fill,
+                  width: 500,
+                ),
+              ),
+              Container(
+                width: 500,
+               decoration: BoxDecoration( color: Colors.black.withOpacity(0.1) , borderRadius: BorderRadius.circular(30)),
+              ),
+              Center(
+                child: Text(
+                  isArabic ? pharaoh['namee']! : pharaoh['name']!,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  },
+),
+
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+ /*ListTile(
                       leading: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.asset(
@@ -196,17 +250,7 @@ class _SearchResultsState extends State<SearchResults> {
                       title: Text(
                         isArabic ? pharaoh['namee']! : pharaoh['name']!,
                       ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
+                    ),*/
 
 class PharaohDetailPage extends StatelessWidget {
   final String name;
@@ -215,7 +259,7 @@ class PharaohDetailPage extends StatelessWidget {
   final String detailss;
   final String image;
 
-  const PharaohDetailPage({
+  const PharaohDetailPage({super.key, 
     required this.name,
     required this.nameEn,
     required this.details,
@@ -227,6 +271,114 @@ class PharaohDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isArabic = Localizations.localeOf(context).languageCode == 'ar';
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 226, 226, 226),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+              child: Center(
+                child: Container(
+                  width: 300,
+                  height: 370,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.5),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          image,
+                          width: 300, // تحديد عرض الصورة
+                          height: 430, // تحديد ارتفاع الصورة
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: SizedBox(
+                width: 400,
+                height: 430,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: Colors.black,
+                      width: 2,
+                    ),
+                  ),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                             isArabic ? nameEn : name,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.black,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
+                            textAlign: TextAlign.start,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                           isArabic?detailss:details,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.justify,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+ 
+/* Scaffold(
       appBar: AppBar(
         title: Text(isArabic ? nameEn : name),
       ),
@@ -251,6 +403,4 @@ class PharaohDetailPage extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
+    );*/

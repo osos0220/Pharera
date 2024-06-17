@@ -1,4 +1,5 @@
 import 'package:Pharera/Fav_pharaoh_page.dart';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,7 +10,7 @@ import 'Fav_video_page.dart';
 import 'package:Pharera/fav_top.dart'; // Import the TopFavoritesPage
 
 class favpage extends StatefulWidget {
-  const favpage({Key? key}) : super(key: key);
+  const favpage({super.key});
 
   @override
   State<favpage> createState() => _favpageState();
@@ -86,8 +87,8 @@ class _favpageState extends State<favpage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const AppTextWidget(
-                  title: 'Top Favorites', // Replace with your localization string
+                 AppTextWidget(
+                  title:  S.of(context).top, // Replace with your localization string
                   fontSize: 32,
                 ),
                 const SizedBox(height: 16),
@@ -117,10 +118,10 @@ class _favpageState extends State<favpage> {
                               borderRadius: BorderRadius.circular(16),
                             ),
                           ),
-                          child: const Center(
+                          child:  Center(
                             child: Text(
-                              'Trending',
-                              style: TextStyle(
+                               S.of(context).Trending,
+                              style: const TextStyle(
                                 fontSize: 24,
                                 color: Colors.white, // White text
                               ),
@@ -132,8 +133,8 @@ class _favpageState extends State<favpage> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.009),
-                const AppTextWidget(
-                  title: 'Category', // Replace with your localization string
+              AppTextWidget(
+                  title:  S.of(context).category, // Replace with your localization string
                   fontSize: 32,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.008),
@@ -165,10 +166,10 @@ class _favpageState extends State<favpage> {
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
-                                  'Photos',
-                                  style: TextStyle(
+                                   S.of(context).image,
+                                  style: const TextStyle(
                                     fontSize: 24,
                                     color: Colors.white, // White text
                                   ),
@@ -247,10 +248,10 @@ class _favpageState extends State<favpage> {
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                               ),
-                              child: const Center(
+                              child:  Center(
                                 child: Text(
-                                  'Videos',
-                                  style: TextStyle(
+                                  S.of(context).video,
+                                  style: const TextStyle(
                                     fontSize: 24,
                                     color: Colors.white, // White text
                                   ),

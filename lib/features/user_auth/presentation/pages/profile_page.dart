@@ -1,4 +1,5 @@
 import 'package:Pharera/features/user_auth/presentation/widgets/text_box.dart';
+import 'package:Pharera/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +12,7 @@ import 'login_page.dart';
 
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -34,10 +35,10 @@ class _ProfilePageState extends State<ProfilePage> {
         MaterialPageRoute(builder: (context) => const LoginPage()),
             (route) => false,
       );
-      showToast(message: "Successfully signed out");
+      showToast(message: S.of(context).Successfully);
     } catch (e) {
-      print("Error signing out: $e");
-      showToast(message: "Failed to sign out");
+      print(S.of(context).ErrorS);
+      showToast(message: S.of(context).Failedtosign);
     }
   }
 
@@ -53,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        
         backgroundColor: const Color.fromARGB(255, 174, 158, 130),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
@@ -82,18 +83,18 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        currentUser?.email ?? 'No email available',
+                        currentUser?.email ?? S.of(context).NoE,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Color.fromARGB(255, 174, 158, 130),
                         ),
                       ),
                       const SizedBox(height: 50),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 240.0),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 240.0),
                         child: Text(
-                          'My Details',
-                          style: TextStyle(
+                          S.of(context).MyD,
+                          style: const TextStyle(
                               color: Color.fromARGB(255, 174, 158, 130)),
                         ),
                       ),
@@ -134,9 +135,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   const SizedBox(width: 8),
                   TextButton(
                     onPressed: () => signOut(context),
-                    child: const Text(
-                      'Sign Out',
-                      style: TextStyle(
+                    child:  Text(
+                      S.of(context).SignOut,
+                      style: const TextStyle(
                         color: Color.fromARGB(255, 174, 158, 130),
                       ),
                     ),
