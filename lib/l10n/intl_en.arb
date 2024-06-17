@@ -111,7 +111,8 @@
      "ErroR" : "Error loading favorites.",
      "NoFAV":"No favorite videos or images found.",
      "Next" : "Next",
-     "Back" : "Back"
+     "Back" : "Back",
+     "locale" : "en"
 
    
 }

@@ -126,6 +126,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invalid Email or Password"),
         "language": MessageLookupByLibrary.simpleMessage("Languages"),
         "lets": MessageLookupByLibrary.simpleMessage("Lets get started.."),
+        "locale": MessageLookupByLibrary.simpleMessage("en"),
         "login": MessageLookupByLibrary.simpleMessage("Log IN"),
         "name": MessageLookupByLibrary.simpleMessage("USER NAME"),
         "not": MessageLookupByLibrary.simpleMessage("Notification"),

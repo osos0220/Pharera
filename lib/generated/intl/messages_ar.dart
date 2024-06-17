@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "بريد إلكتروني أو كلمة مرور غير صالحة"),
         "language": MessageLookupByLibrary.simpleMessage("اللغات"),
         "lets": MessageLookupByLibrary.simpleMessage("لنبدأ.."),
+        "locale": MessageLookupByLibrary.simpleMessage("عربي"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "name": MessageLookupByLibrary.simpleMessage("الاسم الكامل"),
         "not": MessageLookupByLibrary.simpleMessage("الإشعارات"),

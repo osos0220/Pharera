@@ -728,7 +728,7 @@ class _TourGuideState extends State<TourGuide> {
             left: 10,
             child: BackNForthButton(
               text: S.of(context).Back,
-              icon: Icons.arrow_back,
+              
               onPressed: _panoId > 0 ? () => _onPanoChanged(_panoId - 1) : null,
             ),
           ),
@@ -737,7 +737,7 @@ class _TourGuideState extends State<TourGuide> {
             right: 10,
             child: BackNForthButton(
               text: S.of(context).Next,
-              icon: Icons.arrow_forward,
+              
               onPressed: _panoId < panoImages.length - 1
                   ? () => _onPanoChanged(_panoId + 1)
                   : null,
@@ -809,13 +809,12 @@ class _TourGuideState extends State<TourGuide> {
 }
 Widget BackNForthButton({
   required String text,
-  required IconData icon,
+  
   required VoidCallback? onPressed,
 })
   {
     return ElevatedButton.icon(
       onPressed: onPressed,
-      icon: Icon(icon,color: Colors.orange.shade300,),
       label: Text(text,style: const TextStyle(color: Colors.white)),
       style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent)
     );
