@@ -96,19 +96,6 @@
     "invalid" : "Invalid Email or Password",
     "password_reset":"password reset link sent check email",
     "EnterEmail" : "Enter Your Email and we will send you a password reset link",
-    "Reset" : "Reset Password",
-    "Successfully":"Successfully signed out",
-    "ErrorS":"Error signing out:",
-    "Failedtosign": "Failed to sign out",
-    "NoE" : "No email available",
-    "MyD" : "My Details",
-    "SignOut" : "Log Out",
-    "Top" : "Top Favorites" ,
-    "Trending" : "Trending",
-    "Category" : "Category" ,
-    "NoLike":"No liked images found.",
-     "NoVIDEO":"No liked video found.",
-     "ErroR" : "Error loading favorites.",
-     "NoFAV":"No favorite videos or images found."
+    "Reset" : "Reset Password"
    
 }

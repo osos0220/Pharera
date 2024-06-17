@@ -24,7 +24,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "ABOUT": MessageLookupByLibrary.simpleMessage("ABOUT US"),
         "Akhenaten": MessageLookupByLibrary.simpleMessage("King Akhenaten"),
-        "Category": MessageLookupByLibrary.simpleMessage("Category"),
         "Conform": MessageLookupByLibrary.simpleMessage("Conform Password"),
         "Directory":
             MessageLookupByLibrary.simpleMessage("Directory not found."),
@@ -35,9 +34,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "English": MessageLookupByLibrary.simpleMessage("ENGLISH"),
         "EnterEmail": MessageLookupByLibrary.simpleMessage(
             "Enter Your Email and we will send you a password reset link"),
-        "ErroR":
-            MessageLookupByLibrary.simpleMessage("Error loading favorites."),
-        "ErrorS": MessageLookupByLibrary.simpleMessage("Error signing out:"),
         "Ex": MessageLookupByLibrary.simpleMessage("Explore The Musuem"),
         "Exhibition":
             MessageLookupByLibrary.simpleMessage("Exhibition Pictures"),
@@ -45,8 +41,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "ExhibitionV": MessageLookupByLibrary.simpleMessage("Exhibition Video"),
         "Explore": MessageLookupByLibrary.simpleMessage("Explore"),
         "Face": MessageLookupByLibrary.simpleMessage("FaceBook"),
-        "Failedtosign":
-            MessageLookupByLibrary.simpleMessage("Failed to sign out"),
         "Forget": MessageLookupByLibrary.simpleMessage("Forget Password"),
         "GUID": MessageLookupByLibrary.simpleMessage("Explore with Tour Guide"),
         "Hatshbsot": MessageLookupByLibrary.simpleMessage("King Hatshbsot"),
@@ -57,14 +51,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "L_e_se": MessageLookupByLibrary.simpleMessage("200 L.E"),
         "L_e_y": MessageLookupByLibrary.simpleMessage("300 L.E"),
         "Logout": MessageLookupByLibrary.simpleMessage("Log Out"),
-        "MyD": MessageLookupByLibrary.simpleMessage("My Details"),
-        "NoE": MessageLookupByLibrary.simpleMessage("No email available"),
-        "NoFAV": MessageLookupByLibrary.simpleMessage(
-            "No favorite videos or images found."),
-        "NoLike":
-            MessageLookupByLibrary.simpleMessage("No liked images found."),
-        "NoVIDEO":
-            MessageLookupByLibrary.simpleMessage("No liked video found."),
         "Our": MessageLookupByLibrary.simpleMessage(
             "ABOUT US Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That\'s not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt\'rich history and civilization."),
         "Permision": MessageLookupByLibrary.simpleMessage(
@@ -74,17 +60,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Reset": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "Royal": MessageLookupByLibrary.simpleMessage("ROYAL JOURNEY"),
         "Show": MessageLookupByLibrary.simpleMessage("Show"),
-        "SignOut": MessageLookupByLibrary.simpleMessage("Log Out"),
         "Sonsrt1": MessageLookupByLibrary.simpleMessage("King Sonsrt 1"),
         "Sonsrt2": MessageLookupByLibrary.simpleMessage("King Sonsrt 2"),
-        "Successfully":
-            MessageLookupByLibrary.simpleMessage("Successfully signed out"),
         "Tahtmos": MessageLookupByLibrary.simpleMessage("King Tahtmos"),
         "Ticket_dis": MessageLookupByLibrary.simpleMessage(
             "For Getting Discount For The Res-ervation, book From Your Booth"),
         "Tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
-        "Top": MessageLookupByLibrary.simpleMessage("Top Favorites"),
-        "Trending": MessageLookupByLibrary.simpleMessage("Trending"),
         "Welcome": MessageLookupByLibrary.simpleMessage("Welcome To The GEM"),
         "WelcomeGEM":
             MessageLookupByLibrary.simpleMessage("Welcome To The GEM"),
