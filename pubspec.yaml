@@ -99,7 +99,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-    - assets/images/thumbnails/
+#    - assets/images/thumbnails/
     - assets/images/360_images/
     - assets/images/tour_guide/
     - assets/images/artifacts/
