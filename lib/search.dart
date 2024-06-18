@@ -155,7 +155,7 @@ class _SearchResultsState extends State<SearchResults> {
               child: ListView.builder(
   itemCount: isArabic ? displayedPharaohs.length : displayedPharaoohs.length,
   itemBuilder: (context, index) {
-    if ((isArabic && index >= displayedPharaohs.length) || 
+    if ((isArabic && index >= displayedPharaohs.length) ||
         (!isArabic && index >= displayedPharaoohs.length)) {
       return Container(); // إرجاع عنصر فارغ إذا كان الفهرس خارج النطاق
     }
@@ -194,7 +194,7 @@ class _SearchResultsState extends State<SearchResults> {
         child: Container(
           width:500,
           height: 100,
-          
+
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
           ),
@@ -259,7 +259,7 @@ class PharaohDetailPage extends StatelessWidget {
   final String detailss;
   final String image;
 
-  const PharaohDetailPage({super.key, 
+  const PharaohDetailPage({super.key,
     required this.name,
     required this.nameEn,
     required this.details,
@@ -377,7 +377,7 @@ class PharaohDetailPage extends StatelessWidget {
     );
   }
 }
- 
+
 /* Scaffold(
       appBar: AppBar(
         title: Text(isArabic ? nameEn : name),

@@ -56,7 +56,7 @@ class Loacalstring extends Translations{
     "profile" : "Profile" , 
     "contact" : "Contact Us",
     "home" : "Home",
-    "ABOUT" : "ABOUT US",
+    "ABOUT" : "About US",
     "thanks":"Thanks",
     "ok" : "Ok",
     "Forget":"Forget Password",

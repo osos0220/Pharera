@@ -1,10 +1,11 @@
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:video_player/video_player.dart';
 import 'package:Pharera/Virtual_Tour/constants.dart';
 import 'package:Pharera/Virtual_Tour/libsync_v2.dart';
 // import 'package:image_picker/image_picker.dart';
+import '../Check.dart';
 import 'tour_sub.dart';
 
 // import 'dart:math';
@@ -22,7 +23,7 @@ class _TourGuideState extends State<TourGuide> {
   late VideoPlayerController _videoController;
   List<Subtitle> subtitles = [];
   String currentSubtitle = '';
-  String selectedLanguage = 'en'; // Default language
+  String selectedLanguage = IsArab()?'ar': 'en'; // Default language
 
   int _panoId = 0;
 
@@ -726,8 +727,8 @@ class _TourGuideState extends State<TourGuide> {
             top: 10,
             left: 10,
             child: BackNForthButton(
-              text: "Back",
-              icon: Icons.arrow_back,
+              text: selectedLanguage == 'ar' ? 'السابق' : 'Back',
+              icon: selectedLanguage == 'ar' ? Icons.arrow_forward : Icons.arrow_back,
               onPressed: _panoId > 0 ? () => _onPanoChanged(_panoId - 1) : null,
             ),
           ),
@@ -735,11 +736,9 @@ class _TourGuideState extends State<TourGuide> {
             top: 10,
             right: 10,
             child: BackNForthButton(
-              text: "Next",
-              icon: Icons.arrow_forward,
-              onPressed: _panoId < panoImages.length - 1
-                  ? () => _onPanoChanged(_panoId + 1)
-                  : null,
+              text: selectedLanguage == 'ar' ? 'التالى' : 'Next',
+              icon: selectedLanguage == 'ar' ? Icons.arrow_back : Icons.arrow_forward,
+              onPressed: _panoId < panoImages.length - 1 ? () => _onPanoChanged(_panoId + 1) : null,
             ),
           ),
           Positioned(
@@ -774,9 +773,7 @@ class _TourGuideState extends State<TourGuide> {
               ),
               width: 170,
               child: Directionality(
-                textDirection: selectedLanguage == 'ar'
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
+                textDirection: selectedLanguage == 'ar' ? TextDirection.rtl : TextDirection.ltr,
                 child: Text(
                   currentSubtitle,
                   style: const TextStyle(
@@ -792,13 +789,13 @@ class _TourGuideState extends State<TourGuide> {
             right: 10,
             child: _videoController.value.isInitialized
                 ? SizedBox(
-                    width: 120,
-                    height: 120 / _videoController.value.aspectRatio,
-                    child: AspectRatio(
-                      aspectRatio: _videoController.value.aspectRatio,
-                      child: VideoPlayer(_videoController),
-                    ),
-                  )
+              width: 120,
+              height: 120 / _videoController.value.aspectRatio,
+              child: AspectRatio(
+                aspectRatio: _videoController.value.aspectRatio,
+                child: VideoPlayer(_videoController),
+              ),
+            )
                 : Container(),
           ),
         ],

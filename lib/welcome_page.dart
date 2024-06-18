@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:Pharera/navigation_bar.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
+import 'package:get/get.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -79,6 +80,8 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isArabic = Get.locale?.languageCode == 'ar';
+
     return Scaffold(
       body: Stack(
         children: [
@@ -115,35 +118,76 @@ class _WelcomePageState extends State<WelcomePage> {
                       ]),
                     ),
                   ),
-                  SwipeableButtonView(
-                   
-                    buttonWidget: Icon(Icons.double_arrow_sharp, color: _isFinished ? Colors.grey : Colors.black),
-                    activeColor: Colors.transparent, // Set to transparent
-                    isFinished: _isFinished,
-                    onWaitingProcess: () {
-                      Future.delayed(const Duration(seconds: 2), () {
-                        setState(() {
-                          _isFinished = true;
-                        });
-                      });
-                    },
-                    onFinish: () async {
-                      _stopTimer(); // Stop the timer when user clicks on the button
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: const MyHomePage(),
+                  if (isArabic)
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: SwipeableButtonView(
+                        buttonWidget: Icon(
+                          Icons.double_arrow_sharp,
+                          color: _isFinished ? Colors.grey : Colors.black,
                         ),
-                      );
+                        activeColor: Colors.transparent,
+                        isFinished: _isFinished,
+                        onWaitingProcess: () {
+                          Future.delayed(const Duration(seconds: 2), () {
+                            setState(() {
+                              _isFinished = true;
+                            });
+                          });
+                        },
+                        onFinish: () async {
+                          _stopTimer();
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: const MyHomePage(),
+                            ),
+                          );
 
-                      // Reset the state
-                      setState(() {
-                        _isFinished = false;
-                        _startTimer(); // Start the timer again after finishing navigation
-                      });
-                    }, buttonText: S.of(context).lets,
-                  ),
+                          setState(() {
+                            _isFinished = false;
+                            _startTimer();
+                          });
+                        },
+                        buttonText: S.of(context).lets,
+                      ),
+                    )
+                  else
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: SwipeableButtonView(
+                        buttonWidget: Icon(
+                          Icons.double_arrow_sharp,
+                          color: _isFinished ? Colors.grey : Colors.black,
+                        ),
+                        activeColor: Colors.transparent,
+                        isFinished: _isFinished,
+                        onWaitingProcess: () {
+                          Future.delayed(const Duration(seconds: 2), () {
+                            setState(() {
+                              _isFinished = true;
+                            });
+                          });
+                        },
+                        onFinish: () async {
+                          _stopTimer();
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: const MyHomePage(),
+                            ),
+                          );
+
+                          setState(() {
+                            _isFinished = false;
+                            _startTimer();
+                          });
+                        },
+                        buttonText: S.of(context).lets,
+                      ),
+                    ),
                 ],
               ),
             ),

@@ -3,11 +3,10 @@ import 'package:Pharera/generated/l10n.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:page_transition/page_transition.dart';
-
+// import 'package:page_transition/page_transition.dart';
 import '../../../../global/common/toast.dart';
 import '../../../../navigation_bar.dart';
-import '../widgets/drawer_widget.dart';
+// import '../widgets/drawer_widget.dart';
 import 'login_page.dart';
 
 
