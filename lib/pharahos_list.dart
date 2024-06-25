@@ -1,5 +1,5 @@
 class PharaohData {
-  List<Map<String, String>> pharaooh = [
+  List<Map<String, String>> pharaoh_ar = [
 
     {
       "image": "assets/images/amnthotb el talt (1).jpg", "name": "امنحتب الثالث",
@@ -218,22 +218,22 @@ class PharaohData {
 
 
   String getImage(int index) {
-    return pharaooh[index]['image']!;
+    return pharaoh_ar[index]['image']!;
   }
 
   String getName(int index) {
-    return pharaooh[index]['name']!;
+    return pharaoh_ar[index]['name']!;
   }
   String getDetails(int index) {
-    return pharaooh[index]['details']!;
+    return pharaoh_ar[index]['details']!;
   }
   String getExplore(int index) {
-    return pharaooh[index]['explore']!;
+    return pharaoh_ar[index]['explore']!;
   }
   String getNamee(int index) {
-    return pharaooh[index]['namee']!;
+    return pharaoh_ar[index]['namee']!;
   }
-  List<Map<String, String>> pharaoh = [
+  List<Map<String, String>> pharaoh_en = [
 
     {
       "image": "assets/images/amnthotb el talt (1).jpg",
@@ -437,20 +437,20 @@ class PharaohData {
   ];
 
   String getImageE(int index) {
-    return pharaoh[index]['image']!;
+    return pharaoh_en[index]['image']!;
   }
 
   String getNameE(int index) {
-    return pharaoh[index]['name']!;
+    return pharaoh_en[index]['name']!;
   }
   String getDetailsE(int index) {
-    return pharaoh[index]['details']!;
+    return pharaoh_en[index]['details']!;
   }
   String getExploreE(int index) {
-    return pharaoh[index]['explore']!;
+    return pharaoh_en[index]['explore']!;
   }
 
   String getNameeE(int index) {
-    return pharaoh[index]['namee']!;
+    return pharaoh_en[index]['namee']!;
   }
 }

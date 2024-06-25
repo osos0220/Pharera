@@ -2,6 +2,7 @@ import 'package:Pharera/Local.dart';
 import 'package:Pharera/cache_helper.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:Pharera/welcome_page.dart';
+import 'package:Pharera/splash_screen.dart'; // Import the splash screen
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      home: const WelcomePage(),
+      home: SplashScreen(), // Set SplashScreen as the initial screen
     );
   }
 }

@@ -77,6 +77,68 @@ class LanguageSelectionPage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 30),
+            InkWell(
+              onTap: () {
+                // Update the app's locale to French
+                var locale = const Locale('fr', 'FR');
+                Get.updateLocale(locale);
+              },
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 174, 158, 130),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Icon(Icons.language),
+                    Text('french'.tr, style: const TextStyle(fontSize: 25)),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 30),
+            InkWell(
+              onTap: () {
+                // Update the app's locale to German
+                var locale = const Locale('de', 'DE');
+                Get.updateLocale(locale);
+              },
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 174, 158, 130),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    const Icon(Icons.language),
+                    Text('german'.tr, style: const TextStyle(fontSize: 25)),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),

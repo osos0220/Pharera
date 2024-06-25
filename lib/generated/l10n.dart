@@ -350,10 +350,10 @@ class S {
     );
   }
 
-  /// `ABOUT US Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That's not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.`
+  /// ` Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That's not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.`
   String get Our {
     return Intl.message(
-      'ABOUT US Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That\'s not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt\'rich history and civilization.',
+      ' Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That\'s not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt\'rich history and civilization.',
       name: 'Our',
       desc: '',
       args: [],
@@ -1159,6 +1159,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Explore using VR`
+  String get VR {
+    return Intl.message(
+      'Explore using VR',
+      name: 'VR',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In Required`
+  String get signInRequiredTitle {
+    return Intl.message(
+      'Sign In Required',
+      name: 'signInRequiredTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need to sign in to explore the museum with a tour guide. Please sign in or create an account.`
+  String get signInRequiredMessage {
+    return Intl.message(
+      'You need to sign in to explore the museum with a tour guide. Please sign in or create an account.',
+      name: 'signInRequiredMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need to sign in to access Favorites. Please sign in or create an account.`
+  String get signInFavoriteMessage {
+    return Intl.message(
+      'You need to sign in to access Favorites. Please sign in or create an account.',
+      name: 'signInFavoriteMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get signInButton {
+    return Intl.message(
+      'Sign In',
+      name: 'signInButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelButton {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -1168,6 +1228,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ar'),
+      Locale.fromSubtags(languageCode: 'de'),
+      Locale.fromSubtags(languageCode: 'fr'),
     ];
   }
 

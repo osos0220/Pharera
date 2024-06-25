@@ -29,7 +29,7 @@
     "top" : "Top Favorites",
     "category" : "Categories",
     "Show" : "Show",
-    "Our" : "ABOUT US Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That's not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.",
+    "Our" : " Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That's not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt'rich history and civilization.",
     "whats" : "WhatsAPP",
     "Face" : "FaceBook",
     "insta" : "Instagram",
@@ -107,8 +107,13 @@
     "Trending" : "Trending",
     "Category" : "Category" ,
     "NoLike":"No liked images found.",
-     "NoVIDEO":"No liked video found.",
-     "ErroR" : "Error loading favorites.",
-     "NoFAV":"No favorite videos or images found."
-   
+    "NoVIDEO":"No liked video found.",
+    "ErroR" : "Error loading favorites.",
+    "NoFAV":"No favorite videos or images found.",
+    "VR": "Explore using VR",
+    "signInRequiredTitle": "Sign In Required",
+    "signInRequiredMessage": "You need to sign in to explore the museum with a tour guide. Please sign in or create an account.",
+    "signInFavoriteMessage": "You need to sign in to access Favorites. Please sign in or create an account.",
+    "signInButton": "Sign In",
+    "cancelButton": "Cancel"
 }

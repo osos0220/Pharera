@@ -29,8 +29,8 @@ class _TutPicState extends State<TutPic> {
 
     int startIndex = 8;
     int itemCount = IsArab()
-        ? pharaohData.pharaooh.length - startIndex
-        : pharaohData.pharaoh.length - startIndex;
+        ? pharaohData.pharaoh_ar.length - startIndex
+        : pharaohData.pharaoh_en.length - startIndex;
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
@@ -52,8 +52,8 @@ class _TutPicState extends State<TutPic> {
                 itemBuilder: (_, index) {
                   int actualIndex = index + startIndex;
                   final ex = IsArab()
-                      ? pharaohData.pharaooh[actualIndex]
-                      : pharaohData.pharaoh[actualIndex];
+                      ? pharaohData.pharaoh_ar[actualIndex]
+                      : pharaohData.pharaoh_en[actualIndex];
                   final isFavorite = favoritesProvider.favoriteIndexes.contains(actualIndex);
                   return Padding(
                     padding: EdgeInsets.only(left: screenWidth * 0.04, right: screenWidth * 0.04),

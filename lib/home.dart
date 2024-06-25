@@ -17,6 +17,9 @@ import 'package:Pharera/exhibition.dart';
 import 'package:page_transition/page_transition.dart';
 // import 'package:Pharera/models/favorite_utils.dart';
 import 'package:Pharera/features/user_auth/presentation/pages/profile_page.dart';
+import 'package:Pharera/features/user_auth/presentation/pages/login_page.dart';
+
+import 'is_signed.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -162,19 +165,6 @@ class _HomePageState extends State<HomePage>
                     );
                   },
                 ),
-                // ListTile(
-                //   leading: const Icon(Icons.person),
-                //   title: Text(S.of(context).profile),
-                //   onTap: () {
-                //     Navigator.push(
-                //       context,
-                //       PageTransition(
-                //         type: PageTransitionType.leftToRight,
-                //         child: const ProfilePage(),
-                //       ),
-                //     );
-                //   },
-                // )
               ],
             ),
           ),
@@ -335,14 +325,20 @@ class _HomePageState extends State<HomePage>
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.topToBottom,
-                          child: const favpage(),
-                        ),
-                      );
+                      if (isUserSignedIn()) {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.topToBottom,
+                            child: const favpage(),
+                          ),
+                        );
+                      } else {
+                        showSignInDialog(context);
+                        //   }
+                      }
                     },
+
                     child: Column(
                       children: [
                         Container(
@@ -392,4 +388,34 @@ class _HomePageState extends State<HomePage>
     tab.dispose();
     super.dispose();
   }
+}
+void showSignInDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(S.of(context).signInRequiredTitle),
+        content: Text(S.of(context).signInFavoriteMessage),
+        actions: [
+          TextButton(
+            child: Text(S.of(context).signInButton),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
+              );
+            },
+          ),
+          TextButton(
+            child: Text(S.of(context).cancelButton),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

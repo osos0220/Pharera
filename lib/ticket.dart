@@ -1,7 +1,6 @@
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'webview_page.dart'; // Import the WebViewPage
 import 'dart:io';
 
@@ -35,7 +34,7 @@ class Ticket extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20.0),// Set the desired height for the image
+                      padding: const EdgeInsets.symmetric(vertical: 20.0), // Set the desired height for the image
                       child: Image.asset("assets/images/Ticket.png"),
                     ),
                     Padding(
@@ -45,7 +44,7 @@ class Ticket extends StatelessWidget {
                           const SizedBox(height: 20), // Adjust the height here
                           _buildPriceRow(S.of(context).adult, S.of(context).L_e_aud),
                           const SizedBox(height: 10), // Add padding between containers
-                          _buildPriceRow(S.of(context).youth , S.of(context).L_e_y),
+                          _buildPriceRow(S.of(context).youth, S.of(context).L_e_y),
                           const SizedBox(height: 10), // Add padding between containers
                           _buildPriceRow(S.of(context).student, S.of(context).L_e_s),
                           const SizedBox(height: 10), // Add padding between containers
@@ -60,7 +59,13 @@ class Ticket extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                _launchURL(context);
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: const WebViewPage(url: 'https://visit-gem.com/en/tut'),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFAE9E82),
@@ -69,7 +74,7 @@ class Ticket extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 32),
               ),
-              child:  Text(
+              child: Text(
                 S.of(context).pay,
                 style: const TextStyle(fontSize: 25, color: Colors.black),
               ),
@@ -80,7 +85,7 @@ class Ticket extends StatelessWidget {
     );
   }
 
-  Widget _buildPriceRow(String title , String le) {
+  Widget _buildPriceRow(String title, String le) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
       child: Row(
@@ -102,25 +107,5 @@ class Ticket extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _launchURL(BuildContext context) async {
-    final url = Uri.parse('https://visit-gem.com/en/tut'); // Convert the URL to a Uri
-    if (await canLaunchUrl(url)) {
-      if (Platform.isAndroid) {
-        // Android-specific handling
-        await launchUrl(url, mode: LaunchMode.externalApplication);
-      }
-      // else if (Platform.isIOS) {
-      //   // iOS-specific handling
-      //   await launchUrl(url);
-      // }
-      else {
-        // Handle other platforms (e.g., desktop, web)
-        await launchUrl(url);
-      }
-    } else {
-      print('Error launching URL: $url');
-    }
   }
 }

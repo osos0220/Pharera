@@ -1,4 +1,5 @@
 import 'package:Pharera/Fav_pharaoh_page.dart';
+import 'package:Pharera/Fav_show_page.dart';
 import 'package:Pharera/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -42,28 +43,28 @@ class _favpageState extends State<favpage> {
   void _handlePhotoButtonPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => FavImagePage()),
+      MaterialPageRoute(builder: (context) => const FavImagePage()),
     );
   }
 
-  // void _handlePharaohButtonPress() {
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => const FavPharaohPage()),
-  //   );
-  // }
+  void _handlePharaohButtonPress() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const FavVideoPageOld()),
+    );
+  }
 
   void _handleVideoButtonPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => FavVideoPage()),
+      MaterialPageRoute(builder: (context) => const FavVideoPageNew()),
     );
   }
 
   void _handleTopFavoritesButtonPress() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => TopFavoritesPage()), // Navigate to TopFavoritesPage
+      MaterialPageRoute(builder: (context) => const TopFavoritesPage()), // Navigate to TopFavoritesPage
     );
   }
 
@@ -117,16 +118,16 @@ class _favpageState extends State<favpage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
-                          ),
-                          child:  Center(
-                            child: Text(
-                               S.of(context).Trending,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                color: Colors.white, // White text
-                              ),
-                            ),
-                          ),
+                          ), child: null,
+                          // child:  Center(
+                          //   child: Text(
+                          //      S.of(context).Trending,
+                          //     style: const TextStyle(
+                          //       fontSize: 24,
+                          //       color: Colors.white, // White text
+                          //     ),
+                          //   ),
+                          // ),
                         ),
                       ),
                     ],
@@ -181,47 +182,6 @@ class _favpageState extends State<favpage> {
                       ),
                     ),
                     const SizedBox(height: 24), // Adjust spacing between buttons
-                    // SizedBox(
-                    //   width: MediaQuery.of(context).size.width * 0.9,
-                    //   height: MediaQuery.of(context).size.height * 0.15,
-                    //   child: Stack(
-                    //     children: [
-                    //       // Background Image
-                    //       Positioned.fill(
-                    //         child: ClipRRect(
-                    //           borderRadius: BorderRadius.circular(16),
-                    //           child: Image.asset(
-                    //             'assets/images/amnthotb el talt (1).jpg', // Replace with your image asset
-                    //             fit: BoxFit.cover,
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       // Button
-                    //       Positioned.fill(
-                    //         child: ElevatedButton(
-                    //           onPressed: _handlePharaohButtonPress,
-                    //           style: ElevatedButton.styleFrom(
-                    //             padding: const EdgeInsets.all(0), // Remove padding
-                    //             backgroundColor: Colors.transparent, // Transparent background
-                    //             shape: RoundedRectangleBorder(
-                    //               borderRadius: BorderRadius.circular(16),
-                    //             ),
-                    //           ),
-                    //           child: const Center(
-                    //             child: Text(
-                    //               'Pharaohs',
-                    //               style: TextStyle(
-                    //                 fontSize: 24,
-                    //                 color: Colors.white, // White text
-                    //               ),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // ),
-                    // const SizedBox(height: 24), // Adjust spacing between buttons
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.height * 0.15,
@@ -232,7 +192,7 @@ class _favpageState extends State<favpage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               child: Image.asset(
-                                'assets/images/wel1.jpg', // Replace with your image asset
+                                'assets/images/amnthotb el talt (1).jpg', // Replace with your image asset
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -251,6 +211,47 @@ class _favpageState extends State<favpage> {
                               child:  Center(
                                 child: Text(
                                   S.of(context).video,
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white, // White text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24), // Adjust spacing between buttons
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.15,
+                      child: Stack(
+                        children: [
+                          // Background Image
+                          Positioned.fill(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.asset(
+                                'assets/images/wel1.jpg', // Replace with your image asset
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          // Button
+                          Positioned.fill(
+                            child: ElevatedButton(
+                              onPressed: _handlePharaohButtonPress,
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(0), // Remove padding
+                                backgroundColor: Colors.transparent, // Transparent background
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                              ),
+                              child:  Center(
+                                child: Text(
+                                  S.of(context).Show,
                                   style: const TextStyle(
                                     fontSize: 24,
                                     color: Colors.white, // White text

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:Pharera/Virtual_Tour/libsync_v2.dart';
@@ -18,10 +19,16 @@ class _FreeExploreState extends State<FreeExplore> {
 
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     super.initState();
     navigatorKey = GlobalKey<NavigatorState>();
   }
-
+  @override
+  void dispose() {
+    // Restore the status bar when leaving the page
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    super.dispose();
+  }
   int _panoId = 0;
   // double _lon = 0;
   // double _lat = 0;
@@ -293,7 +300,7 @@ class _FreeExploreState extends State<FreeExplore> {
               },
             )),
         Hotspot(
-            // to 2.3.webp
+            // to 2.2.webp
             longitude: 15.9,
             latitude: -20.1,
             width: 60,
@@ -2331,7 +2338,7 @@ class _FreeExploreState extends State<FreeExplore> {
 
         child: Image.asset('assets/images/360_images/4.3.3.1.webp'),
         hotspots: [
-          Hotspot(
+          Hotspot( // Go up
               longitude: 64.8,
               latitude: 6.1,
               width: 48,
@@ -2343,7 +2350,7 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
+          Hotspot( // to other side
               longitude: -11.3,
               latitude: -9.9,
               width: 48,
@@ -2355,7 +2362,7 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
+          Hotspot( // Go Down
               longitude: -120.7,
               latitude: -28.7,
               width: 48,
@@ -2367,7 +2374,7 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
+          Hotspot( // Go Down
               longitude: -122.1,
               latitude: -14.4,
               width: 48,
@@ -2685,7 +2692,7 @@ class _FreeExploreState extends State<FreeExplore> {
 
         child: Image.asset('assets/images/360_images/4.4.2.webp'),
         hotspots: [
-          Hotspot(
+          Hotspot( // Go Down
               longitude: 33.0,
               latitude: -10.0,
               width: 48,
@@ -2697,7 +2704,7 @@ class _FreeExploreState extends State<FreeExplore> {
                   setState(() => _panoId = newIndex);
                 },
               )),
-          Hotspot(
+          Hotspot( // GO Up
               longitude: -109.1,
               latitude: 7.5,
               width: 60,
@@ -2816,6 +2823,13 @@ class _FreeExploreState extends State<FreeExplore> {
               )),
         ]);
   }
+
+  // @override
+  // void dispose() {
+  //   // Restore the status bar when leaving the page
+  //   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -2970,23 +2984,9 @@ class _FreeExploreState extends State<FreeExplore> {
         children: [
           panorama,
           Text('')
-          // // Text(
-          // //     'Longitude: ${_lon.toStringAsFixed(2)}, Latitude: ${_lat.toStringAsFixed(2)}, Tilt: ${_tilt.toStringAsFixed(2)}'),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   mini: true,
-      //   onPressed: () async {
-      //     final pickedFile = await picker.getImage(source: ImageSource.gallery);
-      //     setState(() {
-      //       if (pickedFile != null) {
-      //         panoImages.add(Image.file(File(pickedFile.path)));
-      //         _panoId = panoImages.length - 1;
-      //       }
-      //     });
-      //   },
-      //   child: Icon(Icons.panorama),
-      // ),
+
     );
   }
 }

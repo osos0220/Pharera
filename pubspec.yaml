@@ -55,8 +55,8 @@ dependencies:
   fluttertoast: ^8.2.5
   font_awesome_flutter: ^10.7.0
   conditional_builder_null_safety: ^0.0.6
-  
   shared_preferences: ^2.2.3
+  tutorial_coach_mark: ^1.2.11
   get:
   flutter_localizations:
     sdk: flutter
@@ -76,9 +76,15 @@ dependencies:
 #  animated_bottom_navigation: ^0.0.5
 #  convex_bottom_bar: ^3.2.0
 dev_dependencies:
-  flutter_gen: ^5.5.0+1
   flutter_test:
     sdk: flutter
+#  test: ^1.19.5
+  mockito: ^5.0.16
+  build_runner: ^2.1.10  # Add this line to include build_runner
+  build_test: ^2.1.7      # Optional: For build_runner related tests
+  rxdart:  ^0.27.0
+  flutter_gen: ^5.5.0+1
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -110,6 +116,7 @@ flutter:
     - assets/videos/
     - assets/videos/Libsync/
     - assets/videos/tour_guide/
+    - assets/videos/SplashScreen/
 
     - assets/subtitles/
     - assets/sub_libsync/

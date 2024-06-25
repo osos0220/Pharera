@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/services.dart';
+
 class SubtitleLB {
   final Duration start;
   final Duration end;
@@ -106,8 +107,7 @@ class _LibSyncPageState extends State<LibSyncPage> {
   void _updateSubtitle() {
     final currentPosition = videoPlayerController.value.position;
     final subtitle = subtitles.firstWhere(
-          (subtitle) =>
-      currentPosition >= subtitle.start && currentPosition <= subtitle.end,
+          (subtitle) => currentPosition >= subtitle.start && currentPosition <= subtitle.end,
       orElse: () => SubtitleLB(start: Duration.zero, end: Duration.zero, text: ''),
     );
 
@@ -163,12 +163,17 @@ class _LibSyncPageState extends State<LibSyncPage> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Stack(
-              alignment: AlignmentDirectional.bottomCenter,
               children: [
                 // Display the video player
-                AspectRatio(
-                  aspectRatio: videoPlayerController.value.aspectRatio,
-                  child: VideoPlayer(videoPlayerController),
+                Positioned.fill(
+                  child: FittedBox(
+                    fit: BoxFit.cover,
+                    child: SizedBox(
+                      width: videoPlayerController.value.size.width,
+                      height: videoPlayerController.value.size.height,
+                      child: VideoPlayer(videoPlayerController),
+                    ),
+                  ),
                 ),
                 // Restart button
                 Positioned(
@@ -255,4 +260,6 @@ class _LibSyncPageState extends State<LibSyncPage> {
       ),
     );
   }
+
+
 }

@@ -20,7 +20,7 @@ class PharaohDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String imagePath = IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!;
+    String imagePath = IsArab() ?  pharaohData.pharaoh_ar[index]['image']! :  pharaohData.pharaoh_en[index]['image']!;
 
 
     return Scaffold(
@@ -93,7 +93,7 @@ class PharaohDetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            IsArab() ?  pharaohData.pharaooh[index]['name']! :  pharaohData.pharaoh[index]['name']! ,
+                            IsArab() ?  pharaohData.pharaoh_ar[index]['name']! :  pharaohData.pharaoh_en[index]['name']! ,
                             style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
@@ -110,7 +110,7 @@ class PharaohDetailPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            IsArab() ?  pharaohData.pharaooh[index]['detailss']! :  pharaohData.pharaoh[index]['details']! ,
+                            IsArab() ?  pharaohData.pharaoh_ar[index]['detailss']! :  pharaohData.pharaoh_en[index]['details']! ,
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

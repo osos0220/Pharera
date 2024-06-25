@@ -8,10 +8,9 @@ import 'package:Pharera/pharaohs.dart';
 import 'package:Pharera/Check.dart';
 
 class Pharaohs extends StatelessWidget {
-  Pharaohs({super.key, });
+  Pharaohs({super.key});
 
   final PharaohData pharaohData = PharaohData();
-  // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +20,10 @@ class Pharaohs extends StatelessWidget {
     // Define the proportional width and height
     final containerWidth = screenWidth * 0.35; // 35% of screen width
     final containerHeight = screenHeight * 0.08; // 8% of screen height
+    final textFontSize = screenWidth * 0.065; // Proportional font size for Explore text
+    final buttonFontSize = screenWidth * 0.055; // Proportional font size for button
+    final imageHeight = screenHeight * 0.45; // 45% of screen height
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 226, 226, 226),
       body: SingleChildScrollView(
@@ -40,11 +43,11 @@ class Pharaohs extends StatelessWidget {
                           onPressed: () {
                             // Handle SEE ALL button tap
                           },
-                          child:  Text(
+                          child: Text(
                             S.of(context).Explore,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.black,
-                              fontSize: 25,
+                              fontSize: textFontSize,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -53,15 +56,16 @@ class Pharaohs extends StatelessWidget {
                     ),
                     Expanded(child: Container()), // Spacer to push SEE ALL button to the right
                     Padding(
-                      padding:  EdgeInsets.only(top: 40, left: IsArab() ? 10 : 80 , right: IsArab() ? 0 : 0 ),
+                      padding: EdgeInsets.only(
+                          top: screenHeight * 0.05, // 5% of screen height
+                          left: IsArab() ? screenWidth * 0.025 : screenWidth * 0.2, // 2.5% or 20% of screen width
+                          right: IsArab() ? 0 : 0),
                       child: InkWell(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Groub(
-                                // Pass pharaohDataAr here
-                              ),
+                              builder: (context) => const Groub(),
                             ),
                           );
                         },
@@ -70,12 +74,12 @@ class Pharaohs extends StatelessWidget {
                           height: containerHeight,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30)),
-                          child:  Center(
+                          child: Center(
                             child: Text(
                               S.of(context).seeall,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 22,
+                                fontSize: buttonFontSize,
                               ),
                             ),
                           ),
@@ -87,7 +91,7 @@ class Pharaohs extends StatelessWidget {
               ),
               Container(
                 decoration: const BoxDecoration(),
-                height: 330,
+                height: imageHeight,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: ListView.builder(
@@ -95,7 +99,7 @@ class Pharaohs extends StatelessWidget {
                     itemCount: 3,
                     itemBuilder: (_, index) {
                       return SizedBox(
-                        height: 370,
+                        height: imageHeight,
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -104,21 +108,22 @@ class Pharaohs extends StatelessWidget {
                                 builder: (context) => PharaohDetailPage(
                                   pharaohData: pharaohData,
                                   index: index,
-                                  // Pass pharaohDataAr here
                                 ),
                               ),
                             );
                           },
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 10),
-                            width: 350,
+                            width: screenWidth * 0.9, // 90% of screen width
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: Image.asset(
-                                IsArab() ?  pharaohData.pharaooh[index]['image']! :  pharaohData.pharaoh[index]['image']!,
+                                IsArab()
+                                    ? pharaohData.pharaoh_ar[index]['image']!
+                                    : pharaohData.pharaoh_en[index]['image']!,
                                 fit: BoxFit.cover,
                               ),
                             ),

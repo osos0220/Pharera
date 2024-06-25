@@ -1,5 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:panorama_viewer/panorama_viewer.dart';
 import 'package:video_player/video_player.dart';
 import 'package:Pharera/Virtual_Tour/constants.dart';
@@ -21,6 +22,7 @@ class TourGuide extends StatefulWidget {
 class _TourGuideState extends State<TourGuide> {
   late GlobalKey<NavigatorState> navigatorKey;
   late VideoPlayerController _videoController;
+  bool _isPlaying = false; // Track video playing state
   List<Subtitle> subtitles = [];
   String currentSubtitle = '';
   String selectedLanguage = IsArab()?'ar': 'en'; // Default language
@@ -86,6 +88,7 @@ class _TourGuideState extends State<TourGuide> {
 
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
     super.initState();
     navigatorKey = GlobalKey<NavigatorState>();
     _initializeVideoAndSubtitles();
@@ -98,8 +101,13 @@ class _TourGuideState extends State<TourGuide> {
             () {}); // Ensure the first frame is shown after the video is initialized
         _videoController.play(); // Auto play the video
         _videoController.setLooping(false); // Loop the video
-        _videoController
-            .addListener(_updateSubtitle); // Add listener to update subtitles
+        _videoController.addListener(_updateSubtitle); // Add listener to update subtitles
+
+        setState(() {
+
+          _isPlaying = true; // Update playing state
+
+        });
       });
     subtitles = await loadSubtitles(selectedLanguage, _panoId);
     _updateSubtitle(); // Update subtitle after loading
@@ -126,15 +134,14 @@ class _TourGuideState extends State<TourGuide> {
 
   @override
   void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     _disposeVideoController();
     super.dispose();
   }
-
   void _disposeVideoController() {
     _videoController.removeListener(_updateSubtitle);
     _videoController.dispose();
   }
-
   void _onPanoChanged(int newPanoId) async {
     _disposeVideoController();
     setState(() {
@@ -145,7 +152,31 @@ class _TourGuideState extends State<TourGuide> {
     await _videoController.pause();
     await _initializeVideoAndSubtitles();
   }
+  void _togglePlayPause() {
 
+    if (_videoController.value.isPlaying) {
+
+      _videoController.pause();
+
+      setState(() {
+
+        _isPlaying = false;
+
+      });
+
+    } else {
+
+      _videoController.play();
+
+      setState(() {
+
+        _isPlaying = true;
+
+      });
+
+    }
+
+  }
   @override
   Widget build(BuildContext context) {
     Widget panorama;
@@ -159,8 +190,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 35,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[0],
         );
         break;
@@ -173,8 +203,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[1],
         );
         break;
@@ -187,8 +216,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[2],
         );
         break;
@@ -201,8 +229,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           hotspots: [
             Hotspot(
               longitude: 1.8,
@@ -246,8 +273,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[4],
         );
         break;
@@ -260,8 +286,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[5],
         );
         break;
@@ -274,8 +299,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           hotspots: [
             Hotspot(
               longitude: -0.47,
@@ -317,8 +341,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[7],
         );
         break;
@@ -331,8 +354,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[8],
 
         );
@@ -346,8 +368,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           hotspots: [
             Hotspot(
               longitude: -0.47,
@@ -389,8 +410,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[10],
         );
         break;
@@ -403,8 +423,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           hotspots: [
             Hotspot(
               longitude: -6.1,
@@ -446,8 +465,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           hotspots: [
             Hotspot(
               longitude: 0.47,
@@ -489,8 +507,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           hotspots: [
             Hotspot(
               longitude: 0.48,
@@ -532,8 +549,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[14],
         );
         break;
@@ -546,8 +562,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[15],
         );
         break;
@@ -560,8 +575,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[16],
         );
         break;
@@ -574,8 +588,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[17],
         );
         break;
@@ -588,8 +601,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[18],
         );
         break;
@@ -602,8 +614,6 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
           child: panoImages[19],
         );
         break;
@@ -616,8 +626,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[20],
         );
         break;
@@ -630,8 +639,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[21],
         );
         break;
@@ -644,8 +652,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[22],
         );
         break;
@@ -658,8 +665,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[23],
         );
         break;
@@ -672,8 +678,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
           child: panoImages[24],
         );
       case 25:
@@ -685,8 +690,7 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
+
             hotspots: [
               Hotspot(
                   longitude: -5.0,
@@ -712,8 +716,6 @@ class _TourGuideState extends State<TourGuide> {
           maxLatitude: 25,
           maxLongitude: 40,
           onViewChanged: (longitude, latitude, tilt) {},
-          onTap: (longitude, latitude, tilt) =>
-              print('onTap: $longitude, $latitude, $tilt'),
           child: panoImages[0],
 
         );
@@ -760,6 +762,29 @@ class _TourGuideState extends State<TourGuide> {
                 _updateSubtitle();
               },
             ),
+          ),
+          Positioned(
+
+            top: 60,
+
+            right: 10,
+
+            child: InkWell(
+
+              onTap: _togglePlayPause,
+
+              child: Icon(
+
+                _isPlaying ? Icons.pause : Icons.play_arrow,
+
+                color: Colors.white,
+
+                size: 45.0,
+
+              ),
+
+            ),
+
           ),
           Positioned(
             bottom: 20,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Textt extends StatelessWidget {
   final String text;
-  
+
   const Textt({super.key, required this.text});
 
   @override

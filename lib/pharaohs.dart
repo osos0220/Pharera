@@ -32,14 +32,14 @@ class _GroubState extends State<Groub> {
 
     // Set the initial selected index to 0
     _selectedPhoto = IsArab()
-        ? _pharaohData.pharaooh[0]['image']!
-        : _pharaohData.pharaoh[0]['image']!;
+        ? _pharaohData.pharaoh_ar[0]['image']!
+        : _pharaohData.pharaoh_en[0]['image']!;
     _selectedName = IsArab()
-        ? _pharaohData.pharaooh[0]['name']!
-        : _pharaohData.pharaoh[0]['name']!;
+        ? _pharaohData.pharaoh_ar[0]['name']!
+        : _pharaohData.pharaoh_en[0]['name']!;
     _selectedDetails = IsArab()
-        ? _pharaohData.pharaooh[0]['explore']!
-        : _pharaohData.pharaoh[0]['explore']!;
+        ? _pharaohData.pharaoh_ar[0]['explore']!
+        : _pharaohData.pharaoh_en[0]['explore']!;
   }
 
   @override
@@ -90,7 +90,7 @@ class _GroubState extends State<Groub> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (ctx, i) => _buildPhotoWidget(i),
                     separatorBuilder: (ctx, i) => const SizedBox(width: 8),
-                    itemCount: _pharaohData.pharaoh.take(7).length,
+                    itemCount: _pharaohData.pharaoh_en.take(7).length,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -107,9 +107,9 @@ class _GroubState extends State<Groub> {
                             fit: BoxFit.fill,
                             image: AssetImage(
                               IsArab()
-                                  ? _pharaohData.pharaooh[_selectedIndex]
+                                  ? _pharaohData.pharaoh_ar[_selectedIndex]
                                       ['image']!
-                                  : _pharaohData.pharaoh[_selectedIndex]
+                                  : _pharaohData.pharaoh_en[_selectedIndex]
                                       ['image']!,
                             ),
                           ),
@@ -172,7 +172,7 @@ class _GroubState extends State<Groub> {
                               const BorderRadius.all(Radius.circular(24)),
                           image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: AssetImage(_pharaohData.pharaoh.firstWhere(
+                            image: AssetImage(_pharaohData.pharaoh_en.firstWhere(
                                         (e) => e['name'] == "King Akhenaten")[
                                     'image'] ??
                                 ""),
@@ -236,14 +236,14 @@ class _GroubState extends State<Groub> {
       onTap: () {
         setState(() {
           _selectedPhoto = IsArab()
-              ? _pharaohData.pharaooh[index]['image']!
-              : _pharaohData.pharaoh[index]['image']!;
+              ? _pharaohData.pharaoh_ar[index]['image']!
+              : _pharaohData.pharaoh_en[index]['image']!;
           _selectedName = IsArab()
-              ? _pharaohData.pharaooh[index]['name']!
-              : _pharaohData.pharaoh[index]['name']!;
+              ? _pharaohData.pharaoh_ar[index]['name']!
+              : _pharaohData.pharaoh_en[index]['name']!;
           _selectedDetails = IsArab()
-              ? _pharaohData.pharaooh[index]['explore']!
-              : _pharaohData.pharaoh[index]['explore']!;
+              ? _pharaohData.pharaoh_ar[index]['explore']!
+              : _pharaohData.pharaoh_en[index]['explore']!;
           _selectedIndex = index;
         });
         _isSheetAttached = false; // Reset the attachment flag
@@ -254,15 +254,15 @@ class _GroubState extends State<Groub> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: _selectedPhoto == _pharaohData.pharaoh[index]['name']
+            color: _selectedPhoto == _pharaohData.pharaoh_en[index]['name']
                 ? Colors.yellow
                 : Colors.transparent,
             width: 2,
           ),
           image: DecorationImage(
             image: AssetImage(IsArab()
-                ? _pharaohData.pharaooh[index]['image']!
-                : _pharaohData.pharaoh[index]['image']!),
+                ? _pharaohData.pharaoh_ar[index]['image']!
+                : _pharaohData.pharaoh_en[index]['image']!),
             fit: BoxFit.cover,
           ),
         ),

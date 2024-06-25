@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "NoVIDEO":
             MessageLookupByLibrary.simpleMessage("No liked video found."),
         "Our": MessageLookupByLibrary.simpleMessage(
-            "ABOUT US Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That\'s not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt\'rich history and civilization."),
+            " Our mobile application offers A virtual tour Of one Of the most historical ages pharaonic civilizations.But That\'s not all- we go beyond by bring-ing history to life through Ai-powered lip synchronization, historical characters within the musuem tell their stories.offering tourists a unique and inspiring experience. our 360- degree virtual tour creates a sense of immersion, allowing users to delve into Egypt\'rich history and civilization."),
         "Permision": MessageLookupByLibrary.simpleMessage(
             "Permission denied. Please enable storage permission."),
         "Permission": MessageLookupByLibrary.simpleMessage(
@@ -85,12 +85,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "Tickets": MessageLookupByLibrary.simpleMessage("Tickets"),
         "Top": MessageLookupByLibrary.simpleMessage("Top Favorites"),
         "Trending": MessageLookupByLibrary.simpleMessage("Trending"),
+        "VR": MessageLookupByLibrary.simpleMessage("Explore using VR"),
         "Welcome": MessageLookupByLibrary.simpleMessage("Welcome To The GEM"),
         "WelcomeGEM":
             MessageLookupByLibrary.simpleMessage("Welcome To The GEM"),
         "adult": MessageLookupByLibrary.simpleMessage("Adult"),
         "ago": MessageLookupByLibrary.simpleMessage("Ago"),
         "arabic": MessageLookupByLibrary.simpleMessage("ARABIC"),
+        "cancelButton": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Categories"),
         "contact": MessageLookupByLibrary.simpleMessage("Contact Us"),
         "create": MessageLookupByLibrary.simpleMessage("CREATE ACCOUNT"),
@@ -149,6 +151,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeall": MessageLookupByLibrary.simpleMessage("See All"),
         "senior": MessageLookupByLibrary.simpleMessage("Senior"),
         "setting": MessageLookupByLibrary.simpleMessage("Settings"),
+        "signInButton": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "signInFavoriteMessage": MessageLookupByLibrary.simpleMessage(
+            "You need to sign in to access Favorites. Please sign in or create an account."),
+        "signInRequiredMessage": MessageLookupByLibrary.simpleMessage(
+            "You need to sign in to explore the museum with a tour guide. Please sign in or create an account."),
+        "signInRequiredTitle":
+            MessageLookupByLibrary.simpleMessage("Sign In Required"),
         "signin": MessageLookupByLibrary.simpleMessage("SIGN IN"),
         "signup": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "student": MessageLookupByLibrary.simpleMessage("Student"),

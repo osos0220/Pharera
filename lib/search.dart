@@ -42,10 +42,10 @@ class _SearchResultsState extends State<SearchResults> {
   }
 
   List<Map<String, String>> _getAllPharaohs() {
-    return [...pharaohData.pharaoh,];
+    return [...pharaohData.pharaoh_en,];
   }
   List<Map<String, String>> _getAllPharaoohs() {
-    return [...pharaohData.pharaooh,];
+    return [...pharaohData.pharaoh_ar,];
   }
 
   void _filterPharaohs(String query) {

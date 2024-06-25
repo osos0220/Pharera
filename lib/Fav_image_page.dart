@@ -31,7 +31,7 @@ class _FavImagePageState extends State<FavImagePage> {
       final data = PharaohData();
       return {
         'index': index,
-        'data': IsArab() ? data.pharaooh[index] : data.pharaoh[index],
+        'data': IsArab() ? data.pharaoh_ar[index] : data.pharaoh_en[index],
       };
     }).toList();
     setState(() {

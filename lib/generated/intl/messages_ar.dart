@@ -56,7 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "NoVIDEO": MessageLookupByLibrary.simpleMessage(
             "لم يتم العثور على فديو مفضلة."),
         "Our": MessageLookupByLibrary.simpleMessage(
-            "حولنا تطبيقنا المحمول يوفر جولة افتراضية لأحد أقدم العصور الحضارات الفرعونية. ولكن هذا ليس كل شيء - نحن نذهب أبعد من ذلك بإحياء التاريخ من خلال التزامن الشفوي المدعوم بالذكاء الاصطناعي، حيث تحكي الشخصيات التاريخية داخل المتحف قصصها. نقدم للسياح تجربة فريدة وملهمة. جولتنا الافتراضية بزاوية 360 درجة تخلق شعورًا بالانغماس، مما يتيح للمستخدمين التعمق في تاريخ وحضارة مصر الغنية."),
+            "تطبيقنا المحمول يوفر جولة افتراضية لأحد أقدم العصور الحضارات الفرعونية. ولكن هذا ليس كل شيء - نحن نذهب أبعد من ذلك بإحياء التاريخ من خلال التزامن الشفوي المدعوم بالذكاء الاصطناعي، حيث تحكي الشخصيات التاريخية داخل المتحف قصصها. نقدم للسياح تجربة فريدة وملهمة. جولتنا الافتراضية بزاوية 360 درجة تخلق شعورًا بالانغماس، مما يتيح للمستخدمين التعمق في تاريخ وحضارة مصر الغنية."),
         "Permision": MessageLookupByLibrary.simpleMessage(
             "تم رفض الإذن. يرجى تمكين إذن التخزين."),
         "Permission": MessageLookupByLibrary.simpleMessage(
@@ -76,10 +76,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "Tickets": MessageLookupByLibrary.simpleMessage("التذاكر"),
         "Top": MessageLookupByLibrary.simpleMessage("أفضل المفضلات"),
         "Trending": MessageLookupByLibrary.simpleMessage("الشائع"),
+        "VR": MessageLookupByLibrary.simpleMessage("استكشف باستخدام VR"),
         "Welcome": MessageLookupByLibrary.simpleMessage("مرحبًا بكم"),
         "WelcomeGEM": MessageLookupByLibrary.simpleMessage("مرحبا"),
         "adult": MessageLookupByLibrary.simpleMessage("بالغ"),
         "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+        "cancelButton": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "category": MessageLookupByLibrary.simpleMessage("الفئات"),
         "contact": MessageLookupByLibrary.simpleMessage("اتصل بنا"),
         "create": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
@@ -132,6 +134,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "seeall": MessageLookupByLibrary.simpleMessage("عرض الكل"),
         "senior": MessageLookupByLibrary.simpleMessage("كبير السن"),
         "setting": MessageLookupByLibrary.simpleMessage("الإعدادات"),
+        "signInButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signInFavoriteMessage": MessageLookupByLibrary.simpleMessage(
+            "تحتاج إلى تسجيل الدخول للوصول الى المفضله. يرجى تسجيل الدخول أو إنشاء حساب."),
+        "signInRequiredMessage": MessageLookupByLibrary.simpleMessage(
+            "تحتاج إلى تسجيل الدخول لأستكشاف المتحف مع مرشد سياحي. يرجى تسجيل الدخول أو إنشاء حساب."),
+        "signInRequiredTitle":
+            MessageLookupByLibrary.simpleMessage("تسجيل الدخول مطلوب"),
         "signin": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signup": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "student": MessageLookupByLibrary.simpleMessage("طالب"),

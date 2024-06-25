@@ -26,7 +26,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.Pharera"
+    namespace "com.example.pharera"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion "25.1.8937393"
 
@@ -44,7 +44,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.Pharera"
+        applicationId "com.example.pharera"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion 34 // Updated targetSdkVersion
         versionCode flutterVersionCode.toInteger()
