@@ -21,8 +21,12 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 
     // Set a timer to navigate to the next screen after the video ends
-    Timer(const Duration(seconds: 5), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const WelcomePage()));
+    _controller.addListener(() {
+      if (_controller.value.position == _controller.value.duration) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const WelcomePage()),
+        );
+      }
     });
   }
 
@@ -41,16 +45,16 @@ class _SplashScreenState extends State<SplashScreen> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Center(
-              child: Container(
-                color: Colors.black, // Ensure the container's background is black
-                child: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                ),
+              child: AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
               ),
             );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            // Show a black screen while the video is loading
+            return Container(
+              color: Colors.black,
+            );
           }
         },
       ),
